@@ -70,7 +70,7 @@ export default function Hero() {
   return (
     <section
       style={{
-        padding: "0 clamp(8px, 1vw, 16px) clamp(8px, 1vw, 16px)",
+        padding: "clamp(8px, 1vw, 16px)",
         minHeight: "100vh",
         display: "flex",
       }}
