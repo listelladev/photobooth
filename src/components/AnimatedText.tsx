@@ -71,9 +71,15 @@ export function AnimLine({
       style={{
         overflow: "hidden",
         display: "block",
-        /* Extra padding so descenders (y, g, p, comma) aren't clipped */
+        /* Extra padding so descenders/ascenders and wide glyphs aren't clipped */
+        paddingTop: "0.1em",
+        marginTop: "-0.1em",
         paddingBottom: "0.18em",
         marginBottom: "-0.18em",
+        paddingLeft: "0.08em",
+        marginLeft: "-0.08em",
+        paddingRight: "0.12em",
+        marginRight: "-0.12em",
         ...style,
       }}
     >

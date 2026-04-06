@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import RevealOnScroll from "./RevealOnScroll";
 import StickerReveal from "./StickerReveal";
+import CircleHighlight from "./CircleHighlight";
 
 function stickerStyle(popped: boolean): React.CSSProperties {
   return {
@@ -52,7 +53,7 @@ const products = [
     description:
       "Experience the unforgettable allure of having a photo booth at your event or party. It's the perfect way to capture fun moments, create lasting memories, and add a unique touch to your celebration that everyone will enjoy.",
     images: [
-      "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=1200&auto=format&fit=crop",
+      "/salsa-photobooth.jpg",
       "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop",
     ],
     iconSrc: "/icons/salsa-photobooth.svg",
@@ -133,7 +134,7 @@ function ProductsHeading() {
         className="font-heading"
         style={{ fontSize: "clamp(40px, 7vw, 100px)", lineHeight: 1.0, letterSpacing: "-0.04em", color: "#1a1a2e" }}
       >
-        <span style={{ overflow: "hidden", display: "block", paddingBottom: "0.18em", marginBottom: "-0.18em" }}>
+        <span style={{ overflow: "hidden", display: "block", paddingTop: "0.1em", marginTop: "-0.1em", paddingBottom: "0.18em", marginBottom: "-0.18em", paddingLeft: "0.08em", marginLeft: "-0.08em", paddingRight: "0.12em", marginRight: "-0.12em" }}>
           <span className="anim-line" style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1), opacity 0.9s cubic-bezier(0.22,1,0.36,1)" }}>
             Choose your{" "}
             <span style={{ position: "relative", display: "inline-block" }}>
@@ -144,15 +145,16 @@ function ProductsHeading() {
             </span>
           </span>
         </span>
-        <span style={{ overflow: "hidden", display: "block", paddingTop: "0.28em", marginTop: "-0.28em", paddingBottom: "0.9em", marginBottom: "-0.9em" }}>
+        <span style={{ overflow: "hidden", display: "block", paddingTop: "0.28em", marginTop: "-0.28em", paddingBottom: "0.9em", marginBottom: "-0.9em", paddingLeft: "0.08em", marginLeft: "-0.08em", paddingRight: "0.12em", marginRight: "-0.12em" }}>
           <span className="anim-line" style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s" }}>
             make it{" "}
-            <span style={{ position: "relative", display: "inline-block", lineHeight: 1 }}>
-              <em style={{ fontStyle: "italic" }}>yours.</em>
-              <svg aria-hidden="true" viewBox="0 0 200 100" preserveAspectRatio="none" style={{ position: "absolute", top: "-0.18em", left: "-0.12em", right: "-0.12em", bottom: "-0.2em", overflow: "visible", pointerEvents: "none" }}>
-                <path ref={circleRef} d="M100 6 C148 4, 193 18, 194 50 C195 80, 150 95, 100 95 C50 95, 5 80, 6 50 C7 18, 52 4, 100 6" fill="none" stroke="#6C5CE7" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 9999, strokeDashoffset: 9999 }} />
-              </svg>
-            </span>
+            <CircleHighlight
+              text="yours."
+              circleRef={circleRef}
+              stroke="#6C5CE7"
+              strokeWidth={4.5}
+              pathD="M102 -6 C142 -9, 182 2, 192 32 C198 50, 192 70, 170 80 C148 88, 104 86, 68 80 C34 74, 8 60, 6 38 C4 16, 26 -2, 62 -6 C74 -8, 88 -7, 102 -6"
+            />
           </span>
         </span>
       </h2>

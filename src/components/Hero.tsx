@@ -87,7 +87,7 @@ export default function Hero() {
       >
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=2070&auto=format&fit=crop"
+            src="/hero.jpg"
             alt=""
             className="w-full h-full object-cover"
           />
@@ -153,6 +153,10 @@ export default function Hero() {
                 marginTop: "-0.42em",
                 paddingBottom: "0.9em",
                 marginBottom: "-0.9em",
+                paddingLeft: "0.08em",
+                marginLeft: "-0.08em",
+                paddingRight: "0.12em",
+                marginRight: "-0.12em",
               }}
             >
               <span
@@ -213,6 +217,10 @@ export default function Hero() {
                 display: "block",
                 paddingBottom: "0.18em",
                 marginBottom: "-0.18em",
+                paddingLeft: "0.08em",
+                marginLeft: "-0.08em",
+                paddingRight: "0.12em",
+                marginRight: "-0.12em",
               }}
             >
               <span

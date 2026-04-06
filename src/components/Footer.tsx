@@ -101,9 +101,15 @@ export default function Footer() {
               QUICK LINKS
             </h4>
             <div className="flex flex-col" style={{ gap: 14 }}>
-              {["Products", "Pricing", "About", "FAQ", "Book Now"].map((l) => (
-                <a key={l} href={`#${l.toLowerCase().replace(" ", "")}`} className="transition-opacity duration-300 hover:opacity-60" style={{ fontSize: 15, fontWeight: 400, color: "rgba(255,255,255,0.5)" }}>
-                  {l}
+              {[
+                { label: "Products", href: "/products" },
+                { label: "Locations", href: "/locations" },
+                { label: "About", href: "/about" },
+                { label: "Contact", href: "/contact" },
+                { label: "Book Now", href: "/contact" },
+              ].map((l) => (
+                <a key={l.label} href={l.href} className="transition-opacity duration-300 hover:opacity-60" style={{ fontSize: 15, fontWeight: 400, color: "rgba(255,255,255,0.5)" }}>
+                  {l.label}
                 </a>
               ))}
             </div>
@@ -118,7 +124,7 @@ export default function Footer() {
             </h4>
             <div className="flex flex-col" style={{ gap: 14 }}>
               {["Calgary", "Banff", "Canmore", "Airdrie", "Cochrane", "Okotoks"].map((a) => (
-                <span key={a} style={{ fontSize: 15, fontWeight: 400, color: "rgba(255,255,255,0.5)" }}>{a}</span>
+                <a key={a} href={`/locations/${a.toLowerCase()}`} className="transition-opacity duration-300 hover:opacity-60" style={{ fontSize: 15, fontWeight: 400, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>{a}</a>
               ))}
             </div>
           </div>
@@ -131,6 +137,9 @@ export default function Footer() {
           <p style={{ fontSize: 13, fontWeight: 400, color: "rgba(255,255,255,0.2)" }}>
             &copy; {new Date().getFullYear()} Photobooth Experience. All rights reserved.
           </p>
+          <a href="/terms" className="transition-opacity duration-300 hover:opacity-60" style={{ fontSize: 12, fontWeight: 400, color: "rgba(255,255,255,0.2)", textDecoration: "none" }}>
+            Terms &amp; Conditions
+          </a>
         </div>
       </div>
       </div>

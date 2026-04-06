@@ -1,0 +1,1930 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import SmoothScroll from "@/components/SmoothScroll";
+import CursorTag from "@/components/CursorTag";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import RevealOnScroll from "@/components/RevealOnScroll";
+import AnimatedText, { AnimLine } from "@/components/AnimatedText";
+import StickerReveal from "@/components/StickerReveal";
+import CircleHighlight from "@/components/CircleHighlight";
+
+function stickerStyle(popped: boolean): React.CSSProperties {
+  return {
+    transition: "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease",
+    transform: popped ? "scale(1) rotate(0deg)" : "scale(0) rotate(-18deg)",
+    opacity: popped ? 1 : 0,
+    transformOrigin: "center center",
+  };
+}
+
+// ─── HERO ─────────────────────────────────────────────────────────────────────
+function ProductsHero() {
+  const line1Ref = useRef<HTMLSpanElement>(null);
+  const line2Ref = useRef<HTMLSpanElement>(null);
+  const line3Ref = useRef<HTMLSpanElement>(null);
+  const [sticker1, setSticker1] = useState(false);
+  const [sticker2, setSticker2] = useState(false);
+  const [sticker3, setSticker3] = useState(false);
+  const circleRef = useRef<SVGPathElement>(null);
+
+  useEffect(() => {
+    const revealLine = (ref: React.RefObject<HTMLSpanElement | null>, ms: number) => {
+      setTimeout(() => {
+        const el = ref.current;
+        if (!el) return;
+        el.style.transform = "translateY(0)";
+        el.style.opacity = "1";
+      }, ms);
+    };
+    revealLine(line1Ref, 100);
+    revealLine(line2Ref, 230);
+    revealLine(line3Ref, 360);
+    setTimeout(() => {
+      const c = circleRef.current;
+      if (!c) return;
+      const len = c.getTotalLength();
+      c.style.strokeDasharray = `${len}`;
+      c.style.strokeDashoffset = `${len}`;
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          c.style.transition = "stroke-dashoffset 1.4s cubic-bezier(0.16, 1, 0.3, 1)";
+          c.style.strokeDashoffset = "0";
+        }),
+      );
+    }, 700);
+    setTimeout(() => setSticker1(true), 480);
+    setTimeout(() => setSticker2(true), 850);
+    setTimeout(() => setSticker3(true), 1150);
+  }, []);
+
+  return (
+    <section style={{ padding: "clamp(8px, 1vw, 16px)", minHeight: "70vh", display: "flex" }}>
+      <div
+        className="relative w-full overflow-hidden"
+        style={{
+          borderRadius: "clamp(12px, 1.5vw, 24px)",
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        {/* Background */}
+        <div className="absolute inset-0">
+          <img
+            src="/products-hero.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.48) 50%, rgba(0,0,0,0.70) 100%)",
+            }}
+          />
+        </div>
+
+        {/* Camera sticker */}
+        <div className="absolute" style={{ top: "14%", right: "7%", zIndex: 5 }}>
+          <div style={stickerStyle(sticker1)}>
+            <img
+              src="/icons/hero-camera.svg"
+              alt=""
+              style={{ width: "clamp(52px, 7vw, 104px)", height: "auto" }}
+            />
+          </div>
+        </div>
+
+        {/* Twinkle sticker */}
+        <div className="absolute" style={{ bottom: "22%", left: "5%", zIndex: 5 }}>
+          <div style={stickerStyle(sticker2)}>
+            <img
+              src="/icons/hero-twinkle.svg"
+              alt=""
+              style={{ width: "clamp(28px, 3.5vw, 56px)", height: "auto" }}
+            />
+          </div>
+        </div>
+
+        {/* Content */}
+        <div
+          className="relative z-10 text-center"
+          style={{ padding: "clamp(48px, 6vw, 100px)" }}
+        >
+          <div
+            className="font-heading"
+            style={{
+              fontSize: "clamp(44px, 7.5vw, 110px)",
+              lineHeight: 1.0,
+              letterSpacing: "-0.04em",
+              color: "#fff",
+            }}
+          >
+            {/* Line 1 */}
+            <span style={{ display: "block" }}>
+              <span
+                ref={line1Ref}
+                style={{
+                  display: "block",
+                  transform: "translateY(110%)",
+                  opacity: 0,
+                  transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1), opacity 0.9s cubic-bezier(0.22,1,0.36,1)",
+                }}
+              >
+                Every Moment
+              </span>
+            </span>
+            {/* Line 2 */}
+            <span style={{ display: "block", paddingBottom: "0.3em" }}>
+              <span
+                ref={line2Ref}
+                style={{
+                  display: "block",
+                  transform: "translateY(110%)",
+                  opacity: 0,
+                  transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.12s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.12s",
+                }}
+              >
+                Deserves a{" "}
+                <CircleHighlight
+                  text="Frame."
+                  circleRef={circleRef}
+                  stroke="rgba(255,255,255,0.75)"
+                  strokeWidth={3}
+                  pathD="M100 5 C132 2, 170 12, 188 30 C200 44, 198 66, 186 80 C172 93, 144 98, 104 97 C66 96, 36 89, 18 76 C4 64, 4 40, 14 26 C26 10, 58 3, 82 4 C90 4, 96 5, 106 4"
+                />
+              </span>
+            </span>
+          </div>
+
+          {/* Subtext */}
+          <div
+            style={{
+              overflow: "hidden",
+              display: "block",
+              paddingBottom: "0.18em",
+              marginBottom: "-0.18em",
+              marginTop: "clamp(20px, 2.5vw, 36px)",
+            }}
+          >
+            <span
+              ref={line3Ref}
+              style={{
+                display: "block",
+                transform: "translateY(110%)",
+                opacity: 0,
+                transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.24s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.24s",
+                fontSize: "clamp(16px, 1.4vw, 22px)",
+                fontWeight: 400,
+                color: "rgba(255,255,255,0.65)",
+                maxWidth: 520,
+                margin: "0 auto",
+                lineHeight: 1.7,
+              }}
+            >
+              Three unique photo booths. A stunning backdrop library. Setup &amp; takedown
+              completely on us.
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── BOOTH PRICING ────────────────────────────────────────────────────────────
+const booths = [
+  {
+    name: "Salsa Photo Booth",
+    icon: "/icons/salsa-photobooth.svg",
+    image: "/salsa.jpeg",
+    startingAt: "199",
+    accent: "#FFD6E8",
+    accentDark: "#E84393",
+    note: "Minimum 2 hours",
+    tiers: [
+      { label: "2 hours", price: "$299" },
+      { label: "3 hours", price: "$399" },
+      { label: "4 hours", price: "$499" },
+    ],
+    extra: "$99 / additional hour",
+    description:
+      "The crowd-pleasing classic. Timeless prints, vibrant props, and an on-site attendant to keep the energy going all night.",
+  },
+  {
+    name: "360 PhotoBooth",
+    icon: "/icons/360-photobooth.svg",
+    image: "/360.jpeg",
+    startingAt: "249",
+    accent: "#D4F4A0",
+    accentDark: "#00B894",
+    note: "Minimum 1 hour",
+    tiers: [
+      { label: "2 hours", price: "$399" },
+      { label: "3 hours", price: "$499" },
+      { label: "4 hours", price: "$599" },
+    ],
+    extra: "$119 / additional hour",
+    description:
+      "The ultimate social media showstopper. Cinematic 360° slow-motion videos that guests will share for days.",
+  },
+  {
+    name: "Mirror PhotoBooth",
+    icon: "/icons/mirror.svg",
+    image: "/mirror.jpeg",
+    startingAt: "269",
+    accent: "#E8D6FF",
+    accentDark: "#6C5CE7",
+    note: "Minimum 2 hours",
+    tiers: [
+      { label: "2 hours", price: "$499" },
+      { label: "3 hours", price: "$699" },
+      { label: "4 hours", price: "$899" },
+    ],
+    extra: "$199 / additional hour",
+    description:
+      "Elegant, interactive, and endlessly entertaining. The full-length mirror display turns every photo into a moment.",
+  },
+];
+
+function BoothCard({ booth, index }: { booth: (typeof booths)[0]; index: number }) {
+  const [hovered, setHovered] = useState(false);
+  const [stickerPopped, setStickerPopped] = useState(false);
+
+  return (
+    <RevealOnScroll delay={index * 130} className="h-full">
+      <div
+        style={{ position: "relative", height: "100%" }}
+        onMouseEnter={() => {
+          setHovered(true);
+          if (!stickerPopped) setStickerPopped(true);
+        }}
+        onMouseLeave={() => setHovered(false)}
+      >
+        {/* Icon sticker */}
+        <div
+          style={{
+            position: "absolute",
+            top: -22,
+            right: 24,
+            zIndex: 10,
+          }}
+        >
+          <div style={stickerStyle(stickerPopped)}>
+            <img
+              src={booth.icon}
+              alt=""
+              style={{ width: "clamp(60px, 6vw, 80px)", height: "auto" }}
+            />
+          </div>
+        </div>
+
+        <div
+          style={{
+            background: "#fff",
+            borderRadius: "clamp(16px, 2vw, 24px)",
+            border: "1.5px solid #ebebeb",
+            overflow: "hidden",
+            transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s",
+            transform: hovered ? "translateY(-6px)" : "translateY(0)",
+            boxShadow: hovered ? "0 24px 60px rgba(0,0,0,0.10)" : "0 4px 20px rgba(0,0,0,0.05)",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          {/* Thumbnail image */}
+          <div style={{ position: "relative", overflow: "hidden", flexShrink: 0 }}>
+            <img
+              src={booth.image}
+              alt={booth.name}
+              style={{
+                width: "100%",
+                height: "clamp(160px, 18vw, 240px)",
+                objectFit: "cover",
+                display: "block",
+                transition: "transform 0.6s cubic-bezier(0.22,1,0.36,1)",
+                transform: hovered ? "scale(1.04)" : "scale(1)",
+              }}
+            />
+            {/* Accent tint overlay */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: booth.accentDark,
+                opacity: hovered ? 0.18 : 0,
+                transition: "opacity 0.4s ease",
+              }}
+            />
+          </div>
+
+          <div style={{ padding: "clamp(18px, 2vw, 28px)", flex: 1, display: "flex", flexDirection: "column" }}>
+            {/* Header */}
+            <div style={{ marginBottom: "clamp(10px, 1.2vw, 16px)" }}>
+              <h3
+                className="font-heading"
+                style={{
+                  fontSize: "clamp(22px, 2vw, 30px)",
+                  letterSpacing: "-0.025em",
+                  color: "#1a1a2e",
+                  marginBottom: 8,
+                }}
+              >
+                {booth.name}
+              </h3>
+              <p
+                style={{
+                  fontSize: "clamp(13px, 1vw, 15px)",
+                  color: "#6b7280",
+                  lineHeight: 1.65,
+                }}
+              >
+                {booth.description}
+              </p>
+            </div>
+
+            {/* Price */}
+            <div
+              style={{
+                background: booth.accent,
+                borderRadius: 14,
+                padding: "clamp(12px, 1.4vw, 18px)",
+                marginBottom: "clamp(12px, 1.5vw, 20px)",
+              }}
+            >
+              <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" as const, color: booth.accentDark, marginBottom: 4 }}>
+                Starting at
+              </p>
+              <div className="flex items-end" style={{ gap: 4 }}>
+                <span
+                  className="font-heading"
+                  style={{
+                    fontSize: "clamp(44px, 4.5vw, 64px)",
+                    lineHeight: 1,
+                    letterSpacing: "-0.04em",
+                    color: "#1a1a2e",
+                  }}
+                >
+                  ${booth.startingAt}
+                </span>
+                <span style={{ fontSize: 13, color: "#6b7280", paddingBottom: 6 }}>+ taxes</span>
+              </div>
+              <p style={{ fontSize: 12, fontWeight: 500, color: booth.accentDark, marginTop: 4 }}>
+                {booth.note}
+              </p>
+            </div>
+
+            {/* Tier list */}
+            <div style={{ flex: 1, marginBottom: "clamp(14px, 1.8vw, 20px)" }}>
+              {booth.tiers.map((tier) => (
+                <div
+                  key={tier.label}
+                  className="flex items-center justify-between"
+                  style={{
+                    padding: "7px 0",
+                    borderBottom: "1px solid #f3f3f3",
+                  }}
+                >
+                  <div className="flex items-center" style={{ gap: 10 }}>
+                    <span
+                      style={{
+                        width: 6,
+                        height: 6,
+                        borderRadius: "50%",
+                        background: booth.accentDark,
+                        flexShrink: 0,
+                      }}
+                    />
+                    <span style={{ fontSize: "clamp(14px, 1vw, 16px)", fontWeight: 500, color: "#1a1a2e" }}>
+                      {tier.label}
+                    </span>
+                  </div>
+                  <span
+                    className="font-heading"
+                    style={{
+                      fontSize: "clamp(16px, 1.3vw, 20px)",
+                      letterSpacing: "-0.02em",
+                      color: "#1a1a2e",
+                    }}
+                  >
+                    {tier.price}
+                  </span>
+                </div>
+              ))}
+              <p style={{ fontSize: 12, fontWeight: 400, color: "#9ca3af", marginTop: 12 }}>
+                &#43; {booth.extra}
+              </p>
+            </div>
+
+            {/* CTA */}
+            <a
+              href="#book"
+              className="block text-center transition-all duration-300 hover:opacity-80"
+              style={{
+                fontSize: 15,
+                fontWeight: 700,
+                padding: "clamp(13px, 1.4vw, 16px) 28px",
+                background: "#1a1a2e",
+                color: "#fff",
+                borderRadius: 60,
+                textDecoration: "none",
+              }}
+            >
+              Book Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </RevealOnScroll>
+  );
+}
+
+function BoothPricing() {
+  const headRef = useRef<HTMLHeadingElement>(null);
+  const underlineRef = useRef<SVGPathElement>(null);
+
+  useEffect(() => {
+    const el = headRef.current;
+    const path = underlineRef.current;
+    if (!el || !path) return;
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = `${len}`;
+    path.style.strokeDashoffset = `${len}`;
+    const lines = el.querySelectorAll<HTMLElement>(".draw-line");
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      lines.forEach((line, i) => setTimeout(() => { line.style.transform = "translateY(0)"; line.style.opacity = "1"; }, i * 100));
+      setTimeout(() => requestAnimationFrame(() => requestAnimationFrame(() => {
+        path.style.transition = "stroke-dashoffset 1.4s cubic-bezier(0.16, 1, 0.3, 1)";
+        path.style.strokeDashoffset = "0";
+      })), 650);
+      observer.unobserve(el);
+    }, { threshold: 0.2 });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      id="booths"
+      style={{ padding: "clamp(80px, 12vw, 180px) 0", background: "#fff", position: "relative", overflow: "hidden" }}
+    >
+      {/* Blob accent */}
+      <StickerReveal
+        delay={300}
+        style={{ position: "absolute", left: "-6vw", top: "5%", zIndex: 0, pointerEvents: "none" }}
+      >
+        <img
+          src="/icons/blob-behind-everydetail.svg"
+          alt=""
+          style={{ width: "clamp(260px, 38vw, 580px)", height: "auto", opacity: 0.45 }}
+        />
+      </StickerReveal>
+
+      <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)", position: "relative", zIndex: 1 }}>
+        {/* Heading */}
+        <div style={{ marginBottom: "clamp(48px, 6vw, 80px)" }}>
+          <h2
+            ref={headRef}
+            className="font-heading"
+            style={{ fontSize: "clamp(40px, 7vw, 100px)", lineHeight: 1.0, letterSpacing: "-0.04em", color: "#1a1a2e" }}
+          >
+            <span style={{ display: "block" }}>
+              <span className="draw-line" style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1), opacity 0.9s cubic-bezier(0.22,1,0.36,1)" }}>
+                Pick Your
+              </span>
+            </span>
+            <span style={{ display: "block", paddingBottom: "0.3em" }}>
+              <span className="draw-line" style={{ display: "inline-flex", alignItems: "center", gap: "0.2em", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s" }}>
+                <span style={{ position: "relative", display: "inline-block" }}>
+                  <em style={{ fontStyle: "italic" }}>Booth.</em>
+                  <svg aria-hidden="true" viewBox="0 0 200 14" preserveAspectRatio="none" style={{ position: "absolute", bottom: "-10px", left: "-2%", width: "104%", height: "14px", overflow: "visible" }}>
+                    <path ref={underlineRef} d="M2 4 C30 1, 70 11, 100 5 C130 0, 168 11, 198 5" fill="none" stroke="#FF6B35" strokeWidth="4" strokeLinecap="round" style={{ strokeDasharray: 9999, strokeDashoffset: 9999 }} />
+                  </svg>
+                </span>
+                <StickerReveal delay={900} style={{ display: "inline-block", verticalAlign: "middle" }}>
+                  <img src="/icons/choose-your--product.svg" alt="" style={{ width: "clamp(44px, 5vw, 72px)", height: "auto" }} />
+                </StickerReveal>
+              </span>
+            </span>
+          </h2>
+
+          <RevealOnScroll delay={200}>
+            <p style={{ fontSize: "clamp(16px, 1.2vw, 20px)", color: "#6b7280", maxWidth: 460, lineHeight: 1.75, marginTop: "clamp(16px, 2vw, 24px)" }}>
+              All booths include setup, takedown, a professional attendant, unlimited prints, and a custom photo frame.
+              Prices exclude applicable taxes.
+            </p>
+          </RevealOnScroll>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "clamp(20px, 2.5vw, 32px)", alignItems: "stretch" }}>
+          {booths.map((booth, i) => (
+            <BoothCard key={booth.name} booth={booth} index={i} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── BACKDROPS GALLERY ────────────────────────────────────────────────────────
+const backdropItems = [
+  { name: "Abstract", src: "/backdrops/Abstract.jpeg" },
+  { name: "Ballons 2", src: "/backdrops/Ballons%202.jpeg" },
+  { name: "Balloons", src: "/backdrops/Balloons.jpeg" },
+  { name: "Black & Gold Glitter", src: "/backdrops/Black%20%26%20Gold%20Glitter.jpeg" },
+  { name: "Flowers 1", src: "/backdrops/Flowers%201.jpeg" },
+  { name: "Flowers 2", src: "/backdrops/Flowers%202.jpeg" },
+  { name: "Flowers 3", src: "/backdrops/Flowers%203.jpeg" },
+  { name: "Flowers 4", src: "/backdrops/Flowers%204.jpeg" },
+  { name: "Glitter", src: "/backdrops/Glitter.jpeg" },
+  { name: "Party", src: "/backdrops/Party.jpeg" },
+];
+
+function BackdropsGallery() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const SCROLL_AMOUNT = 320;
+
+  const scrollPrev = () => {
+    scrollRef.current?.scrollBy({ left: -SCROLL_AMOUNT, behavior: "smooth" });
+  };
+  const scrollNext = () => {
+    scrollRef.current?.scrollBy({ left: SCROLL_AMOUNT, behavior: "smooth" });
+  };
+
+  return (
+    <section
+      id="backdrops"
+      style={{ padding: "clamp(80px, 12vw, 180px) 0", background: "#f9f9f9", position: "relative", overflow: "hidden" }}
+    >
+      <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)", position: "relative", zIndex: 1 }}>
+        {/* Heading row + arrows */}
+        <div
+          className="flex flex-col md:flex-row md:items-end md:justify-between"
+          style={{ marginBottom: "clamp(40px, 5vw, 64px)", gap: "clamp(16px, 2vw, 24px)" }}
+        >
+          <div>
+            <AnimatedText
+              as="h2"
+              className="font-heading"
+              style={{
+                fontSize: "clamp(40px, 7vw, 100px)",
+                lineHeight: 1.0,
+                letterSpacing: "-0.04em",
+                color: "#1a1a2e",
+                paddingRight: "0.08em",
+              }}
+              stagger={90}
+            >
+              <AnimLine>Backdrop</AnimLine>
+              <AnimLine>
+                <em style={{ fontStyle: "italic" }}>Library.</em>
+              </AnimLine>
+            </AnimatedText>
+          </div>
+
+          <RevealOnScroll direction="right">
+            <div style={{ maxWidth: 340 }}>
+              <StickerReveal delay={400} style={{ marginBottom: 12 }}>
+                <img src="/icons/backdrops.svg" alt="" style={{ width: "clamp(52px, 5.5vw, 76px)", height: "auto" }} />
+              </StickerReveal>
+              <p style={{ fontSize: "clamp(14px, 1.1vw, 17px)", color: "#6b7280", lineHeight: 1.7 }}>
+                Every backdrop is 2.60 m × 2.60 m. Need something specific?{" "}
+                <a href="#book" style={{ color: "#FF6B35", fontWeight: 600 }}>Let us know.</a>
+              </p>
+
+              {/* Arrow nav buttons */}
+              <div className="flex items-center" style={{ gap: 12, marginTop: 24 }}>
+                <button
+                  onClick={scrollPrev}
+                  aria-label="Scroll left"
+                  className="cursor-pointer transition-all duration-300 hover:scale-110"
+                  style={{
+                    width: 52,
+                    height: 52,
+                    borderRadius: "50%",
+                    background: "#1a1a2e",
+                    border: "2.5px solid #1a1a2e",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                    transform: "rotate(-4deg)",
+                    boxShadow: "3px 3px 0 #FF6B35",
+                    padding: 0,
+                  }}
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M19 12H5M12 5l-7 7 7 7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={scrollNext}
+                  aria-label="Scroll right"
+                  className="cursor-pointer transition-all duration-300 hover:scale-110"
+                  style={{
+                    width: 52,
+                    height: 52,
+                    borderRadius: "50%",
+                    background: "#FF6B35",
+                    border: "2.5px solid #FF6B35",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                    transform: "rotate(3deg)",
+                    boxShadow: "3px 3px 0 #1a1a2e",
+                    padding: 0,
+                  }}
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </RevealOnScroll>
+        </div>
+      </div>
+
+      {/* Scrollable film strip */}
+      <div
+        ref={scrollRef}
+        style={{
+          display: "flex",
+          gap: "clamp(12px, 1.5vw, 18px)",
+          overflowX: "auto",
+          padding: "0 clamp(24px, 5vw, 80px) clamp(20px, 2vw, 28px)",
+          scrollbarWidth: "none",
+          WebkitOverflowScrolling: "touch",
+        }}
+      >
+        {backdropItems.map((item, i) => (
+          <RevealOnScroll key={item.name} delay={i * 60} direction="scale">
+            <div
+              style={{
+                flexShrink: 0,
+                width: "clamp(180px, 22vw, 280px)",
+                borderRadius: "clamp(12px, 1.5vw, 20px)",
+                overflow: "hidden",
+                background: "#fff",
+                border: "1.5px solid #ebebeb",
+                transition: "transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = "translateY(-6px) scale(1.02)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 20px 50px rgba(0,0,0,0.12)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = "translateY(0) scale(1)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "none";
+              }}
+            >
+              <div style={{ aspectRatio: "3/4", overflow: "hidden", position: "relative" }}>
+                <img
+                  src={item.src}
+                  alt={item.name}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              </div>
+              <div style={{ padding: "clamp(12px, 1.5vw, 16px)" }}>
+                <p
+                  className="font-heading"
+                  style={{ fontSize: "clamp(14px, 1.1vw, 17px)", letterSpacing: "-0.01em", color: "#1a1a2e" }}
+                >
+                  {item.name}
+                </p>
+              </div>
+            </div>
+          </RevealOnScroll>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ─── PACKAGES COMPARISON ──────────────────────────────────────────────────────
+const packageFeatures = [
+  { label: "Choice of Photo Booth" },
+  { label: "Delivery, Setup & Takedown" },
+  { label: "Custom Photo Template" },
+  { label: "Digital Media Sharing" },
+  { label: "Unlimited Printing" },
+  { label: "Premium Backdrop" },
+  { label: "Wide Variety of Props" },
+  { label: "Red Carpet" },
+  { label: "Velvet Rope Stanchions" },
+  { label: "Theme Decorated Background" },
+];
+
+const packageTiers = [
+  {
+    name: "Basic",
+    desc: "Everything you need to get started",
+    includes: [true, true, true, true, false, false, false, false, false, false],
+    bg: "#2e2e2e",
+    highlight: false,
+    light: false,
+  },
+  {
+    name: "Gold",
+    desc: "The most popular choice for any event",
+    includes: [true, true, true, true, true, true, true, false, false, false],
+    bg: "#141414",
+    highlight: true,
+    light: false,
+  },
+  {
+    name: "Platinum",
+    desc: "The complete luxury experience",
+    includes: [true, true, true, true, true, true, true, true, true, true],
+    bg: "#efefef",
+    highlight: false,
+    light: true,
+  },
+];
+
+function PackageColumn({
+  tier,
+  index,
+  features,
+}: {
+  tier: (typeof packageTiers)[0];
+  index: number;
+  features: { label: string }[];
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setVisible(true), index * 150);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.15 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [index]);
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        background: tier.bg,
+        borderRadius: "clamp(16px, 2vw, 24px)",
+        padding: "clamp(28px, 3vw, 44px) clamp(20px, 2.5vw, 36px)",
+        border: tier.highlight ? "1.5px solid rgba(255,107,53,0.45)" : tier.light ? "1.5px solid rgba(0,0,0,0.1)" : "1.5px solid rgba(255,255,255,0.06)",
+        position: "relative",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(40px)",
+        transition: "opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1)",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      {tier.highlight && (
+        <div
+          style={{
+            position: "absolute",
+            top: -12,
+            left: "50%",
+            transform: "translateX(-50%)",
+            background: "#FF6B35",
+            color: "#fff",
+            fontSize: 11,
+            fontWeight: 700,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase" as const,
+            padding: "4px 16px",
+            borderRadius: 60,
+            whiteSpace: "nowrap",
+          }}
+        >
+          Most Popular
+        </div>
+      )}
+
+      <h3
+        className="font-heading"
+        style={{
+          fontSize: "clamp(26px, 2.5vw, 38px)",
+          letterSpacing: "-0.03em",
+          color: tier.light ? "#1a1a2e" : "#fff",
+          marginBottom: 8,
+        }}
+      >
+        {tier.name}
+      </h3>
+      <p style={{ fontSize: 14, color: tier.light ? "rgba(0,0,0,0.45)" : "rgba(255,255,255,0.4)", lineHeight: 1.55, marginBottom: "clamp(24px, 3vw, 36px)" }}>
+        {tier.desc}
+      </p>
+
+      <div style={{ height: 1, background: tier.light ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.07)", marginBottom: "clamp(20px, 2.5vw, 30px)" }} />
+
+      <ul style={{ flex: 1 }}>
+        {features.map((feature, fi) => {
+          const included = tier.includes[fi];
+          return (
+            <li
+              key={feature.label}
+              className="flex items-center"
+              style={{
+                gap: 12,
+                padding: "clamp(9px, 1.1vw, 13px) 0",
+                borderBottom: tier.light ? "1px solid rgba(0,0,0,0.07)" : "1px solid rgba(255,255,255,0.05)",
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateX(0)" : "translateX(-12px)",
+                transition: `opacity 0.5s cubic-bezier(0.22,1,0.36,1) ${fi * 55 + 200}ms, transform 0.5s cubic-bezier(0.22,1,0.36,1) ${fi * 55 + 200}ms`,
+              }}
+            >
+              <span
+                style={{
+                  width: 22,
+                  height: 22,
+                  borderRadius: "50%",
+                  background: included ? "rgba(255,107,53,0.18)" : tier.light ? "rgba(0,0,0,0.07)" : "rgba(255,255,255,0.05)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexShrink: 0,
+                  fontSize: 12,
+                  color: included ? "#FF6B35" : tier.light ? "rgba(0,0,0,0.2)" : "rgba(255,255,255,0.2)",
+                  fontWeight: 700,
+                }}
+              >
+                {included ? "✓" : "×"}
+              </span>
+              <span
+                style={{
+                  fontSize: "clamp(13px, 1vw, 15px)",
+                  fontWeight: 400,
+                  color: included ? (tier.light ? "rgba(0,0,0,0.8)" : "rgba(255,255,255,0.75)") : (tier.light ? "rgba(0,0,0,0.25)" : "rgba(255,255,255,0.25)"),
+                  textDecoration: included ? "none" : "none",
+                }}
+              >
+                {feature.label}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+
+      <a
+        href="#book"
+        className="block text-center transition-all duration-300 hover:opacity-80"
+        style={{
+          marginTop: "clamp(24px, 3vw, 36px)",
+          padding: "clamp(13px, 1.4vw, 16px) 28px",
+          background: tier.highlight ? "#FF6B35" : tier.light ? "#1a1a2e" : "rgba(255,255,255,0.1)",
+          color: "#fff",
+          borderRadius: 60,
+          fontSize: 15,
+          fontWeight: 700,
+          textDecoration: "none",
+          border: tier.highlight ? "none" : tier.light ? "none" : "1px solid rgba(255,255,255,0.12)",
+        }}
+      >
+        Book Now
+      </a>
+    </div>
+  );
+}
+
+function PackagesComparison() {
+  const headRef = useRef<HTMLHeadingElement>(null);
+  const circleRef = useRef<SVGPathElement>(null);
+
+  useEffect(() => {
+    const el = headRef.current;
+    const path = circleRef.current;
+    if (!el || !path) return;
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = `${len}`;
+    path.style.strokeDashoffset = `${len}`;
+    const lines = el.querySelectorAll<HTMLElement>(".draw-line");
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      lines.forEach((line, i) => setTimeout(() => { line.style.transform = "translateY(0)"; line.style.opacity = "1"; }, i * 100));
+      setTimeout(() => requestAnimationFrame(() => requestAnimationFrame(() => {
+        path.style.transition = "stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1)";
+        path.style.strokeDashoffset = "0";
+      })), 700);
+      observer.unobserve(el);
+    }, { threshold: 0.2 });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      id="packages"
+      style={{
+        background: "#141414",
+        padding: "clamp(80px, 12vw, 180px) 0",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Background blob */}
+      <StickerReveal
+        delay={200}
+        style={{ position: "absolute", right: "-6vw", top: "10%", zIndex: 0, pointerEvents: "none" }}
+      >
+        <img
+          src="/icons/blob-behind-pricing.svg"
+          alt=""
+          style={{ width: "clamp(280px, 40vw, 620px)", height: "auto" }}
+        />
+      </StickerReveal>
+
+      <div
+        style={{
+          maxWidth: 1400,
+          margin: "0 auto",
+          padding: "0 clamp(24px, 5vw, 80px)",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
+        {/* Heading */}
+        <div
+          className="flex flex-col md:flex-row md:items-end md:justify-between"
+          style={{ marginBottom: "clamp(56px, 7vw, 88px)", gap: "clamp(20px, 3vw, 32px)" }}
+        >
+          <h2
+            ref={headRef}
+            className="font-heading"
+            style={{ fontSize: "clamp(40px, 7vw, 100px)", lineHeight: 1.0, letterSpacing: "-0.04em", color: "#fff" }}
+          >
+            <span style={{ display: "block" }}>
+              <span className="draw-line" style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1), opacity 0.9s cubic-bezier(0.22,1,0.36,1)" }}>
+                Find Your
+              </span>
+            </span>
+            <span style={{ display: "block", paddingBottom: "0.3em" }}>
+              <span className="draw-line" style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s" }}>
+                Perfect{" "}
+                <CircleHighlight
+                  text="Package."
+                  circleRef={circleRef}
+                  stroke="rgba(255,255,255,0.8)"
+                  pathD="M98 0 C126 -5, 165 -1, 188 16 C198 28, 198 54, 190 69 C180 85, 154 89, 112 88 C74 87, 38 83, 18 68 C4 55, 4 29, 12 15 C22 0, 54 -3, 80 -3 C88 -4, 94 -2, 106 -2"
+                />
+              </span>
+            </span>
+          </h2>
+
+          <RevealOnScroll direction="right">
+            <p style={{ fontSize: "clamp(15px, 1.1vw, 18px)", color: "rgba(255,255,255,0.45)", maxWidth: 320, lineHeight: 1.7 }}>
+              Every package includes setup, takedown, a professional on-site attendant, and custom photo templates.
+            </p>
+          </RevealOnScroll>
+        </div>
+
+        {/* 3-column package cards */}
+        <div
+          className="grid grid-cols-1 md:grid-cols-3"
+          style={{ gap: "clamp(16px, 2vw, 24px)", alignItems: "stretch" }}
+        >
+          {packageTiers.map((tier, i) => (
+            <PackageColumn
+              key={tier.name}
+              tier={tier}
+              index={i}
+              features={packageFeatures}
+            />
+          ))}
+        </div>
+
+        <RevealOnScroll>
+          <p style={{ fontSize: 16, color: "rgba(255,255,255,0.3)", marginTop: "clamp(32px, 4vw, 56px)" }}>
+            Don&apos;t see exactly what you need?{" "}
+            <a
+              href="#book"
+              style={{ color: "rgba(255,255,255,0.7)", fontWeight: 600, textDecoration: "underline", textUnderlineOffset: 4 }}
+            >
+              Let&apos;s build a custom package.
+            </a>
+          </p>
+        </RevealOnScroll>
+      </div>
+    </section>
+  );
+}
+
+// ─── WHAT'S INCLUDED ──────────────────────────────────────────────────────────
+const includedFeatures = [
+  {
+    icon: "/icons/setup-takedown.svg",
+    title: "Setup & Takedown",
+    body: "Our team handles complete installation and dismantling at no extra cost. Your rental time is 100% yours — setup and teardown are entirely on us.",
+    accent: "#D4F4A0",
+    accentText: "#00B894",
+    wide: false,
+  },
+  {
+    icon: "/icons/unlimited-prints.svg",
+    title: "Unlimited Photo Prints",
+    body: "Print up to 400 standard-sized photos (10×15 cm) or 800 photo strips — enough for every single guest to take a keepsake home.",
+    accent: "#FFD6E8",
+    accentText: "#E84393",
+    wide: false,
+  },
+  {
+    icon: "/icons/props.svg",
+    title: "Props for Every Occasion",
+    body: "Hats, glasses, mustaches, lip-on-sticks, and a curated selection of themed accessories. Fun guaranteed.",
+    accent: "#E8D6FF",
+    accentText: "#6C5CE7",
+    wide: false,
+  },
+  {
+    icon: "/icons/cutsom-photo-frames.svg",
+    title: "Personalized Photo Frames",
+    body: "Our graphic designers craft a custom frame tailored to your event theme, logo, or vision. Included with every rental.",
+    accent: "#FFF3D4",
+    accentText: "#F7C948",
+    wide: false,
+  },
+  {
+    icon: "/icons/digitalcopies.svg",
+    title: "High-Quality Digital Copies",
+    body: "All event photos delivered via a secure download link after your event. Professional-grade quality, ready to share with family and friends.",
+    accent: "#D4E8FF",
+    accentText: "#0984E3",
+    wide: false,
+  },
+  {
+    icon: "/icons/love-by-clients.svg",
+    title: "Additional Options",
+    body: "Free delivery within 200 km. Backdrop add-ons available for a small fee. Backdrops are 2.60 m × 2.60 m — perfect for any event space.",
+    accent: "#FFE4D6",
+    accentText: "#FF6B35",
+    wide: false,
+  },
+];
+
+function WhatsIncluded() {
+  const headRef = useRef<HTMLHeadingElement>(null);
+  const underline1Ref = useRef<SVGPathElement>(null);
+  const underline2Ref = useRef<SVGPathElement>(null);
+
+  useEffect(() => {
+    const el = headRef.current;
+    const p1 = underline1Ref.current;
+    const p2 = underline2Ref.current;
+    if (!el || !p1 || !p2) return;
+    [p1, p2].forEach((p) => {
+      const len = p.getTotalLength();
+      p.style.strokeDasharray = `${len}`;
+      p.style.strokeDashoffset = `${len}`;
+    });
+    const lines = el.querySelectorAll<HTMLElement>(".draw-line");
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      lines.forEach((line, i) => setTimeout(() => { line.style.transform = "translateY(0)"; line.style.opacity = "1"; }, i * 100));
+      setTimeout(() => requestAnimationFrame(() => requestAnimationFrame(() => {
+        p1.style.transition = "stroke-dashoffset 1.3s cubic-bezier(0.16, 1, 0.3, 1)";
+        p1.style.strokeDashoffset = "0";
+      })), 650);
+      setTimeout(() => requestAnimationFrame(() => requestAnimationFrame(() => {
+        p2.style.transition = "stroke-dashoffset 1.3s cubic-bezier(0.16, 1, 0.3, 1)";
+        p2.style.strokeDashoffset = "0";
+      })), 870);
+      observer.unobserve(el);
+    }, { threshold: 0.2 });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      id="included"
+      style={{
+        background: "#fff",
+        padding: "clamp(80px, 12vw, 180px) 0",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      <StickerReveal
+        delay={300}
+        style={{ position: "absolute", right: "-5vw", bottom: "5%", zIndex: 0, pointerEvents: "none" }}
+      >
+        <img
+          src="/icons/blob-half-behind-premium-backdrops.svg"
+          alt=""
+          style={{ width: "clamp(260px, 38vw, 580px)", height: "auto", opacity: 0.5 }}
+        />
+      </StickerReveal>
+
+      <div
+        style={{
+          maxWidth: 1400,
+          margin: "0 auto",
+          padding: "0 clamp(24px, 5vw, 80px)",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
+        {/* Heading */}
+        <div
+          className="flex flex-col md:flex-row md:items-start md:justify-between"
+          style={{ marginBottom: "clamp(56px, 7vw, 88px)", gap: "clamp(24px, 3vw, 40px)" }}
+        >
+          <h2
+            ref={headRef}
+            className="font-heading"
+            style={{ fontSize: "clamp(40px, 7vw, 100px)", lineHeight: 1.0, letterSpacing: "-0.04em", color: "#1a1a2e" }}
+          >
+            <span style={{ display: "block" }}>
+              <span className="draw-line" style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1), opacity 0.9s cubic-bezier(0.22,1,0.36,1)" }}>
+                Everything
+              </span>
+            </span>
+            <span style={{ display: "block", paddingBottom: "0.35em" }}>
+              <span className="draw-line" style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s" }}>
+                <span style={{ position: "relative", display: "inline-block" }}>
+                  <em style={{ fontStyle: "italic" }}>Included.</em>
+                  <svg aria-hidden="true" viewBox="0 0 200 20" preserveAspectRatio="none" style={{ position: "absolute", bottom: "-10px", left: "-2%", width: "104%", height: "20px", overflow: "visible" }}>
+                    <path ref={underline1Ref} d="M2 4 C30 1, 70 10, 100 5 C130 0, 168 10, 198 5" fill="none" stroke="#6C5CE7" strokeWidth="3.5" strokeLinecap="round" style={{ strokeDasharray: 9999, strokeDashoffset: 9999 }} />
+                    <path ref={underline2Ref} d="M2 12 C30 9, 70 18, 100 13 C130 8, 168 18, 198 13" fill="none" stroke="#6C5CE7" strokeWidth="3.5" strokeLinecap="round" style={{ strokeDasharray: 9999, strokeDashoffset: 9999 }} />
+                  </svg>
+                </span>
+              </span>
+            </span>
+          </h2>
+
+          <RevealOnScroll direction="right">
+            <div style={{ maxWidth: 380, paddingTop: "clamp(8px, 1vw, 16px)" }}>
+              <StickerReveal delay={500} style={{ marginBottom: 16 }}>
+                <img src="/icons/book-now-main.svg" alt="" style={{ width: "clamp(56px, 6vw, 80px)", height: "auto" }} />
+              </StickerReveal>
+              <p style={{ fontSize: "clamp(15px, 1.2vw, 19px)", color: "#6b7280", lineHeight: 1.75 }}>
+                No hidden surprises. Every rental comes packed with everything you need for an unforgettable event.
+              </p>
+            </div>
+          </RevealOnScroll>
+        </div>
+
+        {/* Bento grid */}
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: "clamp(14px, 1.8vw, 22px)" }}
+        >
+          {includedFeatures.map((feature, i) => (
+            <RevealOnScroll key={feature.title} delay={i * 80}>
+              <div
+                style={{
+                  background: feature.accent,
+                  borderRadius: "clamp(16px, 2vw, 24px)",
+                  padding: "clamp(28px, 3vw, 44px) clamp(24px, 2.5vw, 36px)",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "clamp(16px, 2vw, 24px)",
+                  transition: "transform 0.35s cubic-bezier(0.22,1,0.36,1)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
+                  const h3 = (e.currentTarget as HTMLElement).querySelector<HTMLElement>("h3");
+                  if (h3) h3.style.transform = "rotate(-3deg) translateX(5px)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                  const h3 = (e.currentTarget as HTMLElement).querySelector<HTMLElement>("h3");
+                  if (h3) h3.style.transform = "rotate(0deg) translateX(0)";
+                }}
+              >
+                <StickerReveal delay={i * 100 + 300}>
+                  <img
+                    src={feature.icon}
+                    alt=""
+                    style={{ width: "clamp(48px, 5vw, 64px)", height: "auto" }}
+                  />
+                </StickerReveal>
+                <div>
+                  <h3
+                    className="font-heading"
+                    style={{
+                      fontSize: "clamp(18px, 1.6vw, 24px)",
+                      letterSpacing: "-0.02em",
+                      color: "#1a1a2e",
+                      marginBottom: 10,
+                      transition: "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
+                      display: "inline-block",
+                      transformOrigin: "left center",
+                    }}
+                  >
+                    {feature.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: "clamp(14px, 1vw, 16px)",
+                      color: "#374151",
+                      lineHeight: 1.7,
+                      fontWeight: 400,
+                    }}
+                  >
+                    {feature.body}
+                  </p>
+                </div>
+              </div>
+            </RevealOnScroll>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── FAQ ──────────────────────────────────────────────────────────────────────
+const productFaqs = [
+  {
+    q: "Is installation and dismantling included in the rental?",
+    a: "Absolutely! Our professional team handles complete installation and dismantling at no additional cost. Everything is set up flawlessly so you can enjoy your event stress-free.",
+  },
+  {
+    q: "Do you offer unlimited printing?",
+    a: "Yes! All photo booths include unlimited printing — up to 400 standard-sized photos (10×15 cm) or 800 photo strips during your event.",
+  },
+  {
+    q: "What kind of props do you provide?",
+    a: "We bring a wide selection: hats, glasses, mustaches, lip-on-sticks, and themed accessories designed to create fun and unforgettable moments.",
+  },
+  {
+    q: "Can I customize the photo frames?",
+    a: "Absolutely. Every rental includes a custom-designed photo frame. Pick your logo, text, and design style — our graphic designers bring it to life.",
+  },
+  {
+    q: "Will I get digital copies of the photos after the event?",
+    a: "Yes! After your event, you'll receive high-quality digital copies of all photos via a secure download link, ready to share with family and friends.",
+  },
+  {
+    q: "What payment methods do you accept?",
+    a: "We accept Visa, MasterCard, and cash. Full payment details are provided upon booking confirmation. Our team is happy to assist with any payment questions.",
+  },
+];
+
+function ProductsFAQ() {
+  const [open, setOpen] = useState<number | null>(null);
+
+  return (
+    <section
+      id="faq-products"
+      style={{
+        background: "#f9f9f9",
+        padding: "clamp(80px, 12vw, 180px) 0",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      <StickerReveal
+        delay={200}
+        style={{ position: "absolute", left: "-5vw", top: "10%", zIndex: 0, pointerEvents: "none" }}
+      >
+        <img
+          src="/icons/blob-behind-faq.svg"
+          alt=""
+          style={{ width: "clamp(260px, 40vw, 640px)", height: "auto", opacity: 0.5 }}
+        />
+      </StickerReveal>
+
+      <div
+        style={{
+          maxWidth: 1400,
+          margin: "0 auto",
+          padding: "0 clamp(24px, 5vw, 80px)",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: "clamp(20px, 2.5vw, 32px)" }}>
+          <StickerReveal delay={200}>
+            <img src="/icons/questions-answers.svg" alt="" style={{ width: "clamp(64px, 7vw, 96px)", height: "auto" }} />
+          </StickerReveal>
+        </div>
+
+        <AnimatedText
+          as="h2"
+          className="font-heading"
+          style={{
+            fontSize: "clamp(40px, 7vw, 100px)",
+            lineHeight: 1.0,
+            letterSpacing: "-0.04em",
+            color: "#1a1a2e",
+            marginBottom: "clamp(48px, 6vw, 80px)",
+            textAlign: "center",
+          }}
+          stagger={90}
+        >
+          <AnimLine>Good</AnimLine>
+          <AnimLine>
+            <em style={{ fontStyle: "italic" }}>Questions.</em>
+          </AnimLine>
+        </AnimatedText>
+
+        <div style={{ maxWidth: 900, margin: "0 auto", borderTop: "1px solid #e5e7eb" }}>
+          {productFaqs.map((faq, i) => (
+            <RevealOnScroll key={i} delay={i * 50}>
+              <div style={{ borderBottom: "1px solid #e5e7eb" }}>
+                <button
+                  onClick={() => setOpen(open === i ? null : i)}
+                  className="w-full flex items-center justify-between text-left cursor-pointer"
+                  style={{ padding: "clamp(20px, 2.5vw, 32px) 0", background: "none", border: "none" }}
+                >
+                  <span
+                    className="font-heading"
+                    style={{
+                      fontSize: "clamp(17px, 1.3vw, 22px)",
+                      color: "#1a1a2e",
+                      paddingRight: 32,
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    {faq.q}
+                  </span>
+                  <span
+                    className="flex-shrink-0 transition-transform duration-500"
+                    style={{
+                      transform: open === i ? "rotate(45deg)" : "none",
+                      fontSize: 24,
+                      color: "#1a1a2e",
+                      lineHeight: 1,
+                    }}
+                  >
+                    +
+                  </span>
+                </button>
+                <div
+                  className="overflow-hidden"
+                  style={{
+                    maxHeight: open === i ? 300 : 0,
+                    transition: "max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontSize: "clamp(15px, 1.1vw, 18px)",
+                      fontWeight: 400,
+                      lineHeight: 1.75,
+                      color: "#6b7280",
+                      paddingBottom: "clamp(20px, 2.5vw, 32px)",
+                      maxWidth: 640,
+                    }}
+                  >
+                    {faq.a}
+                  </p>
+                </div>
+              </div>
+            </RevealOnScroll>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── BOOKING FORM ─────────────────────────────────────────────────────────────
+function BookingForm() {
+  const [formData, setFormData] = useState({
+    name: "",
+    eventLocation: "",
+    boothType: "",
+    eventType: "",
+    email: "",
+    rentalDate: "",
+    startTime: "",
+    endTime: "",
+    phone: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
+
+  const labelStyle: React.CSSProperties = {
+    display: "block",
+    fontSize: 11,
+    fontWeight: 700,
+    letterSpacing: "0.07em",
+    textTransform: "uppercase",
+    color: "#9ca3af",
+    marginBottom: 6,
+    marginTop: 24,
+  };
+
+  const inputStyle: React.CSSProperties = {
+    width: "100%",
+    padding: "14px 0",
+    background: "transparent",
+    border: "none",
+    borderBottom: "1.5px solid #e5e7eb",
+    fontSize: "clamp(15px, 1.1vw, 17px)",
+    fontWeight: 400,
+    fontFamily: "dm-sans, sans-serif",
+    color: "#1a1a2e",
+    outline: "none",
+    borderRadius: 0,
+    transition: "border-color 0.3s",
+    boxSizing: "border-box" as const,
+  };
+
+  const bookHeadRef = useRef<HTMLHeadingElement>(null);
+  const bookCircleRef = useRef<SVGPathElement>(null);
+
+  useEffect(() => {
+    const el = bookHeadRef.current;
+    const path = bookCircleRef.current;
+    if (!el || !path) return;
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = `${len}`;
+    path.style.strokeDashoffset = `${len}`;
+    const lines = el.querySelectorAll<HTMLElement>(".draw-line");
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      lines.forEach((line, i) => setTimeout(() => { line.style.transform = "translateY(0)"; line.style.opacity = "1"; }, i * 100));
+      setTimeout(() => requestAnimationFrame(() => requestAnimationFrame(() => {
+        path.style.transition = "stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1)";
+        path.style.strokeDashoffset = "0";
+      })), 700);
+      observer.unobserve(el);
+    }, { threshold: 0.2 });
+    observer.observe(el);
+    return () => observer.disconnect();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <section
+      id="book"
+      style={{ background: "#fff", padding: "clamp(80px, 12vw, 180px) 0" }}
+    >
+      <div
+        style={{
+          maxWidth: 1400,
+          margin: "0 auto",
+          padding: "0 clamp(24px, 5vw, 80px)",
+        }}
+      >
+        {/* Heading */}
+        <div
+          style={{
+            position: "relative",
+            marginBottom: "clamp(56px, 7vw, 96px)",
+          }}
+        >
+          <h2
+            ref={bookHeadRef}
+            className="font-heading"
+            style={{ fontSize: "clamp(40px, 7vw, 100px)", lineHeight: 1.0, letterSpacing: "-0.04em", color: "#1a1a2e" }}
+          >
+            <span style={{ display: "block" }}>
+              <span className="draw-line" style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1), opacity 0.9s cubic-bezier(0.22,1,0.36,1)" }}>
+                Book With Us
+              </span>
+            </span>
+            <span style={{ display: "block", paddingBottom: "0.3em" }}>
+              <span className="draw-line" style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s" }}>
+                <CircleHighlight
+                  text="Today."
+                  circleRef={bookCircleRef}
+                  stroke="#FF6B35"
+                  pathD="M96 2 C122 -3, 162 1, 185 16 C196 28, 194 52, 186 66 C174 80, 148 86, 110 85 C72 84, 38 78, 20 65 C6 53, 5 30, 12 16 C22 3, 54 -2, 80 -1 C88 -1, 92 1, 108 0"
+                />
+              </span>
+            </span>
+          </h2>
+
+          <StickerReveal
+            delay={500}
+            style={{ position: "absolute", right: 0, top: "10%" }}
+          >
+            <img
+              src="/icons/letsgo.svg"
+              alt=""
+              style={{ width: "clamp(72px, 8vw, 116px)", height: "auto" }}
+            />
+          </StickerReveal>
+        </div>
+
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2"
+          style={{ gap: "clamp(56px, 8vw, 140px)" }}
+        >
+          {/* Left — info */}
+          <RevealOnScroll>
+            <div>
+              <p
+                style={{
+                  fontSize: "clamp(16px, 1.2vw, 20px)",
+                  fontWeight: 400,
+                  color: "#6b7280",
+                  maxWidth: 420,
+                  lineHeight: 1.8,
+                  marginBottom: 48,
+                }}
+              >
+                Interested in renting a photo booth for your event, wedding, or party? Fill out this
+                form and one of our dedicated agents will promptly reach out to discuss availability
+                and assist with your booking.
+              </p>
+
+              <div className="flex flex-col" style={{ gap: 32 }}>
+                {[
+                  {
+                    icon: "M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z",
+                    label: "Phone",
+                    value: "(403) 555-0123",
+                  },
+                  {
+                    icon: "M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75",
+                    label: "Email",
+                    value: "info@photoboothexperience.ca",
+                  },
+                  {
+                    icon: "M15 10.5a3 3 0 11-6 0 3 3 0 016 0zM19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z",
+                    label: "Service Area",
+                    value: "Calgary & Surrounding Areas",
+                  },
+                ].map((c) => (
+                  <div key={c.label} className="flex items-start" style={{ gap: 16 }}>
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#1a1a2e"
+                      strokeWidth="1.5"
+                      style={{ marginTop: 2, flexShrink: 0 }}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d={c.icon} />
+                    </svg>
+                    <div>
+                      <p
+                        style={{
+                          fontSize: 11,
+                          fontWeight: 700,
+                          letterSpacing: "0.08em",
+                          textTransform: "uppercase" as const,
+                          color: "#9ca3af",
+                          marginBottom: 4,
+                        }}
+                      >
+                        {c.label}
+                      </p>
+                      <p style={{ fontSize: 17, fontWeight: 500, color: "#1a1a2e" }}>{c.value}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </RevealOnScroll>
+
+          {/* Right — form */}
+          <RevealOnScroll delay={200}>
+            <form onSubmit={handleSubmit}>
+              <div
+                className="grid grid-cols-1 sm:grid-cols-2"
+                style={{ gap: "0 clamp(24px, 3vw, 40px)" }}
+              >
+                {/* Name */}
+                <div>
+                  <label style={labelStyle}>Name *</label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    style={inputStyle}
+                    placeholder="Full name"
+                  />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label style={labelStyle}>Email *</label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    style={inputStyle}
+                    placeholder="your@email.com"
+                  />
+                </div>
+
+                {/* Phone */}
+                <div>
+                  <label style={labelStyle}>Phone Number</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    style={inputStyle}
+                    placeholder="(403) 555-0000"
+                  />
+                </div>
+
+                {/* Event Location */}
+                <div>
+                  <label style={labelStyle}>Event Location *</label>
+                  <input
+                    type="text"
+                    name="eventLocation"
+                    required
+                    value={formData.eventLocation}
+                    onChange={handleChange}
+                    style={inputStyle}
+                    placeholder="Venue name & city"
+                  />
+                </div>
+
+                {/* Booth Type */}
+                <div>
+                  <label style={labelStyle}>Booth Type</label>
+                  <select
+                    name="boothType"
+                    value={formData.boothType}
+                    onChange={handleChange}
+                    style={{ ...inputStyle, appearance: "none" as const, cursor: "pointer" }}
+                  >
+                    <option value="">Select booth</option>
+                    <option value="salsa">Salsa Photo Booth</option>
+                    <option value="360">360 PhotoBooth</option>
+                    <option value="mirror">Mirror PhotoBooth</option>
+                    <option value="unsure">Not Sure Yet</option>
+                  </select>
+                </div>
+
+                {/* Event Type */}
+                <div>
+                  <label style={labelStyle}>Event Type</label>
+                  <select
+                    name="eventType"
+                    value={formData.eventType}
+                    onChange={handleChange}
+                    style={{ ...inputStyle, appearance: "none" as const, cursor: "pointer" }}
+                  >
+                    <option value="">Select type</option>
+                    <option value="wedding">Wedding</option>
+                    <option value="corporate">Corporate</option>
+                    <option value="birthday">Birthday</option>
+                    <option value="baby-shower">Baby Shower</option>
+                    <option value="gender-reveal">Gender Reveal</option>
+                    <option value="festival">Festival</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                {/* Rental Date */}
+                <div>
+                  <label style={labelStyle}>Rental Date *</label>
+                  <input
+                    type="date"
+                    name="rentalDate"
+                    required
+                    value={formData.rentalDate}
+                    onChange={handleChange}
+                    style={inputStyle}
+                  />
+                </div>
+
+                {/* Start Time */}
+                <div>
+                  <label style={labelStyle}>Start Time</label>
+                  <input
+                    type="time"
+                    name="startTime"
+                    value={formData.startTime}
+                    onChange={handleChange}
+                    style={inputStyle}
+                  />
+                </div>
+
+                {/* End Time */}
+                <div className="sm:col-span-2">
+                  <label style={labelStyle}>End Time</label>
+                  <input
+                    type="time"
+                    name="endTime"
+                    value={formData.endTime}
+                    onChange={handleChange}
+                    style={inputStyle}
+                  />
+                </div>
+              </div>
+
+              {/* Message */}
+              <div>
+                <label style={labelStyle}>Message &amp; Comments</label>
+                <textarea
+                  name="message"
+                  rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
+                  style={{ ...inputStyle, resize: "none" as const }}
+                  placeholder="Tell us about your event, any special requests, or questions..."
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="transition-all duration-300 hover:opacity-80 cursor-pointer"
+                style={{
+                  fontSize: 15,
+                  fontWeight: 700,
+                  fontFamily: "dm-sans, sans-serif",
+                  padding: "16px 56px",
+                  background: "#FF6B35",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: 60,
+                  marginTop: 40,
+                }}
+              >
+                Submit Inquiry
+              </button>
+              <p style={{ fontSize: 14, color: "#9ca3af", marginTop: 16 }}>
+                We typically respond within 24 hours.
+              </p>
+            </form>
+          </RevealOnScroll>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── FINAL CTA ────────────────────────────────────────────────────────────────
+function ProductsCTA() {
+  const headRef = useRef<HTMLHeadingElement>(null);
+  const underlineRef = useRef<SVGPathElement>(null);
+
+  useEffect(() => {
+    const el = headRef.current;
+    const path = underlineRef.current;
+    if (!el || !path) return;
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = `${len}`;
+    path.style.strokeDashoffset = `${len}`;
+    const lines = el.querySelectorAll<HTMLElement>(".draw-line");
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      lines.forEach((line, i) => setTimeout(() => { line.style.transform = "translateY(0)"; line.style.opacity = "1"; }, i * 100));
+      setTimeout(() => requestAnimationFrame(() => requestAnimationFrame(() => {
+        path.style.transition = "stroke-dashoffset 1.4s cubic-bezier(0.16, 1, 0.3, 1)";
+        path.style.strokeDashoffset = "0";
+      })), 650);
+      observer.unobserve(el);
+    }, { threshold: 0.2 });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      style={{
+        background: "#fff",
+        padding: "clamp(80px, 12vw, 160px) 0",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Background blob — full opacity, left side */}
+      <StickerReveal
+        delay={200}
+        style={{ position: "absolute", left: "-5vw", bottom: "-10%", zIndex: 0, pointerEvents: "none" }}
+      >
+        <img
+          src="/icons/blob-behind-testimonials.svg"
+          alt=""
+          style={{ width: "clamp(260px, 40vw, 600px)", height: "auto" }}
+        />
+      </StickerReveal>
+
+      {/* Off-center icon — floated top-right, not centered */}
+      <StickerReveal
+        delay={400}
+        style={{ position: "absolute", top: "8%", right: "6%", zIndex: 2, pointerEvents: "none" }}
+      >
+        <img
+          src="/icons/Asset%203photo-stand.svg"
+          alt=""
+          style={{ width: "clamp(64px, 8vw, 112px)", height: "auto", transform: "rotate(12deg)" }}
+        />
+      </StickerReveal>
+
+      <div
+        style={{
+          maxWidth: 1400,
+          margin: "0 auto",
+          padding: "0 clamp(24px, 5vw, 80px)",
+          position: "relative",
+          zIndex: 1,
+          textAlign: "center",
+        }}
+      >
+        <h2
+          ref={headRef}
+          className="font-heading"
+          style={{ fontSize: "clamp(40px, 7vw, 100px)", lineHeight: 1.0, letterSpacing: "-0.04em", color: "#1a1a2e", marginBottom: "clamp(24px, 3vw, 40px)" }}
+        >
+          <span style={{ display: "block" }}>
+            <span className="draw-line" style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1), opacity 0.9s cubic-bezier(0.22,1,0.36,1)" }}>
+              Ready to make
+            </span>
+          </span>
+          <span style={{ display: "block", paddingBottom: "0.3em" }}>
+            <span className="draw-line" style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s" }}>
+              <span style={{ position: "relative", display: "inline-block" }}>
+                <em style={{ fontStyle: "italic" }}>memories?</em>
+                <svg aria-hidden="true" viewBox="0 0 200 14" preserveAspectRatio="none" style={{ position: "absolute", bottom: "-10px", left: "-2%", width: "104%", height: "14px", overflow: "visible" }}>
+                  <path ref={underlineRef} d="M2 4 C30 1, 70 11, 100 5 C130 0, 168 11, 198 5" fill="none" stroke="#1a1a2e" strokeWidth="4" strokeLinecap="round" style={{ strokeDasharray: 9999, strokeDashoffset: 9999 }} />
+                </svg>
+              </span>
+            </span>
+          </span>
+        </h2>
+
+        <RevealOnScroll delay={200}>
+          <p
+            style={{
+              fontSize: "clamp(16px, 1.3vw, 21px)",
+              color: "#6b7280",
+              maxWidth: 500,
+              margin: "0 auto clamp(36px, 4.5vw, 60px)",
+              lineHeight: 1.75,
+            }}
+          >
+            From intimate birthdays to grand weddings, we&apos;re here to make every moment
+            unforgettable.
+          </p>
+        </RevealOnScroll>
+
+        <RevealOnScroll delay={350}>
+          <a
+            href="#book"
+            className="transition-all duration-300 hover:opacity-80"
+            style={{
+              display: "inline-block",
+              fontSize: "clamp(15px, 1.1vw, 17px)",
+              fontWeight: 700,
+              padding: "clamp(14px, 1.5vw, 18px) clamp(36px, 4.5vw, 64px)",
+              background: "#FF6B35",
+              color: "#fff",
+              borderRadius: 60,
+              textDecoration: "none",
+            }}
+          >
+            Book Your Booth
+          </a>
+        </RevealOnScroll>
+      </div>
+    </section>
+  );
+}
+
+// ─── PAGE ─────────────────────────────────────────────────────────────────────
+export default function ProductsPage() {
+  return (
+    <>
+      <SmoothScroll />
+      <CursorTag />
+      <Navbar />
+      <main>
+        <ProductsHero />
+        <BoothPricing />
+        <BackdropsGallery />
+        <PackagesComparison />
+        <WhatsIncluded />
+        <ProductsFAQ />
+        <BookingForm />
+        <ProductsCTA />
+      </main>
+      <Footer />
+    </>
+  );
+}
