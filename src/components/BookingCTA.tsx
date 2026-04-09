@@ -639,12 +639,12 @@ export default function BookingCTA() {
   const [submitted, setSubmitted] = useState(false);
   const formCardRef = useRef<HTMLDivElement>(null);
 
-  // Scroll to the top of the form card on every step change (mobile especially)
+  // Scroll to the top of the form card on every step change or submit (mobile especially)
   useEffect(() => {
     if (!formCardRef.current) return;
     const top = formCardRef.current.getBoundingClientRect().top + window.scrollY - 80;
     window.scrollTo({ top, behavior: "smooth" });
-  }, [step]);
+  }, [step, submitted]);
 
   const canAdvance = () => {
     if (step === 0) return !!form.booth;
