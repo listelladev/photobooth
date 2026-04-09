@@ -11,7 +11,6 @@ const slides = [
   { src: "/pool/Create_an_image_using_the_atta (9).jpg", alt: "Wedding photo booth" },
   { src: "/pool/Create_an_image_using_the_atta (13).jpg", alt: "Corporate photo booth" },
   { src: "/pool/birthday-featured.jpg", alt: "Birthday photo booth" },
-  { src: "/pool/Create_an_image_using_the_atta (13).jpg", alt: "Festival photo booth" },
   { src: "/pool/Create_an_image_using_the_atta (14).jpg", alt: "Event memories" },
   { src: "/pool/gender-reveal.jpg", alt: "Gender reveal photo booth" },
   { src: "/pool/Create_an_image_using_the_atta (16).jpg", alt: "Booth experience" },
