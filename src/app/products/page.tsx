@@ -185,7 +185,7 @@ function ProductsHero() {
                 lineHeight: 1.7,
               }}
             >
-              Three unique photo booths. A stunning backdrop library. Setup &amp; takedown
+              Eight unique products. A stunning backdrop library. Setup &amp; takedown
               completely on us.
             </span>
           </div>
@@ -199,9 +199,9 @@ function ProductsHero() {
 // ─── BOOTH PRICING ────────────────────────────────────────────────────────────
 const booths = [
   {
-    name: "Salsa Photo Booth",
+    name: "Compact Pole PhotoBooth",
     icon: "/icons/salsa-photobooth.svg",
-    image: "/salsa.jpeg",
+    image: "/salsa-photobooth.jpg",
     startingAt: "199",
     accent: "#FFD6E8",
     accentDark: "#E84393",
@@ -213,20 +213,54 @@ const booths = [
     ],
     extra: "$99 / additional hour",
     description:
-      "The crowd-pleasing classic. Timeless prints, vibrant props, and an on-site attendant to keep the energy going all night.",
+      "A sleek, space-saving pole booth that delivers big on fun. Perfect for intimate gatherings and venues where space is at a premium.",
   },
   {
-    name: "360 PhotoBooth",
+    name: "Premium Pole PhotoBooth",
+    icon: "/icons/salsa-photobooth.svg",
+    image: "/salsa.jpeg",
+    startingAt: "249",
+    accent: "#FDE8C8",
+    accentDark: "#F59E0B",
+    note: "Minimum 2 hours",
+    tiers: [
+      { label: "2 hours", price: "$349" },
+      { label: "3 hours", price: "$449" },
+      { label: "4 hours", price: "$549" },
+    ],
+    extra: "$109 / additional hour",
+    description:
+      "Premium hardware, polished finish, and crisp high-quality prints. Elevate your event with the best classic booth experience.",
+  },
+  {
+    name: "AI PhotoBooth",
     icon: "/icons/360-photobooth.svg",
     image: "/360.jpeg",
-    startingAt: "249",
-    accent: "#D4F4A0",
-    accentDark: "#00B894",
-    note: "Minimum 1 hour",
+    startingAt: "299",
+    accent: "#C8E6FF",
+    accentDark: "#1a73e8",
+    note: "Minimum 2 hours",
     tiers: [
       { label: "2 hours", price: "$399" },
       { label: "3 hours", price: "$499" },
       { label: "4 hours", price: "$599" },
+    ],
+    extra: "$129 / additional hour",
+    description:
+      "Next-generation AI-powered booth with stunning artistic portrait generation and instant digital sharing.",
+  },
+  {
+    name: "360 VideoBooth",
+    icon: "/icons/360-photobooth.svg",
+    image: "/360.jpeg",
+    startingAt: "399",
+    accent: "#D4F4A0",
+    accentDark: "#00B894",
+    note: "Minimum 1 hour",
+    tiers: [
+      { label: "2 hours", price: "$499" },
+      { label: "3 hours", price: "$599" },
+      { label: "4 hours", price: "$699" },
     ],
     extra: "$119 / additional hour",
     description:
@@ -236,7 +270,7 @@ const booths = [
     name: "Mirror PhotoBooth",
     icon: "/icons/mirror.svg",
     image: "/mirror.jpeg",
-    startingAt: "269",
+    startingAt: "499",
     accent: "#E8D6FF",
     accentDark: "#6C5CE7",
     note: "Minimum 2 hours",
@@ -248,6 +282,54 @@ const booths = [
     extra: "$199 / additional hour",
     description:
       "Elegant, interactive, and endlessly entertaining. The full-length mirror display turns every photo into a moment.",
+  },
+  {
+    name: "Audio GuestBook",
+    icon: "/icons/backdrops.svg",
+    image: "/mirror.jpeg",
+    startingAt: "149",
+    accent: "#C8F5E8",
+    accentDark: "#10B981",
+    note: "Per event",
+    tiers: [
+      { label: "Half day", price: "$149" },
+      { label: "Full day", price: "$199" },
+    ],
+    extra: "Includes unlimited messages",
+    description:
+      "Record heartfelt audio messages and well-wishes from guests. A timeless keepsake for any celebration.",
+  },
+  {
+    name: "Premium Backdrops",
+    icon: "/icons/backdrops.svg",
+    image: "/salsa-photobooth.jpg",
+    startingAt: "80",
+    accent: "#FFD6D6",
+    accentDark: "#EF4444",
+    note: "Add-on or standalone",
+    tiers: [
+      { label: "Standard rental", price: "$80" },
+      { label: "With setup", price: "$120" },
+    ],
+    extra: "2.60m × 2.60m professional backdrops",
+    description:
+      "Vibrant, high-quality backdrop collection. Flowers, glitter, abstract, balloons, and more — contact us for the full catalogue.",
+  },
+  {
+    name: "Instant High Quality Printing",
+    icon: "/icons/unlimited-prints.svg",
+    image: "/salsa.jpeg",
+    startingAt: "50",
+    accent: "#FFF3C8",
+    accentDark: "#D97706",
+    note: "Add-on to any booth",
+    tiers: [
+      { label: '2×6" strip', price: "$50" },
+      { label: '4×6" photo', price: "$70" },
+    ],
+    extra: "Unlimited prints included",
+    description:
+      "Walk away with lab-quality prints in seconds. Vibrant, professional-grade photos your guests take home instantly.",
   },
 ];
 
@@ -522,7 +604,7 @@ function BoothPricing() {
           </RevealOnScroll>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "clamp(20px, 2.5vw, 32px)", alignItems: "stretch" }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: "clamp(20px, 2.5vw, 32px)", alignItems: "stretch" }}>
           {booths.map((booth, i) => (
             <BoothCard key={booth.name} booth={booth} index={i} />
           ))}

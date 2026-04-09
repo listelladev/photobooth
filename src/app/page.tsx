@@ -4,6 +4,8 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import Pricing from "@/components/Pricing";
+import ClientLogos from "@/components/ClientLogos";
+import HomeImageSlider from "@/components/HomeImageSlider";
 import Benefits from "@/components/Benefits";
 import WhatToExpect from "@/components/WhatToExpect";
 import Testimonials from "@/components/Testimonials";
@@ -22,16 +24,9 @@ export default function Home() {
         <FeaturedProducts />
         <Benefits />
         <Pricing />
+        <ClientLogos />
         <WhatToExpect />
-        <div style={{ maxWidth: 1400, margin: "0 auto", padding: "clamp(24px, 5vw, 80px) clamp(24px, 5vw, 80px) 0", lineHeight: 0 }}>
-          <div style={{ borderRadius: "clamp(12px, 1.5vw, 24px)", overflow: "hidden" }}>
-            <img
-              src="/full-image-home.jpg"
-              alt=""
-              style={{ width: "100%", height: "clamp(280px, 45vw, 680px)", objectFit: "cover", display: "block" }}
-            />
-          </div>
-        </div>
+        <HomeImageSlider />
         <Testimonials />
         <FAQ />
         <BookingCTA />

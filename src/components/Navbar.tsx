@@ -197,12 +197,18 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1400, margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
           <nav className="flex items-center justify-between" style={{ height: 72 }}>
-            <a
-              href="/"
-              className="font-heading"
-              style={{ fontSize: "clamp(18px, 1.4vw, 22px)", color: textColor, letterSpacing: "-0.02em", transition: "color 0.4s ease" }}
-            >
-              Photobooth Experience
+            <a href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
+              {/* White logo on dark bg, black logo on light bg */}
+              <img
+                src={isDark || menuOpen ? "/main-logo-black.png" : "/main-logo-white.png"}
+                alt="Photobooth Experience"
+                style={{
+                  height: "clamp(56px, 6vw, 80px)",
+                  width: "auto",
+                  transition: "opacity 0.4s ease",
+                  display: "block",
+                }}
+              />
             </a>
 
             {/* Desktop nav */}

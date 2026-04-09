@@ -175,7 +175,7 @@ function BrandStory() {
 // ─── POPULAR PRODUCTS — 3 cards + View All ────────────────────────────────────
 const featuredProducts = [
   {
-    name: "360 PhotoBooth",
+    name: "360 VideoBooth",
     description: "Immerse your guests in an unforgettable experience — capture every angle, create stunning slow-motion videos, and make lasting memories with this interactive addition.",
     image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=800&auto=format&fit=crop",
     accent: "#D4F4A0",
@@ -189,10 +189,10 @@ const featuredProducts = [
     iconSrc: "/icons/mirror.svg",
   },
   {
-    name: "Salsa PhotoBooth",
+    name: "Premium Pole PhotoBooth",
     description: "The classic photo booth experience, elevated. Unlimited instant prints, custom frames, and a curated props collection — everything your guests need to have a blast.",
     image: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=800&auto=format&fit=crop",
-    accent: "#FFD6E8",
+    accent: "#FDE8C8",
     iconSrc: "/icons/salsa-photobooth.svg",
   },
 ];

@@ -21,45 +21,81 @@ type StickerPlacement =
 
 const products = [
   {
-    name: "360 PhotoBooth",
+    name: "Compact Pole PhotoBooth",
     description:
-      "Immerse your guests in an unforgettable experience by renting a 360-degree video booth for your event or celebration! Capture every angle, create stunning videos, and make lasting memories with this interactive and exciting addition to your party.",
+      "A sleek, space-saving pole booth that delivers big on fun. Perfect for intimate gatherings and venues where space is at a premium — prints, props, and smiles included.",
+    images: [
+      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1200&auto=format&fit=crop",
+    ],
+    iconSrc: "/icons/salsa-photobooth.svg",
+    accent: "#FFD6E8",
+    iconPlacement: "image-bottom" as StickerPlacement,
+    iconPos: { bottom: -28, left: 14 } as React.CSSProperties,
+  },
+  {
+    name: "Premium Pole PhotoBooth",
+    description:
+      "Upgrade the classic booth experience with premium hardware and a polished finish. Crisp, high-quality prints paired with a sleek stand that looks as great as the photos it produces.",
+    images: [
+      "/salsa-photobooth.jpg",
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop",
+    ],
+    iconSrc: "/icons/salsa-photobooth.svg",
+    accent: "#FDE8C8",
+    iconPlacement: "above-card" as StickerPlacement,
+    iconPos: { top: -18, left: -10 } as React.CSSProperties,
+  },
+  {
+    name: "AI PhotoBooth",
+    description:
+      "Next-generation booth powered by AI. Generate stunning, personalized digital portraits with unique artistic styles and instant sharing — the most talked-about booth at any event.",
+    images: [
+      "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop",
+    ],
+    iconSrc: "/icons/360-photobooth.svg",
+    accent: "#C8E6FF",
+    iconPlacement: "above-card" as StickerPlacement,
+    iconPos: { top: "20%", left: -10 } as React.CSSProperties,
+  },
+  {
+    name: "360 VideoBooth",
+    description:
+      "Immerse your guests in an unforgettable experience by renting a 360-degree video booth for your event or celebration! Capture every angle, create stunning videos, and make lasting memories.",
     images: [
       "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop",
     ],
     iconSrc: "/icons/360-photobooth.svg",
     accent: "#D4F4A0",
-    iconPlacement: "above-card" as StickerPlacement,
-    // on the outer wrapper, overlapping top-left card corner
-    iconPos: { top: -18, left: -10 } as React.CSSProperties,
+    iconPlacement: "inside-image" as StickerPlacement,
+    iconPos: { bottom: 118, right: 14 } as React.CSSProperties,
   },
   {
     name: "Mirror PhotoBooth",
     description:
       "Immerse yourself in the captivating experience of a photo mirror at your special event. This interactive and innovative feature brings a touch of elegance and fun, allowing guests to capture unique moments with a simple touch.",
     images: [
+      "/mirror.jpeg",
       "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop",
     ],
     iconSrc: "/icons/mirror.svg",
     accent: "#E8D6FF",
-    iconPlacement: "inside-image" as StickerPlacement,
-    // inside the image, ~50px above the thumbnail (thumbnail top = 14+54=68px, +50 = 118px from bottom)
-    iconPos: { bottom: 118, right: 14 } as React.CSSProperties,
+    iconPlacement: "above-card" as StickerPlacement,
+    iconPos: { top: -18, left: -10 } as React.CSSProperties,
   },
   {
-    name: "Salsa PhotoBooth",
+    name: "Audio GuestBook",
     description:
-      "Experience the unforgettable allure of having a photo booth at your event or party. It's the perfect way to capture fun moments, create lasting memories, and add a unique touch to your celebration that everyone will enjoy.",
+      "Give your guests a voice. Record heartfelt audio messages, well-wishes, and memories that you can listen back to for years to come — a truly timeless keepsake for any celebration.",
     images: [
-      "/salsa-photobooth.jpg",
-      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&w=1200&auto=format&fit=crop",
     ],
-    iconSrc: "/icons/salsa-photobooth.svg",
-    accent: "#FFD6E8",
+    iconSrc: "/icons/backdrops.svg",
+    accent: "#C8F5E8",
     iconPlacement: "image-bottom" as StickerPlacement,
-    // clips the image bottom edge; to the left — thumbnail is at right:14 so left:14 clears it
     iconPos: { bottom: -28, left: 14 } as React.CSSProperties,
   },
   {
@@ -73,8 +109,20 @@ const products = [
     iconSrc: "/icons/backdrops.svg",
     accent: "#FFD6D6",
     iconPlacement: "above-card" as StickerPlacement,
-    // left side, 20% down the card
     iconPos: { top: "20%", left: -10 } as React.CSSProperties,
+  },
+  {
+    name: "Instant High Quality Printing",
+    description:
+      "Walk away with a tangible memory in seconds. Our professional-grade printers deliver vibrant, lab-quality prints that guests can take home from your event — no waiting, no compromise.",
+    images: [
+      "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop",
+    ],
+    iconSrc: "/icons/unlimited-prints.svg",
+    accent: "#FFF3C8",
+    iconPlacement: "inside-image" as StickerPlacement,
+    iconPos: { bottom: 118, right: 14 } as React.CSSProperties,
   },
 ];
 
@@ -262,7 +310,7 @@ function ProductCard({ product }: { product: (typeof products)[0] }) {
           </div>
           <p style={{ fontSize: "clamp(14px, 1vw, 16px)", fontWeight: 400, lineHeight: 1.7, color: "#6b7280", marginBottom: 20 }}>{product.description}</p>
           <a href="#book" className="inline-flex items-center transition-opacity duration-300 hover:opacity-70" style={{ fontSize: 14, fontWeight: 700, color: "#1a1a2e", gap: 6 }}>
-            Book Now
+            Learn More
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

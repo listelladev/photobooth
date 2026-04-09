@@ -87,7 +87,7 @@ const packages = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" style={{ padding: "clamp(80px, 12vw, 180px) 0", position: "relative", overflow: "hidden" }}>
+    <section id="pricing" style={{ padding: "clamp(80px, 12vw, 180px) 0 0", position: "relative", overflow: "hidden" }}>
       {/* Background blob */}
       <StickerReveal
         delay={200}
