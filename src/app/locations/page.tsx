@@ -13,46 +13,30 @@ import BookingCTA from "@/components/BookingCTA";
 import CircleHighlight from "@/components/CircleHighlight";
 
 // ─── LOCATIONS DATA ────────────────────────────────────────────────────────────
-const placeholderImages = [
-  "/salsa.jpeg",
-  "/mirror.jpeg",
-  "/360.jpeg",
-  "/SalsaPromoHighRes148-scaled-1.png",
-  "/backdrops/Abstract.jpeg",
-  "/backdrops/Balloons.jpeg",
-  "/backdrops/Flowers 1.jpeg",
-  "/backdrops/Party.jpeg",
-];
-
 const locations = [
-  "Calgary",
-  "Airdrie",
-  "Cochrane",
-  "Okotoks",
-  "Strathmore",
-  "Chestermere",
-  "Canmore",
-  "Banff",
-  "Drumheller",
-  "Olds",
-  "Didsbury",
-  "Carstairs",
-  "Turner Valley",
-  "Nanton",
-  "Crossfield",
-  "Beiseker",
-  "Three Hills",
-  "Vulcan",
-  "Claresholm",
-  "Sundre",
-  "Bragg Creek",
-  "Milo",
-  "Longview",
-].map((name, i) => ({
-  name,
-  slug: name.toLowerCase().replace(/\s+/g, "-"),
-  image: placeholderImages[i % placeholderImages.length],
-}));
+  { name: "Calgary", slug: "calgary-photo-booth-rental", image: "/locations/calgary.jpg" },
+  { name: "Airdrie", slug: "airdrie-photo-booth-rental", image: "/locations/airdrie.jpg" },
+  { name: "Cochrane", slug: "cochrane-photo-booth-rental", image: "/locations/Cochrane.jpg" },
+  { name: "Okotoks", slug: "okotoks-photo-booth-rental", image: "/locations/Okotoks.jpg" },
+  { name: "Strathmore", slug: "strathmore-photo-booth-rental", image: "/locations/Strathmore.jpg" },
+  { name: "Chestermere", slug: "chestermere-photo-booth-rental", image: "/locations/Chestermere.jpg" },
+  { name: "Canmore", slug: "canmore-photo-booth-rental", image: "/locations/canmore.jpg" },
+  { name: "Banff", slug: "banff-photo-booth-rental", image: "/locations/banff.jpg" },
+  { name: "Drumheller", slug: "drumheller-photo-booth-rental", image: "/locations/Drumheller.jpg" },
+  { name: "Olds", slug: "olds-photo-booth-rental", image: "/locations/olds.jpg" },
+  { name: "Didsbury", slug: "didsbury-photo-booth-rental", image: "/locations/Didsbury.jpg" },
+  { name: "Carstairs", slug: "carstairs-photo-booth-rental", image: "/locations/Carstairs.jpg" },
+  { name: "Turner Valley", slug: "turner-valley-photo-booth-rental", image: "/locations/Turner Valley.jpg" },
+  { name: "Nanton", slug: "nanton-photo-booth-rental", image: "/locations/nanton.jpg" },
+  { name: "Crossfield", slug: "crossfield-photo-booth-rental", image: "/locations/Crossfield.jpg" },
+  { name: "Three Hills", slug: "three-hills-photo-booth-rental", image: "/locations/Three Hills.jpg" },
+  { name: "Vulcan", slug: "vulcan-photo-booth-rental", image: "/locations/vulcan.jpg" },
+  { name: "Claresholm", slug: "claresholm-photo-booth-rental", image: "/locations/Claresholm.jpg" },
+  { name: "Sundre", slug: "sundre-photo-booth-rental", image: "/locations/sundre.jpeg" },
+  { name: "Bragg Creek", slug: "bragg-creek-photo-booth-rental", image: "/locations/bragg creek.jpg" },
+  { name: "Milo", slug: "milo-photo-booth-rental", image: "/locations/milo.jpg" },
+  { name: "Longview", slug: "longview-photo-booth-rental", image: "/locations/longview.jpg" },
+];
 
 // ─── HERO ──────────────────────────────────────────────────────────────────────
 function LocationsHero() {
@@ -108,7 +92,7 @@ function LocationsHero() {
         {/* Background */}
         <div className="absolute inset-0">
           <img
-            src="/SalsaPromoHighRes148-scaled-1.png"
+            src="/locations/calgary.jpg"
             alt=""
             className="w-full h-full object-cover"
             style={{ objectPosition: "center 35%" }}

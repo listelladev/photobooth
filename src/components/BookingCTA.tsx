@@ -629,19 +629,134 @@ function QuoteStep({ form, setForm, onSubmit, submitted, onBack }: {
   );
 }
 
+// ─── Contact Form Panel ───────────────────────────────────────────────────────
+
+function ContactFormPanel() {
+  const [contactForm, setContactForm] = useState({
+    name: "", email: "", phone: "", subject: "", message: "",
+  });
+  const [contactSubmitted, setContactSubmitted] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (contactSubmitted) {
+      const raf = requestAnimationFrame(() => setVisible(true));
+      return () => cancelAnimationFrame(raf);
+    }
+  }, [contactSubmitted]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setContactForm({ ...contactForm, [e.target.name]: e.target.value });
+  };
+
+  if (contactSubmitted) {
+    return (
+      <div
+        style={{
+          textAlign: "center",
+          padding: "clamp(40px, 6vw, 72px) 0",
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0)" : "translateY(20px)",
+          transition: "opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1)",
+        }}
+      >
+        <div style={{ fontSize: 64, marginBottom: 20, animation: "popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.2s both" }}>🎉</div>
+        <h3 className="font-heading" style={{ fontSize: "clamp(26px, 3.5vw, 44px)", letterSpacing: "-0.03em", color: "#1a1a2e", marginBottom: 16, lineHeight: 1.1 }}>
+          Message sent!
+        </h3>
+        <p style={{ fontSize: "clamp(15px, 1.2vw, 18px)", color: "#6b7280", lineHeight: 1.75, maxWidth: 360, margin: "0 auto 28px" }}>
+          Thanks for reaching out. We&apos;ll be in touch within 24 hours to chat about your event.
+        </p>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "10px 20px", background: "#f0f9f0", borderRadius: 60, border: "1.5px solid #bbf0bb" }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5">
+            <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span style={{ fontSize: 14, fontWeight: 700, color: "#16a34a" }}>Message received</span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={(e) => { e.preventDefault(); setContactSubmitted(true); }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: "0 clamp(16px, 2vw, 24px)" }}>
+        <div style={{ marginBottom: 4 }}>
+          <label style={labelStyle}>Name *</label>
+          <input type="text" name="name" required value={contactForm.name} onChange={handleChange} style={inputStyle} placeholder="Full name" />
+        </div>
+        <div style={{ marginBottom: 4 }}>
+          <label style={labelStyle}>Email *</label>
+          <input type="email" name="email" required value={contactForm.email} onChange={handleChange} style={inputStyle} placeholder="your@email.com" />
+        </div>
+        <div style={{ marginBottom: 4 }}>
+          <label style={labelStyle}>Phone</label>
+          <input type="tel" name="phone" value={contactForm.phone} onChange={handleChange} style={inputStyle} placeholder="(403) 555-0000" />
+        </div>
+        <div style={{ marginBottom: 4 }}>
+          <label style={labelStyle}>Subject</label>
+          <select name="subject" value={contactForm.subject} onChange={handleChange} style={{ ...inputStyle, appearance: "none" as const, cursor: "pointer" }}>
+            <option value="">Select a topic</option>
+            <option value="booking">Booking Inquiry</option>
+            <option value="pricing">Pricing</option>
+            <option value="custom">Custom Package</option>
+            <option value="availability">Check Availability</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div style={{ marginBottom: 4 }}>
+        <label style={labelStyle}>Message *</label>
+        <textarea name="message" rows={4} required value={contactForm.message} onChange={handleChange} style={{ ...inputStyle, resize: "none" as const }} placeholder="Tell us about your event..." />
+      </div>
+      <div style={{ marginTop: 28 }}>
+        <button
+          type="submit"
+          disabled={!contactForm.name || !contactForm.email || !contactForm.message}
+          className="transition-all duration-300 hover:opacity-80 cursor-pointer"
+          style={{
+            fontSize: 15,
+            fontWeight: 700,
+            fontFamily: "dm-sans, sans-serif",
+            padding: "16px 48px",
+            background: !contactForm.name || !contactForm.email || !contactForm.message ? "#d1d5db" : "#FF6B35",
+            color: "#fff",
+            border: "none",
+            borderRadius: 60,
+            cursor: !contactForm.name || !contactForm.email || !contactForm.message ? "not-allowed" : "pointer",
+          }}
+        >
+          Send Message
+        </button>
+        <p style={{ fontSize: 13, color: "#9ca3af", marginTop: 12 }}>We typically respond within 24 hours.</p>
+      </div>
+    </form>
+  );
+}
+
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 const TOTAL_STEPS = 5; // 0=booth, 1=date/duration, 2=addons, 3=location, 4=quote
 
-export default function BookingCTA() {
+interface BookingCTAProps {
+  headingLine1?: string;
+  headingLine2?: React.ReactNode;
+  subtext?: string;
+}
+
+export default function BookingCTA({ headingLine1, headingLine2, subtext }: BookingCTAProps = {}) {
+  const [tab, setTab] = useState<"quote" | "contact">("quote");
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<FormState>(defaultForm);
   const [submitted, setSubmitted] = useState(false);
   const formCardRef = useRef<HTMLDivElement>(null);
+  const hasMounted = useRef(false);
 
-  // Scroll to the top of the form card on every step change or submit (mobile especially)
+  // Scroll to the top of the form card when the user advances a step or submits — mobile only.
+  // Skip the initial mount so navigating to the page doesn't auto-scroll to the form.
   useEffect(() => {
+    if (!hasMounted.current) { hasMounted.current = true; return; }
     if (!formCardRef.current) return;
+    if (window.innerWidth >= 768) return;
     const top = formCardRef.current.getBoundingClientRect().top + window.scrollY - 80;
     window.scrollTo({ top, behavior: "smooth" });
   }, [step, submitted]);
@@ -676,10 +791,10 @@ export default function BookingCTA() {
             stagger={90}
           >
             <AnimLine>
-              Get a quote
+              {headingLine1 ?? "Get a quote"}
             </AnimLine>
             <AnimLine>
-              <em style={{ fontStyle: "italic" }}>instantly.</em>
+              {headingLine2 ?? <em style={{ fontStyle: "italic" }}>instantly.</em>}
             </AnimLine>
           </AnimatedText>
 
@@ -701,7 +816,7 @@ export default function BookingCTA() {
           <RevealOnScroll>
             <div>
               <p style={{ fontSize: "clamp(16px, 1.2vw, 20px)", fontWeight: 400, color: "#6b7280", maxWidth: 420, lineHeight: 1.75, marginBottom: 48 }}>
-                Answer a few quick questions to get an instant estimate. Send your enquiry and we&apos;ll confirm your booking with a final quote.
+                {subtext ?? "Answer a few quick questions to get an instant estimate. Send your enquiry and we\u2019ll confirm your booking with a final quote."}
               </p>
 
               <div className="flex flex-col" style={{ gap: 32 }}>
@@ -737,18 +852,52 @@ export default function BookingCTA() {
                 boxShadow: "0 4px 32px rgba(0,0,0,0.05)",
               }}
             >
-              <StepIndicator current={step} total={TOTAL_STEPS} />
+              {/* Tab toggle */}
+              <div style={{ display: "flex", background: "#f3f4f6", borderRadius: 10, padding: 4, marginBottom: 28 }}>
+                {(["quote", "contact"] as const).map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => { setTab(t); setStep(0); }}
+                    style={{
+                      flex: 1,
+                      padding: "9px 0",
+                      borderRadius: 7,
+                      border: "none",
+                      background: tab === t ? "#fff" : "transparent",
+                      color: tab === t ? "#1a1a2e" : "#9ca3af",
+                      fontFamily: "dm-sans, sans-serif",
+                      fontWeight: 700,
+                      fontSize: 13,
+                      letterSpacing: "0.01em",
+                      cursor: "pointer",
+                      boxShadow: tab === t ? "0 1px 4px rgba(0,0,0,0.08)" : "none",
+                      transition: "all 0.2s cubic-bezier(0.22,1,0.36,1)",
+                    }}
+                  >
+                    {t === "quote" ? "Instant Quote" : "Contact Us"}
+                  </button>
+                ))}
+              </div>
 
-              {step === 0 && <Step1 form={form} setForm={setForm} />}
-              {step === 1 && <Step2 form={form} setForm={setForm} />}
-              {step === 2 && <Step3 form={form} setForm={setForm} />}
-              {step === 3 && <Step4 form={form} setForm={setForm} />}
-              {step === 4 && (
-                <QuoteStep form={form} setForm={setForm} onSubmit={handleSubmit} submitted={submitted} onBack={() => setStep(3)} />
+              {tab === "contact" ? (
+                <ContactFormPanel />
+              ) : (
+                <>
+                  <StepIndicator current={step} total={TOTAL_STEPS} />
+
+                  {step === 0 && <Step1 form={form} setForm={setForm} />}
+                  {step === 1 && <Step2 form={form} setForm={setForm} />}
+                  {step === 2 && <Step3 form={form} setForm={setForm} />}
+                  {step === 3 && <Step4 form={form} setForm={setForm} />}
+                  {step === 4 && (
+                    <QuoteStep form={form} setForm={setForm} onSubmit={handleSubmit} submitted={submitted} onBack={() => setStep(3)} />
+                  )}
+                </>
               )}
 
               {/* Navigation */}
-              {step < 4 && (
+              {tab === "quote" && step < 4 && (
                 <div className="flex items-center justify-between" style={{ marginTop: 32 }}>
                   {step > 0 ? (
                     <button

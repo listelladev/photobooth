@@ -392,15 +392,15 @@ function OurValues() {
 
 // ─── GALLERY — 3-col square grid ──────────────────────────────────────────────
 const galleryImages = [
-  { src: "/backdrops/Abstract.jpeg", alt: "Abstract backdrop" },
-  { src: "/backdrops/Flowers 1.jpeg", alt: "Floral backdrop" },
-  { src: "/backdrops/Black & Gold Glitter.jpeg", alt: "Black and gold glitter backdrop" },
-  { src: "/backdrops/Balloons.jpeg", alt: "Balloon backdrop" },
-  { src: "/SalsaPromoHighRes148-scaled-1.png", alt: "Photo booth in action" },
-  { src: "/backdrops/Glitter.jpeg", alt: "Glitter backdrop" },
-  { src: "/backdrops/Flowers 2.jpeg", alt: "Floral backdrop 2" },
-  { src: "/backdrops/Party.jpeg", alt: "Party backdrop" },
-  { src: "/backdrops/Flowers 3.jpeg", alt: "Floral backdrop 3" },
+  { src: "/pool/Create_an_image_using_the_atta (1).jpg", alt: "Photo booth experience" },
+  { src: "/pool/Create_an_image_using_the_atta (5).jpg", alt: "Event photo booth" },
+  { src: "/pool/Create_an_image_using_the_atta (9).jpg", alt: "Wedding photo booth" },
+  { src: "/pool/birthday-featured.jpg", alt: "Birthday photo booth" },
+  { src: "/pool/gender-reveal.jpg", alt: "Gender reveal photo booth" },
+  { src: "/pool/Create_an_image_using_the_atta (18).jpg", alt: "Special occasion" },
+  { src: "/pool/remove_the__a_night_to_remembe.jpg", alt: "A night to remember" },
+  { src: "/pool/remove_the_text_on_the_pointer.jpg", alt: "Photo booth action" },
+  { src: "/pool/remove_the_word__backdrop__any.jpg", alt: "Photo booth backdrop" },
 ];
 
 function Gallery() {

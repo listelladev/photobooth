@@ -3,42 +3,27 @@
 import { useState, useRef } from "react";
 
 const slides = [
-  { src: "/full-image-home.jpg", alt: "Photo booth experience" },
-  { src: "/salsa-photobooth.jpg", alt: "Salsa photo booth" },
-  { src: "/360.jpeg", alt: "360 video booth" },
-  { src: "/mirror.jpeg", alt: "Mirror photo booth" },
-  {
-    src: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop",
-    alt: "Wedding celebration",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop",
-    alt: "Party event",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop",
-    alt: "Corporate event",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1200&auto=format&fit=crop",
-    alt: "Event celebration",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=1200&auto=format&fit=crop",
-    alt: "Birthday party",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=1200&auto=format&fit=crop",
-    alt: "Festival event",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&w=1200&auto=format&fit=crop",
-    alt: "Event backdrop",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1200&auto=format&fit=crop",
-    alt: "Special occasion",
-  },
+  { src: "/pool/Create_an_image_using_the_atta (1).jpg", alt: "Photo booth experience" },
+  { src: "/pool/Create_an_image_using_the_atta (2).jpg", alt: "Event photo booth" },
+  { src: "/pool/Create_an_image_using_the_atta (5).jpg", alt: "Photo booth fun" },
+  { src: "/pool/Create_an_image_using_the_atta (7).jpg", alt: "Celebration photo booth" },
+  { src: "/pool/Create_an_image_using_the_atta (8).jpg", alt: "Party photo booth" },
+  { src: "/pool/Create_an_image_using_the_atta (9).jpg", alt: "Wedding photo booth" },
+  { src: "/pool/Create_an_image_using_the_atta (13).jpg", alt: "Corporate photo booth" },
+  { src: "/pool/birthday-featured.jpg", alt: "Birthday photo booth" },
+  { src: "/pool/Create_an_image_using_the_atta (13).jpg", alt: "Festival photo booth" },
+  { src: "/pool/Create_an_image_using_the_atta (14).jpg", alt: "Event memories" },
+  { src: "/pool/gender-reveal.jpg", alt: "Gender reveal photo booth" },
+  { src: "/pool/Create_an_image_using_the_atta (16).jpg", alt: "Booth experience" },
+  { src: "/pool/Create_an_image_using_the_atta (17).jpg", alt: "Photo booth guests" },
+  { src: "/pool/Create_an_image_using_the_atta (18).jpg", alt: "Special occasion booth" },
+  { src: "/pool/Create_an_image_using_the_atta (19).jpg", alt: "Event booth" },
+  { src: "/pool/Create_an_image_using_the_atta (20).jpg", alt: "Photo booth setup" },
+  { src: "/pool/Create_an_image_using_the_atta (21).jpg", alt: "Booth at event" },
+  { src: "/pool/Create_an_image_using_the_atta.jpg", alt: "Photo booth rental" },
+  { src: "/pool/remove_the__a_night_to_remembe.jpg", alt: "A night to remember" },
+  { src: "/pool/remove_the_text_on_the_pointer.jpg", alt: "Photo booth action" },
+  { src: "/pool/remove_the_word__backdrop__any.jpg", alt: "Photo booth backdrop" },
 ];
 
 const VISIBLE = 3;
