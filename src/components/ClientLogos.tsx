@@ -24,13 +24,17 @@ function logoFilter(mode: string) {
 function LogoItem({ logo }: { logo: (typeof logos)[0] }) {
   const [hovered, setHovered] = useState(false);
   return (
+    // Fixed-width slot: track width is determined by CSS before any image loads,
+    // so translateX(calc(-100%/3)) resolves immediately and the animation starts
+    // at the correct speed without waiting for image intrinsic dimensions.
     <div
       style={{
         flexShrink: 0,
+        width: "clamp(90px, 10vw, 145px)",
+        height: "clamp(32px, 3.5vw, 48px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        height: "clamp(36px, 4vw, 56px)",
         cursor: "default",
       }}
       onMouseEnter={() => setHovered(true)}
@@ -39,15 +43,18 @@ function LogoItem({ logo }: { logo: (typeof logos)[0] }) {
       <img
         src={logo.src}
         alt={logo.alt}
+        loading="eager"
         style={{
-          height: "100%",
+          maxWidth: "100%",
+          maxHeight: "100%",
           width: "auto",
-          maxWidth: "clamp(100px, 12vw, 160px)",
+          height: "auto",
           objectFit: "contain",
+          display: "block",
           filter: hovered
             ? logo.mode === "invert"
-              ? "invert(1) grayscale(1) brightness(0)"   // true black on hover
-              : "none"                                    // full colour on hover
+              ? "invert(1) grayscale(1) brightness(0)"
+              : "none"
             : logoFilter(logo.mode),
           opacity: hovered ? 1 : 0.65,
           transition: "filter 0.35s ease, opacity 0.35s ease",
@@ -80,7 +87,7 @@ export default function ClientLogos() {
         <div
           style={{
             position: "absolute", left: 0, top: 0, bottom: 0,
-            width: "clamp(60px, 8vw, 120px)",
+            width: "clamp(40px, 6vw, 100px)",
             background: "linear-gradient(to right, #fff, transparent)",
             zIndex: 2, pointerEvents: "none",
           }}
@@ -89,20 +96,21 @@ export default function ClientLogos() {
         <div
           style={{
             position: "absolute", right: 0, top: 0, bottom: 0,
-            width: "clamp(60px, 8vw, 120px)",
+            width: "clamp(40px, 6vw, 100px)",
             background: "linear-gradient(to left, #fff, transparent)",
             zIndex: 2, pointerEvents: "none",
           }}
         />
 
         <div
+          className="marquee-track"
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "clamp(48px, 6vw, 96px)",
-            animation: "marquee 28s linear infinite",
+            gap: "clamp(32px, 5vw, 80px)",
             width: "max-content",
-            padding: "0 clamp(24px, 3vw, 48px)",
+            padding: "0 clamp(16px, 2vw, 40px)",
+            willChange: "transform",
           }}
         >
           {allLogos.map((logo, i) => (
@@ -113,8 +121,16 @@ export default function ClientLogos() {
 
       <style>{`
         @keyframes marquee {
-          0% { transform: translateX(0); }
+          0%   { transform: translateX(0); }
           100% { transform: translateX(calc(-100% / 3)); }
+        }
+        .marquee-track {
+          animation: marquee 18s linear infinite;
+        }
+        @media (max-width: 768px) {
+          .marquee-track {
+            animation-duration: 10s;
+          }
         }
       `}</style>
     </section>

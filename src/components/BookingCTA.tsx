@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import RevealOnScroll from "./RevealOnScroll";
 import AnimatedText, { AnimLine } from "./AnimatedText";
 import StickerReveal from "./StickerReveal";
@@ -637,6 +637,14 @@ export default function BookingCTA() {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<FormState>(defaultForm);
   const [submitted, setSubmitted] = useState(false);
+  const formCardRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to the top of the form card on every step change (mobile especially)
+  useEffect(() => {
+    if (!formCardRef.current) return;
+    const top = formCardRef.current.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top, behavior: "smooth" });
+  }, [step]);
 
   const canAdvance = () => {
     if (step === 0) return !!form.booth;
@@ -720,6 +728,7 @@ export default function BookingCTA() {
           {/* Right — multi-step form */}
           <RevealOnScroll delay={200}>
             <div
+              ref={formCardRef}
               style={{
                 background: "#fff",
                 borderRadius: "clamp(16px, 2vw, 24px)",
