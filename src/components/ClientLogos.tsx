@@ -129,7 +129,7 @@ export default function ClientLogos() {
         }
         @media (max-width: 768px) {
           .marquee-track {
-            animation-duration: 10s;
+            animation-duration: 20s;
           }
         }
       `}</style>
