@@ -162,26 +162,6 @@ export default function HomeImageSlider() {
           </svg>
         </button>
 
-        <div className="flex items-center" style={{ gap: 6 }}>
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => jumpTo(i)}
-              aria-label={`Go to image ${i + 1}`}
-              style={{
-                width: i === start ? 20 : 7,
-                height: 7,
-                borderRadius: 99,
-                background: i === start ? "#1a1a2e" : "#d1d5db",
-                border: "none",
-                padding: 0,
-                cursor: "pointer",
-                transition: "all 0.3s cubic-bezier(0.22,1,0.36,1)",
-              }}
-            />
-          ))}
-        </div>
-
         <button
           onClick={() => slide("next")}
           aria-label="Next images"
