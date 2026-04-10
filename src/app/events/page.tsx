@@ -320,6 +320,15 @@ function EventsGrid() {
             <EventCard key={event.slug} event={event} index={i} />
           ))}
         </div>
+
+        {/* Catch-all note */}
+        <RevealOnScroll delay={100}>
+          <p style={{ fontSize: "clamp(14px, 1vw, 16px)", color: "#6b7280", lineHeight: 1.75, marginTop: "clamp(32px, 4vw, 48px)", textAlign: "center" }}>
+            Don&apos;t see your event type? We offer our Calgary photo booth services for all event types and celebrations, even if it&apos;s not listed.{" "}
+            <Link href="/contact" style={{ fontWeight: 700, color: "#1a1a2e", textDecoration: "underline", textUnderlineOffset: 3 }}>Contact us</Link>
+            {" "}to discuss your event!
+          </p>
+        </RevealOnScroll>
       </div>
     </section>
   );

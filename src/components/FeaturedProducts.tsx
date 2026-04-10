@@ -357,7 +357,7 @@ export default function FeaturedProducts() {
       {/* Background blob — behind premium backdrops card (bottom-right) */}
       <StickerReveal
         delay={400}
-        style={{ position: "absolute", right: "-5vw", bottom: "5%", zIndex: 0, pointerEvents: "none" }}
+        style={{ position: "absolute", right: "-5vw", bottom: "5%", zIndex: -1, pointerEvents: "none" }}
       >
         <img src="/icons/blob-half-behind-premium-backdrops.svg" alt="" style={{ width: "clamp(280px, 40vw, 620px)", height: "auto" }} />
       </StickerReveal>
