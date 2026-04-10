@@ -636,16 +636,17 @@ function BoothPricing() {
 
 // ─── BACKDROPS GALLERY ────────────────────────────────────────────────────────
 const backdropItems = [
-  { name: "Abstract", src: "/backdrops/Abstract.jpeg" },
-  { name: "Ballons 2", src: "/backdrops/Ballons%202.jpeg" },
-  { name: "Balloons", src: "/backdrops/Balloons.jpeg" },
-  { name: "Black & Gold Glitter", src: "/backdrops/Black%20%26%20Gold%20Glitter.jpeg" },
-  { name: "Flowers 1", src: "/backdrops/Flowers%201.jpeg" },
-  { name: "Flowers 2", src: "/backdrops/Flowers%202.jpeg" },
-  { name: "Flowers 3", src: "/backdrops/Flowers%203.jpeg" },
-  { name: "Flowers 4", src: "/backdrops/Flowers%204.jpeg" },
-  { name: "Glitter", src: "/backdrops/Glitter.jpeg" },
-  { name: "Party", src: "/backdrops/Party.jpeg" },
+  { name: "Abstract", src: "/backdrop-images/Abstract.jpeg" },
+  { name: "Balloons 2", src: "/backdrop-images/Balloons%202.jpg" },
+  { name: "Balloons", src: "/backdrop-images/Balloons.jpg" },
+  { name: "Black & Gold Glitter", src: "/backdrop-images/black%20and%20gold%20glitter.jpg" },
+  { name: "Flowers 1", src: "/backdrop-images/flowers%201.jpg" },
+  { name: "Flowers 2", src: "/backdrop-images/flowers%202.jpg" },
+  { name: "Flowers 3", src: "/backdrop-images/flowers%203.jpg" },
+  { name: "Flowers 4", src: "/backdrop-images/flowers%204.jpg" },
+  { name: "Glitter", src: "/backdrop-images/glitter.jpg" },
+  { name: "Party", src: "/backdrop-images/party.jpg" },
+  { name: "Other Backdrop", src: "/backdrop-images/other%20backdrop.jpg" },
 ];
 
 function BackdropsGallery() {
