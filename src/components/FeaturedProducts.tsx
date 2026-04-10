@@ -22,6 +22,7 @@ type StickerPlacement =
 const products = [
   {
     name: "Compact Pole PhotoBooth",
+    href: "/products/compact-pole-photobooth",
     description:
       "A sleek, space-saving pole booth that delivers big on fun. Perfect for intimate gatherings and venues where space is at a premium — prints, props, and smiles included.",
     images: [
@@ -329,7 +330,7 @@ function ProductCard({ product }: { product: (typeof products)[0] }) {
             <h3 className="font-heading" style={{ fontSize: "clamp(20px, 1.8vw, 26px)", letterSpacing: "-0.025em", color: "#1a1a2e" }}>{product.name}</h3>
           </div>
           <p style={{ fontSize: "clamp(14px, 1vw, 16px)", fontWeight: 400, lineHeight: 1.7, color: "#6b7280", marginBottom: 20 }}>{product.description}</p>
-          <a href="#book" className="inline-flex items-center transition-opacity duration-300 hover:opacity-70" style={{ fontSize: 14, fontWeight: 700, color: "#1a1a2e", gap: 6 }}>
+          <a href={product.href ?? "#book"} className="inline-flex items-center transition-opacity duration-300 hover:opacity-70" style={{ fontSize: 14, fontWeight: 700, color: "#1a1a2e", gap: 6 }}>
             Learn More
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
