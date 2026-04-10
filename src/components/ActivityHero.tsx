@@ -103,8 +103,8 @@ export default function ActivityHero({
           <div className="absolute inset-0" style={{ background: "linear-gradient(125deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.50) 55%, rgba(0,0,0,0.65) 100%)" }} />
         </div>
 
-        {/* Sticker 1 — hidden on mobile to avoid overlapping text */}
-        <div className="absolute hidden md:block" style={{ top: "12%", right: "7%", zIndex: 5, pointerEvents: "none" }}>
+        {/* Sticker 1 */}
+        <div className="absolute" style={{ top: "12%", right: "7%", zIndex: 5, pointerEvents: "none" }}>
           <div style={{
             transition: "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease",
             transform: sticker1 ? `scale(1) rotate(${sticker1Rotation})` : "scale(0) rotate(-18deg)",
@@ -114,8 +114,8 @@ export default function ActivityHero({
           </div>
         </div>
 
-        {/* Sticker 2 — hidden on mobile to avoid overlapping text */}
-        <div className="absolute hidden md:block" style={{ bottom: "20%", right: "5%", zIndex: 5, pointerEvents: "none" }}>
+        {/* Sticker 2 */}
+        <div className="absolute" style={{ bottom: "20%", right: "5%", zIndex: 5, pointerEvents: "none" }}>
           <div style={{
             transition: "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease",
             transform: sticker2 ? `scale(1) rotate(${sticker2Rotation})` : "scale(0) rotate(20deg)",

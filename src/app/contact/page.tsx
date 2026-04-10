@@ -72,13 +72,13 @@ function ContactHero() {
           <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.50) 55%, rgba(0,0,0,0.72) 100%)" }} />
         </div>
 
-        <div className="absolute hidden md:block" style={{ top: "12%", right: "8%", zIndex: 5, pointerEvents: "none" }}>
+        <div className="absolute" style={{ top: "12%", right: "8%", zIndex: 5, pointerEvents: "none" }}>
           <div style={{ transition: "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease", transform: sticker1 ? "scale(1) rotate(0deg)" : "scale(0) rotate(-18deg)", opacity: sticker1 ? 1 : 0 }}>
             <img src="/icons/pool-of-icons/choose-your--product.svg" alt="" style={{ width: "clamp(52px, 7vw, 100px)", height: "auto" }} />
           </div>
         </div>
 
-        <div className="absolute hidden md:block" style={{ bottom: "18%", right: "6%", zIndex: 5, pointerEvents: "none" }}>
+        <div className="absolute" style={{ bottom: "18%", right: "6%", zIndex: 5, pointerEvents: "none" }}>
           <div style={{ transition: "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease", transform: sticker2 ? "scale(1) rotate(6deg)" : "scale(0) rotate(-18deg)", opacity: sticker2 ? 1 : 0 }}>
             <img src="/icons/pool-of-icons/Asset%207balloons.svg" alt="" style={{ width: "clamp(72px, 8vw, 116px)", height: "auto" }} />
           </div>

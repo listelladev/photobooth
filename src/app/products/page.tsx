@@ -89,7 +89,7 @@ function ProductsHero() {
         </div>
 
         {/* Camera sticker */}
-        <div className="absolute hidden md:block" style={{ top: "14%", right: "7%", zIndex: 5 }}>
+        <div className="absolute" style={{ top: "14%", right: "7%", zIndex: 5 }}>
           <div style={stickerStyle(sticker1)}>
             <img
               src="/icons/hero-camera.svg"
@@ -100,7 +100,7 @@ function ProductsHero() {
         </div>
 
         {/* Twinkle sticker */}
-        <div className="absolute hidden md:block" style={{ bottom: "22%", left: "5%", zIndex: 5 }}>
+        <div className="absolute" style={{ bottom: "22%", left: "5%", zIndex: 5 }}>
           <div style={stickerStyle(sticker2)}>
             <img
               src="/icons/hero-twinkle.svg"
