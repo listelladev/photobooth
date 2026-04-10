@@ -159,7 +159,7 @@ export default function Testimonials({ blobFilter }: { blobFilter?: string } = {
         delay={200}
         style={{ position: "absolute", right: "-6vw", top: "10%", zIndex: 0, pointerEvents: "none" }}
       >
-        <img src="/icons/Asset 1new-blob.svg" alt="" style={{ width: "clamp(300px, 44vw, 680px)", height: "auto", filter: blobFilter }} />
+        <img src="/icons/Asset%201new-blob.svg" alt="" style={{ width: "clamp(300px, 44vw, 680px)", height: "auto", filter: blobFilter }} />
       </StickerReveal>
 
       <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)", position: "relative", zIndex: 1 }}>

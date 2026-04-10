@@ -218,7 +218,7 @@ const booths = [
   },
   {
     name: "Premium Pole PhotoBooth",
-    icon: "/icons/pool-of-icons/Asset 3photo-stand.svg",
+    icon: "/icons/pool-of-icons/Asset%203photo-stand.svg",
     image: "/salsa.jpeg",
     startingAt: "249",
     accent: "#FDE8C8",
@@ -286,7 +286,7 @@ const booths = [
   },
   {
     name: "Audio GuestBook",
-    icon: "/icons/pool-of-icons/Asset 2music-note.svg",
+    icon: "/icons/pool-of-icons/Asset%202music-note.svg",
     image: "/mirror.jpeg",
     startingAt: "149",
     accent: "#C8F5E8",
@@ -1541,7 +1541,7 @@ function ProductsCTA() {
         style={{ position: "absolute", left: "-5vw", bottom: "-10%", zIndex: 0, pointerEvents: "none" }}
       >
         <img
-          src="/icons/Asset 1new-blob.svg"
+          src="/icons/Asset%201new-blob.svg"
           alt=""
           style={{ width: "clamp(260px, 40vw, 600px)", height: "auto", filter: "hue-rotate(155deg) saturate(0.8)" }}
         />

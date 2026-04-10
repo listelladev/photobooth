@@ -269,9 +269,9 @@ export default function GenderRevealPage() {
           ctaColor="#0984E3"
           bgSrc="/gender-reveal.jpg"
           bgAlt="Calgary gender reveal photo booth setup"
-          sticker1Src="/icons/Asset 7balloons.svg"
+          sticker1Src="/icons/Asset%207balloons.svg"
           sticker1Rotation="-6deg"
-          sticker2Src="/icons/Asset 1blue-heart.svg"
+          sticker2Src="/icons/Asset%201blue-heart.svg"
           sticker2Rotation="8deg"
         />
         <GenderRevealIntro />
