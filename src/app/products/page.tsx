@@ -202,7 +202,7 @@ const booths = [
   {
     name: "Compact Pole PhotoBooth",
     icon: "/icons/pool-of-icons/hero-camera.svg",
-    image: "/salsa-photobooth.jpg",
+    image: "/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%201.jpg",
     startingAt: "199",
     accent: "#FFD6E8",
     accentDark: "#E84393",
@@ -219,7 +219,7 @@ const booths = [
   {
     name: "Premium Pole PhotoBooth",
     icon: "/icons/pool-of-icons/Asset%203photo-stand.svg",
-    image: "/salsa.jpeg",
+    image: "/products/premium-backdrops/Premium%20Pole%20PhotoBooth1.jpg",
     startingAt: "249",
     accent: "#FDE8C8",
     accentDark: "#F59E0B",
@@ -236,7 +236,7 @@ const booths = [
   {
     name: "AI PhotoBooth",
     icon: "/icons/pool-of-icons/unforgettable-2.svg",
-    image: "/360.jpeg",
+    image: "/products/ai-photobooth/ai%20photobooth%201.jpg",
     startingAt: "299",
     accent: "#C8E6FF",
     accentDark: "#1a73e8",
@@ -253,7 +253,7 @@ const booths = [
   {
     name: "360 VideoBooth",
     icon: "/icons/360-photobooth.svg",
-    image: "/360.jpeg",
+    image: "/products/360-videobooth/360%20video%20booth%201.jpg",
     startingAt: "399",
     accent: "#D4F4A0",
     accentDark: "#00B894",
@@ -270,7 +270,7 @@ const booths = [
   {
     name: "Mirror PhotoBooth",
     icon: "/icons/mirror.svg",
-    image: "/mirror.jpeg",
+    image: "/products/mirror-photobooth/mirror%20photobooth%201.jpg",
     startingAt: "499",
     accent: "#E8D6FF",
     accentDark: "#6C5CE7",
@@ -287,7 +287,7 @@ const booths = [
   {
     name: "Audio GuestBook",
     icon: "/icons/pool-of-icons/Asset%202music-note.svg",
-    image: "/mirror.jpeg",
+    image: "/products/audio-guestbook/audio%20guestbook%201.jpg",
     startingAt: "149",
     accent: "#C8F5E8",
     accentDark: "#10B981",
@@ -303,7 +303,7 @@ const booths = [
   {
     name: "Premium Backdrops",
     icon: "/icons/backdrops.svg",
-    image: "/salsa-photobooth.jpg",
+    image: "/products/premium-backdrops/premium%20backdrops%201.jpg",
     startingAt: "80",
     accent: "#FFD6D6",
     accentDark: "#EF4444",
@@ -319,7 +319,7 @@ const booths = [
   {
     name: "Instant High Quality Printing",
     icon: "/icons/unlimited-prints.svg",
-    image: "/salsa.jpeg",
+    image: "/products/instant-high-quality-printing/instant%20high%20quality%20prints%201.jpg",
     startingAt: "50",
     accent: "#FFF3C8",
     accentDark: "#D97706",
@@ -643,7 +643,7 @@ const backdropItems = [
   { name: "Flowers 1", src: "/backdrop-images/flowers%201.jpg" },
   { name: "Flowers 2", src: "/backdrop-images/flowers%202.jpg" },
   { name: "Flowers 3", src: "/backdrop-images/flowers%203.jpg" },
-  { name: "Flowers 4", src: "/backdrop-images/flowers%204.jpg" },
+  { name: "Flowers 4", src: "/backdrop-images/flowers%204.png" },
   { name: "Glitter", src: "/backdrop-images/glitter.jpg" },
   { name: "Party", src: "/backdrop-images/party.jpg" },
   { name: "Other Backdrop", src: "/backdrop-images/other%20backdrop.jpg" },
@@ -788,11 +788,11 @@ function BackdropsGallery() {
                 (e.currentTarget as HTMLElement).style.boxShadow = "none";
               }}
             >
-              <div style={{ aspectRatio: "3/4", overflow: "hidden", position: "relative" }}>
+              <div style={{ aspectRatio: "1/1", overflow: "hidden", position: "relative" }}>
                 <img
                   src={item.src}
                   alt={item.name}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
                 />
               </div>
               <div style={{ padding: "clamp(12px, 1.5vw, 16px)" }}>

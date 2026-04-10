@@ -25,8 +25,8 @@ const products = [
     description:
       "A sleek, space-saving pole booth that delivers big on fun. Perfect for intimate gatherings and venues where space is at a premium — prints, props, and smiles included.",
     images: [
-      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1200&auto=format&fit=crop",
+      "/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%201.jpg",
+      "/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%202.jpg",
     ],
     iconSrc: "/icons/pool-of-icons/hero-camera.svg",
     accent: "#FFD6E8",
@@ -38,8 +38,8 @@ const products = [
     description:
       "Upgrade the classic booth experience with premium hardware and a polished finish. Crisp, high-quality prints paired with a sleek stand that looks as great as the photos it produces.",
     images: [
-      "/salsa-photobooth.jpg",
-      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop",
+      "/products/premium-backdrops/Premium%20Pole%20PhotoBooth1.jpg",
+      "/products/premium-backdrops/premium%20pole%20photobooth%202.jpg",
     ],
     iconSrc: "/icons/pool-of-icons/Asset%203photo-stand.svg",
     accent: "#FDE8C8",
@@ -51,8 +51,8 @@ const products = [
     description:
       "Next-generation booth powered by AI. Generate stunning, personalized digital portraits with unique artistic styles and instant sharing — the most talked-about booth at any event.",
     images: [
-      "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop",
+      "/products/ai-photobooth/ai%20photobooth%201.jpg",
+      "/products/ai-photobooth/ai%20photobooth%202.jpg",
     ],
     iconSrc: "/icons/pool-of-icons/unforgettable-2.svg",
     accent: "#C8E6FF",
@@ -64,8 +64,8 @@ const products = [
     description:
       "Immerse your guests in an unforgettable experience by renting a 360-degree video booth for your event or celebration! Capture every angle, create stunning videos, and make lasting memories.",
     images: [
-      "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop",
+      "/products/360-videobooth/360%20video%20booth%201.jpg",
+      "/products/360-videobooth/360%20videobooth%202.jpeg",
     ],
     iconSrc: "/icons/360-photobooth.svg",
     accent: "#D4F4A0",
@@ -77,8 +77,8 @@ const products = [
     description:
       "Immerse yourself in the captivating experience of a photo mirror at your special event. This interactive and innovative feature brings a touch of elegance and fun, allowing guests to capture unique moments with a simple touch.",
     images: [
-      "/mirror.jpeg",
-      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop",
+      "/products/mirror-photobooth/mirror%20photobooth%201.jpg",
+      "/products/mirror-photobooth/mirror%20photobooth%202.jpg",
     ],
     iconSrc: "/icons/mirror.svg",
     accent: "#E8D6FF",
@@ -90,8 +90,8 @@ const products = [
     description:
       "Give your guests a voice. Record heartfelt audio messages, well-wishes, and memories that you can listen back to for years to come — a truly timeless keepsake for any celebration.",
     images: [
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&w=1200&auto=format&fit=crop",
+      "/products/audio-guestbook/audio%20guestbook%201.jpg",
+      "/products/audio-guestbook/audio%20guestbook2.png",
     ],
     iconSrc: "/icons/pool-of-icons/Asset%202music-note.svg",
     accent: "#C8F5E8",
@@ -103,8 +103,8 @@ const products = [
     description:
       "Add a touch of celebration to your event with our vibrant collection of high quality photo booth backdrops! Create a fun and festive atmosphere while capturing unforgettable memories. Contact us for backdrop catalogue.",
     images: [
-      "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1200&auto=format&fit=crop",
+      "/products/premium-backdrops/premium%20backdrops%201.jpg",
+      "/products/premium-backdrops/premium%20backdrops%202.jpg",
     ],
     iconSrc: "/icons/backdrops.svg",
     accent: "#FFD6D6",
@@ -116,8 +116,8 @@ const products = [
     description:
       "Walk away with a tangible memory in seconds. Our professional-grade printers deliver vibrant, lab-quality prints that guests can take home from your event — no waiting, no compromise.",
     images: [
-      "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop",
+      "/products/instant-high-quality-printing/instant%20high%20quality%20prints%201.jpg",
+      "/products/instant-high-quality-printing/instant%20high%20quality%20prints%202.jpg",
     ],
     iconSrc: "/icons/unlimited-prints.svg",
     accent: "#FFF3C8",

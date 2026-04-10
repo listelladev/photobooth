@@ -19,8 +19,17 @@ const BOOTHS = [
 ];
 
 const BACKDROPS = [
-  "Abstract", "Balloons", "Balloons 2", "Black & Gold Glitter",
-  "Flowers 1", "Flowers 2", "Flowers 3", "Flowers 4", "Glitter", "Party",
+  { name: "Abstract", src: "/backdrop-images/Abstract.jpeg" },
+  { name: "Balloons", src: "/backdrop-images/Balloons.jpg" },
+  { name: "Balloons 2", src: "/backdrop-images/Balloons%202.jpg" },
+  { name: "Black & Gold Glitter", src: "/backdrop-images/black%20and%20gold%20glitter.jpg" },
+  { name: "Flowers 1", src: "/backdrop-images/flowers%201.jpg" },
+  { name: "Flowers 2", src: "/backdrop-images/flowers%202.jpg" },
+  { name: "Flowers 3", src: "/backdrop-images/flowers%203.jpg" },
+  { name: "Flowers 4", src: "/backdrop-images/flowers%204.png" },
+  { name: "Glitter", src: "/backdrop-images/glitter.jpg" },
+  { name: "Party", src: "/backdrop-images/party.jpg" },
+  { name: "Other", src: "/backdrop-images/other%20backdrop.jpg" },
 ];
 
 const DURATIONS = [
@@ -37,7 +46,7 @@ const PRINT_SIZES = [
 ];
 
 interface FormState {
-  booth: string;
+  booths: string[];
   date: string;
   hours: string;
   printing: boolean;
@@ -54,7 +63,7 @@ interface FormState {
 }
 
 const defaultForm: FormState = {
-  booth: "",
+  booths: [],
   date: "",
   hours: "2",
   printing: false,
@@ -137,14 +146,19 @@ function SelectCard({
       onClick={onClick}
       style={{
         width: "100%",
+        height: "100%",
         padding: "clamp(8px, 1.2vw, 14px) clamp(10px, 1.5vw, 16px)",
         borderRadius: 12,
         border: selected ? `2px solid ${accent || "#FF6B35"}` : "1.5px solid #e5e7eb",
         background: selected ? (accent ? `${accent}18` : "#FFF3EE") : "#fff",
         cursor: "pointer",
         textAlign: "left",
+        verticalAlign: "top",
         transition: "all 0.2s",
         fontFamily: "dm-sans, sans-serif",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
       }}
     >
       {children}
@@ -198,7 +212,11 @@ function estimatePrice(form: FormState): number {
     "instant-printing": 79,
   };
   const hours = parseInt(form.hours) || 2;
-  const base = (boothBase[form.booth] || 199) * Math.max(hours / 2, 1);
+  const booths = form.booths.filter((b) => b !== "not-sure");
+  const basePerBooth = booths.length > 0
+    ? booths.reduce((sum, id) => sum + (boothBase[id] || 199), 0)
+    : 199;
+  const base = basePerBooth * Math.max(hours / 2, 1);
   let addons = 0;
   if (form.printing) addons += 50;
   if (form.backdrop) addons += 80;
@@ -210,25 +228,43 @@ function estimatePrice(form: FormState): number {
 // ─── Steps ───────────────────────────────────────────────────────────────────
 
 function Step1({ form, setForm }: { form: FormState; setForm: (f: FormState) => void }) {
+  const toggleBooth = (id: string) => {
+    if (id === "not-sure") {
+      // "I'm not sure" clears all other selections and toggles itself
+      const already = form.booths.includes("not-sure");
+      setForm({ ...form, booths: already ? [] : ["not-sure"] });
+      return;
+    }
+    const current = form.booths.filter((b) => b !== "not-sure");
+    const next = current.includes(id) ? current.filter((b) => b !== id) : [...current, id];
+    setForm({ ...form, booths: next });
+  };
+
   return (
     <div>
       <h3 className="font-heading" style={{ fontSize: "clamp(20px, 2.5vw, 32px)", letterSpacing: "-0.025em", color: "#1a1a2e", marginBottom: 4 }}>
         Which booth do you need?
       </h3>
       <p style={{ fontSize: 13, color: "#6b7280", marginBottom: "clamp(12px, 2vw, 24px)", lineHeight: 1.5 }}>
-        Select the booth that best fits your event.
+        Select all that apply — you can choose more than one.
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 7 }}>
         {BOOTHS.map((b) => (
           <SelectCard
             key={b.id}
-            selected={form.booth === b.id}
-            onClick={() => setForm({ ...form, booth: b.id })}
+            selected={form.booths.includes(b.id)}
+            onClick={() => toggleBooth(b.id)}
           >
             <span style={{ fontSize: 15, marginRight: 8 }}>{b.icon}</span>
             <span style={{ fontSize: 13, fontWeight: 600, color: "#1a1a2e" }}>{b.label}</span>
           </SelectCard>
         ))}
+        <SelectCard
+          selected={form.booths.includes("not-sure")}
+          onClick={() => toggleBooth("not-sure")}
+        >
+          <span style={{ fontSize: 13, fontWeight: 600, color: "#6b7280" }}>🤷 I&apos;m not sure</span>
+        </SelectCard>
       </div>
     </div>
   );
@@ -304,24 +340,12 @@ function Step3({ form, setForm }: { form: FormState; setForm: (f: FormState) => 
                 >
                   <div>
                     <p style={{ fontSize: 15, fontWeight: 700, color: "#1a1a2e" }}>{s.label}</p>
-                    <p style={{ fontSize: 12, color: "#9ca3af" }}>{s.desc}</p>
-                    <div
-                      style={{
-                        marginTop: 10,
-                        background: "#f5f5f5",
-                        borderRadius: 6,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        aspectRatio: s.value === "2x6" ? "2/6" : "4/6",
-                        maxHeight: 80,
-                        fontSize: 11,
-                        color: "#9ca3af",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {s.label}
-                    </div>
+                    <p style={{ fontSize: 12, color: "#9ca3af", marginBottom: 10 }}>{s.desc}</p>
+                    <img
+                      src={s.value === "2x6" ? "/2 x 6 classic strip.jpeg" : "/4 x 6 standard photo.jpeg"}
+                      alt={s.label}
+                      style={{ width: s.value === "2x6" ? "50%" : "100%", margin: s.value === "2x6" ? "0 auto" : "0", borderRadius: 6, display: "block" }}
+                    />
                   </div>
                 </SelectCard>
               ))}
@@ -342,16 +366,52 @@ function Step3({ form, setForm }: { form: FormState; setForm: (f: FormState) => 
         {form.backdrop && (
           <div>
             <label style={{ ...labelStyle, marginTop: 16 }}>Choose a backdrop</label>
-            <select
-              value={form.backdropChoice}
-              onChange={(e) => setForm({ ...form, backdropChoice: e.target.value })}
-              style={{ ...inputStyle, appearance: "none", cursor: "pointer" }}
-            >
-              <option value="">Select backdrop...</option>
-              {BACKDROPS.map((b) => (
-                <option key={b} value={b}>{b}</option>
-              ))}
-            </select>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 8, marginTop: 8 }}>
+              {BACKDROPS.map((b) => {
+                const selected = form.backdropChoice === b.name;
+                return (
+                  <button
+                    key={b.name}
+                    type="button"
+                    title={b.name}
+                    onClick={() => setForm({ ...form, backdropChoice: b.name })}
+                    style={{
+                      padding: 0,
+                      border: selected ? "2.5px solid #FF6B35" : "2px solid transparent",
+                      borderRadius: 8,
+                      overflow: "hidden",
+                      cursor: "pointer",
+                      background: "none",
+                      transition: "transform 0.2s cubic-bezier(0.22,1,0.36,1), box-shadow 0.2s, border-color 0.2s",
+                      transform: "scale(1)",
+                      outline: "none",
+                      aspectRatio: "1/1",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.transform = "scale(1.12)";
+                      (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 24px rgba(0,0,0,0.18)";
+                      (e.currentTarget as HTMLElement).style.zIndex = "10";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.transform = "scale(1)";
+                      (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                      (e.currentTarget as HTMLElement).style.zIndex = "1";
+                    }}
+                  >
+                    <img
+                      src={b.src}
+                      alt={b.name}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
+                    />
+                  </button>
+                );
+              })}
+            </div>
+            {form.backdropChoice && (
+              <p style={{ fontSize: 13, color: "#FF6B35", fontWeight: 600, marginTop: 8 }}>
+                Selected: {form.backdropChoice}
+              </p>
+            )}
           </div>
         )}
       </div>
@@ -429,11 +489,13 @@ function QuoteStep({ form, setForm, onSubmit, submitted, onBack }: {
   submitted: boolean;
   onBack: () => void;
 }) {
-  const booth = BOOTHS.find((b) => b.id === form.booth);
+  const selectedBooths = form.booths.includes("not-sure")
+    ? [{ label: "Not sure yet" }]
+    : form.booths.map((id) => ({ label: BOOTHS.find((b) => b.id === id)?.label || id }));
   const estimate = estimatePrice(form);
 
   const lineItems = [
-    { label: `${booth?.label || "Booth"} — ${form.hours}hr`, value: "" },
+    ...selectedBooths.map((b, i) => ({ label: i === 0 ? `${b.label} — ${form.hours}hr` : b.label, value: "" })),
     form.printing ? { label: `Printing (${form.printSize || "TBD"})`, value: "+$50" } : null,
     form.backdrop ? { label: `Backdrop${form.backdropChoice ? ` — ${form.backdropChoice}` : ""}`, value: "+$80" } : null,
     form.audioGuestbook ? { label: "Audio GuestBook", value: "+$149" } : null,
@@ -764,7 +826,7 @@ export default function BookingCTA({ headingLine1, headingLine2, subtext, defaul
   }, [step, submitted]);
 
   const canAdvance = () => {
-    if (step === 0) return !!form.booth;
+    if (step === 0) return form.booths.length > 0;
     if (step === 1) return !!form.date && !!form.hours;
     if (step === 3) return !!form.address && !!form.postalCode;
     return true;
