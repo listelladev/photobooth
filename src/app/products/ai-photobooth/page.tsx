@@ -149,18 +149,16 @@ function WhatsIncluded() {
             </svg>
           </span></AnimLine>
         </AnimatedText>
-        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "clamp(40px,5vw,72px) clamp(16px,2vw,32px)" }}>
+        <div className="grid grid-cols-2 sm:grid-cols-4" style={{ gap: "clamp(16px,2vw,24px)" }}>
           {includedItems.map((item, i) => (
-            <div key={i} style={{ flex: "0 0 calc(25% - clamp(12px,1.5vw,24px))", minWidth: 110 }}>
-              <RevealOnScroll delay={i * 55} className="h-full">
-                <div style={{ background: "#fff", borderRadius: 16, padding: "clamp(20px,2vw,28px) clamp(12px,1.5vw,20px)", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", height: "100%" }}>
-                  <div style={{ width: 72, height: 72, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14, flexShrink: 0 }}>
-                    <img src={item.icon} alt={item.label} style={{ width: 64, height: 64, objectFit: "contain", display: "block" }} />
-                  </div>
-                  <p style={{ fontSize: 12, fontWeight: 600, color: "#6b7280", lineHeight: 1.45, letterSpacing: "0.01em" }}>{item.label}</p>
+            <RevealOnScroll key={i} delay={i * 55} className="h-full">
+              <div style={{ background: "#fff", borderRadius: 16, padding: "clamp(20px,2vw,28px) clamp(12px,1.5vw,20px)", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", height: "100%" }}>
+                <div style={{ width: 72, height: 72, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14, flexShrink: 0 }}>
+                  <img src={item.icon} alt={item.label} style={{ width: 64, height: 64, objectFit: "contain", display: "block" }} />
                 </div>
-              </RevealOnScroll>
-            </div>
+                <p style={{ fontSize: 12, fontWeight: 600, color: "#6b7280", lineHeight: 1.45, letterSpacing: "0.01em" }}>{item.label}</p>
+              </div>
+            </RevealOnScroll>
           ))}
         </div>
       </div>
