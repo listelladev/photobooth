@@ -63,14 +63,14 @@ function WeddingHero() {
         {/* Love sticker */}
         <div className="absolute" style={{ top: "12%", right: "7%", zIndex: 5 }}>
           <div style={{ transition: "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease", transform: sticker1 ? "scale(1) rotate(-6deg)" : "scale(0) rotate(-18deg)", opacity: sticker1 ? 1 : 0 }}>
-            <img src="/icons/love-by-clients.svg" alt="" style={{ width: "clamp(64px, 7vw, 108px)", height: "auto" }} />
+            <img src="/icons/Asset 11wedding-ring.svg" alt="" style={{ width: "clamp(64px, 7vw, 108px)", height: "auto" }} />
           </div>
         </div>
 
         {/* Twinkle sticker */}
         <div className="absolute" style={{ bottom: "20%", right: "5%", zIndex: 5 }}>
           <div style={{ transition: "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease", transform: sticker2 ? "scale(1) rotate(8deg)" : "scale(0) rotate(20deg)", opacity: sticker2 ? 1 : 0 }}>
-            <img src="/icons/hero-twinkle.svg" alt="" style={{ width: "clamp(44px, 5vw, 76px)", height: "auto" }} />
+            <img src="/icons/Asset 10champagne.svg" alt="" style={{ width: "clamp(44px, 5vw, 76px)", height: "auto" }} />
           </div>
         </div>
 

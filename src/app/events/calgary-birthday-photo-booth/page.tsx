@@ -270,9 +270,9 @@ export default function BirthdayPage() {
           ctaTextColor="#1a1a2e"
           bgSrc="/birthday-featured.jpg"
           bgAlt="Birthday party photo booth setup in Calgary"
-          sticker1Src="/icons/hero-camera.svg"
+          sticker1Src="/icons/Asset 6present.svg"
           sticker1Rotation="-8deg"
-          sticker2Src="/icons/hero-twinkle.svg"
+          sticker2Src="/icons/Asset 5birthday-cake.svg"
           sticker2Rotation="8deg"
         />
         <BirthdayIntro />

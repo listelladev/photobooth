@@ -201,7 +201,7 @@ function ProductsHero() {
 const booths = [
   {
     name: "Compact Pole PhotoBooth",
-    icon: "/icons/salsa-photobooth.svg",
+    icon: "/icons/pool-of-icons/hero-camera.svg",
     image: "/salsa-photobooth.jpg",
     startingAt: "199",
     accent: "#FFD6E8",
@@ -218,7 +218,7 @@ const booths = [
   },
   {
     name: "Premium Pole PhotoBooth",
-    icon: "/icons/salsa-photobooth.svg",
+    icon: "/icons/pool-of-icons/Asset 3photo-stand.svg",
     image: "/salsa.jpeg",
     startingAt: "249",
     accent: "#FDE8C8",
@@ -235,7 +235,7 @@ const booths = [
   },
   {
     name: "AI PhotoBooth",
-    icon: "/icons/360-photobooth.svg",
+    icon: "/icons/pool-of-icons/unforgettable-2.svg",
     image: "/360.jpeg",
     startingAt: "299",
     accent: "#C8E6FF",
@@ -286,7 +286,7 @@ const booths = [
   },
   {
     name: "Audio GuestBook",
-    icon: "/icons/backdrops.svg",
+    icon: "/icons/pool-of-icons/Asset 2music-note.svg",
     image: "/mirror.jpeg",
     startingAt: "149",
     accent: "#C8F5E8",
@@ -337,10 +337,29 @@ const booths = [
 function BoothCard({ booth, index }: { booth: (typeof booths)[0]; index: number }) {
   const [hovered, setHovered] = useState(false);
   const [stickerPopped, setStickerPopped] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!window.matchMedia("(hover: none)").matches) return;
+    const el = cardRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStickerPopped(true);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.35 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <RevealOnScroll delay={index * 130} className="h-full">
       <div
+        ref={cardRef}
         style={{ position: "relative", height: "100%" }}
         onMouseEnter={() => {
           setHovered(true);
@@ -1521,9 +1540,9 @@ function ProductsCTA() {
         style={{ position: "absolute", left: "-5vw", bottom: "-10%", zIndex: 0, pointerEvents: "none" }}
       >
         <img
-          src="/icons/blob-behind-testimonials.svg"
+          src="/icons/Asset 1new-blob.svg"
           alt=""
-          style={{ width: "clamp(260px, 40vw, 600px)", height: "auto" }}
+          style={{ width: "clamp(260px, 40vw, 600px)", height: "auto", filter: "hue-rotate(155deg) saturate(0.8)" }}
         />
       </StickerReveal>
 

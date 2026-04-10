@@ -28,7 +28,7 @@ const products = [
       "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1200&auto=format&fit=crop",
     ],
-    iconSrc: "/icons/salsa-photobooth.svg",
+    iconSrc: "/icons/pool-of-icons/hero-camera.svg",
     accent: "#FFD6E8",
     iconPlacement: "image-bottom" as StickerPlacement,
     iconPos: { bottom: -28, left: 14 } as React.CSSProperties,
@@ -41,7 +41,7 @@ const products = [
       "/salsa-photobooth.jpg",
       "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop",
     ],
-    iconSrc: "/icons/salsa-photobooth.svg",
+    iconSrc: "/icons/pool-of-icons/Asset 3photo-stand.svg",
     accent: "#FDE8C8",
     iconPlacement: "above-card" as StickerPlacement,
     iconPos: { top: -18, left: -10 } as React.CSSProperties,
@@ -54,7 +54,7 @@ const products = [
       "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop",
     ],
-    iconSrc: "/icons/360-photobooth.svg",
+    iconSrc: "/icons/pool-of-icons/unforgettable-2.svg",
     accent: "#C8E6FF",
     iconPlacement: "above-card" as StickerPlacement,
     iconPos: { top: "20%", left: -10 } as React.CSSProperties,
@@ -93,7 +93,7 @@ const products = [
       "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&w=1200&auto=format&fit=crop",
     ],
-    iconSrc: "/icons/backdrops.svg",
+    iconSrc: "/icons/pool-of-icons/Asset 2music-note.svg",
     accent: "#C8F5E8",
     iconPlacement: "image-bottom" as StickerPlacement,
     iconPos: { bottom: -28, left: 14 } as React.CSSProperties,
@@ -221,6 +221,24 @@ function ProductsHeading() {
 function ProductCard({ product }: { product: (typeof products)[0] }) {
   const [activeImg, setActiveImg] = useState(0);
   const [stickerPopped, setStickerPopped] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!window.matchMedia("(hover: none)").matches) return;
+    const el = cardRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStickerPopped(true);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.35 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const mainImg = product.images[activeImg];
   const thumbImg = product.images[activeImg === 0 ? 1 : 0];
@@ -233,6 +251,7 @@ function ProductCard({ product }: { product: (typeof products)[0] }) {
 
   return (
     <div
+      ref={cardRef}
       style={{ position: "relative" }}
       onMouseEnter={() => { if (!stickerPopped) setStickerPopped(true); }}
     >

@@ -269,9 +269,9 @@ export default function BabyShowerPage() {
           ctaColor="#6C5CE7"
           bgSrc="/baby-shower.jpg"
           bgAlt="Calgary baby shower photo booth setup"
-          sticker1Src="/icons/unforgettable.svg"
+          sticker1Src="/icons/Asset 9pink-soother.svg"
           sticker1Rotation="6deg"
-          sticker2Src="/icons/hero-twinkle.svg"
+          sticker2Src="/icons/Asset 8blue-soother.svg"
           sticker2Rotation="8deg"
         />
         <BabyShowerIntro />

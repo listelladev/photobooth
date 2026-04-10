@@ -28,7 +28,7 @@ export default function Home() {
         <ClientLogos />
         <WhatToExpect />
         <HomeImageSlider />
-        <Testimonials />
+        <Testimonials blobFilter="hue-rotate(90deg) saturate(0.85)" />
         <FAQ />
         <BookingCTA />
         <ServiceAreas />

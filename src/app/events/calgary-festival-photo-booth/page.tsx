@@ -262,9 +262,9 @@ export default function FestivalPage() {
           ctaColor="#FF6B35"
           bgSrc="/festivals-and-events.jpg"
           bgAlt="Calgary festival photo booth setup"
-          sticker1Src="/icons/hero-camera.svg"
+          sticker1Src="/icons/Asset 3disco-ball.svg"
           sticker1Rotation="8deg"
-          sticker2Src="/icons/unforgettable.svg"
+          sticker2Src="/icons/Asset 2music-note.svg"
           sticker2Rotation="-10deg"
           sticker2Size="clamp(64px, 7vw, 100px)"
         />

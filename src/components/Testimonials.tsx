@@ -151,7 +151,7 @@ function ReviewImageThumb({ src }: { src: string }) {
   );
 }
 
-export default function Testimonials() {
+export default function Testimonials({ blobFilter }: { blobFilter?: string } = {}) {
   return (
     <section style={{ padding: "clamp(80px, 12vw, 180px) 0", position: "relative", overflow: "hidden" }}>
       {/* Background blob */}
@@ -159,7 +159,7 @@ export default function Testimonials() {
         delay={200}
         style={{ position: "absolute", right: "-6vw", top: "10%", zIndex: 0, pointerEvents: "none" }}
       >
-        <img src="/icons/blob-behind-testimonials.svg" alt="" style={{ width: "clamp(300px, 44vw, 680px)", height: "auto" }} />
+        <img src="/icons/Asset 1new-blob.svg" alt="" style={{ width: "clamp(300px, 44vw, 680px)", height: "auto", filter: blobFilter }} />
       </StickerReveal>
 
       <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)", position: "relative", zIndex: 1 }}>

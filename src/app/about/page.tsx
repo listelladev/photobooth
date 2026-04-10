@@ -529,7 +529,7 @@ export default function AboutPage() {
         <BrandStory />
         <Benefits />
         <PopularProducts />
-        <Testimonials />
+        <Testimonials blobFilter="hue-rotate(-100deg) saturate(0.8)" />
         <OurValues />
         <AboutCTA />
         <Gallery />
