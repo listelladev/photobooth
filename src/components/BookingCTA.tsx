@@ -741,10 +741,11 @@ interface BookingCTAProps {
   headingLine1?: string;
   headingLine2?: React.ReactNode;
   subtext?: string;
+  defaultTab?: "quote" | "contact";
 }
 
-export default function BookingCTA({ headingLine1, headingLine2, subtext }: BookingCTAProps = {}) {
-  const [tab, setTab] = useState<"quote" | "contact">("quote");
+export default function BookingCTA({ headingLine1, headingLine2, subtext, defaultTab = "quote" }: BookingCTAProps = {}) {
+  const [tab, setTab] = useState<"quote" | "contact">(defaultTab);
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<FormState>(defaultForm);
   const [submitted, setSubmitted] = useState(false);
@@ -854,7 +855,7 @@ export default function BookingCTA({ headingLine1, headingLine2, subtext }: Book
             >
               {/* Tab toggle */}
               <div style={{ display: "flex", background: "#f3f4f6", borderRadius: 10, padding: 4, marginBottom: 28 }}>
-                {(["quote", "contact"] as const).map((t) => (
+                {(defaultTab === "contact" ? (["contact", "quote"] as const) : (["quote", "contact"] as const)).map((t) => (
                   <button
                     key={t}
                     type="button"

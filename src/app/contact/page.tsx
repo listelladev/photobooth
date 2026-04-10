@@ -9,6 +9,7 @@ import RevealOnScroll from "@/components/RevealOnScroll";
 import AnimatedText, { AnimLine } from "@/components/AnimatedText";
 import StickerReveal from "@/components/StickerReveal";
 import CircleHighlight from "@/components/CircleHighlight";
+import BookingCTA from "@/components/BookingCTA";
 
 // ─── HERO ──────────────────────────────────────────────────────────────────────
 function ContactHero() {
@@ -73,34 +74,34 @@ function ContactHero() {
 
         <div className="absolute" style={{ top: "12%", right: "8%", zIndex: 5, pointerEvents: "none" }}>
           <div style={{ transition: "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease", transform: sticker1 ? "scale(1) rotate(0deg)" : "scale(0) rotate(-18deg)", opacity: sticker1 ? 1 : 0 }}>
-            <img src="/icons/hero-camera.svg" alt="" style={{ width: "clamp(52px, 7vw, 100px)", height: "auto" }} />
+            <img src="/icons/pool-of-icons/choose-your--product.svg" alt="" style={{ width: "clamp(52px, 7vw, 100px)", height: "auto" }} />
           </div>
         </div>
 
         <div className="absolute" style={{ bottom: "18%", right: "6%", zIndex: 5, pointerEvents: "none" }}>
           <div style={{ transition: "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease", transform: sticker2 ? "scale(1) rotate(6deg)" : "scale(0) rotate(-18deg)", opacity: sticker2 ? 1 : 0 }}>
-            <img src="/icons/unforgettable.svg" alt="" style={{ width: "clamp(72px, 8vw, 116px)", height: "auto" }} />
+            <img src="/icons/pool-of-icons/Asset 7balloons.svg" alt="" style={{ width: "clamp(72px, 8vw, 116px)", height: "auto" }} />
           </div>
         </div>
 
         <div style={{ position: "relative", zIndex: 2, padding: "clamp(72px, 9vw, 116px) clamp(28px, 6vw, 100px) clamp(8px, 1vw, 12px)" }}>
           <h1
             className="font-heading"
-            style={{ fontSize: "clamp(48px, 7.5vw, 110px)", lineHeight: 0.96, letterSpacing: "-0.04em", color: "#fff", margin: "0 0 clamp(24px, 2.5vw, 36px)" }}
+            style={{ fontSize: "clamp(40px, 6.5vw, 96px)", lineHeight: 0.96, letterSpacing: "-0.04em", color: "#fff", margin: "0 0 clamp(24px, 2.5vw, 36px)" }}
           >
             <span style={{ display: "block", overflow: "hidden", paddingTop: "0.1em", marginTop: "-0.1em", paddingBottom: "0.18em", marginBottom: "-0.18em", paddingLeft: "0.08em", marginLeft: "-0.08em", paddingRight: "0.12em", marginRight: "-0.12em" }}>
               <span ref={line1Ref} style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1), opacity 0.9s cubic-bezier(0.22,1,0.36,1)" }}>
-                Say
+                Book Your Calgary
               </span>
             </span>
             <span style={{ display: "block", paddingTop: "0.08em", marginTop: "-0.08em", paddingBottom: "0.3em", marginBottom: "-0.3em", paddingLeft: "0.08em", marginLeft: "-0.08em", paddingRight: "0.16em", marginRight: "-0.16em" }}>
               <span ref={line2Ref} style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.14s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.14s" }}>
                 <CircleHighlight
-                  text="Hello."
+                  text="Photobooth"
                   circleRef={circleRef}
                   stroke="rgba(255,107,53,0.9)"
-                  pathD="M96 8 C122 3, 162 9, 185 24 C196 36, 196 62, 186 78 C174 92, 146 97, 108 96 C70 95, 36 88, 16 74 C2 60, 2 36, 12 22 C22 8, 56 4, 80 5 C90 4, 94 7, 108 7"
-                />
+                  pathD="M100 4 C140 1, 180 12, 192 32 C200 46, 196 62, 180 74 C160 84, 134 86, 100 85 C66 84, 38 78, 18 66 C4 56, 4 32, 12 18 C26 5, 60 0, 84 1 C92 1, 96 3, 100 4"
+                /> Rental.
               </span>
             </span>
           </h1>
@@ -110,7 +111,7 @@ function ContactHero() {
               ref={subRef}
               style={{ fontSize: "clamp(15px, 1.3vw, 20px)", fontWeight: 400, color: "rgba(255,255,255,0.6)", maxWidth: 600, lineHeight: 1.7, transform: "translateY(20px)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.5s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.5s" }}
             >
-              Have a question, want to book, or just want to chat about your event? We&apos;d love to hear from you.
+              Contact us directly or get an instant quote — we respond within 24 hours to help you plan the perfect Calgary photo booth rental.
             </p>
           </div>
         </div>
@@ -119,163 +120,6 @@ function ContactHero() {
   );
 }
 
-// ─── CONTACT FORM ─────────────────────────────────────────────────────────────
-function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: "", email: "", phone: "", subject: "", message: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
-  const inputStyle: React.CSSProperties = {
-    width: "100%",
-    padding: "16px 0",
-    background: "transparent",
-    border: "none",
-    borderBottom: "1px solid #e5e7eb",
-    fontSize: 16,
-    fontWeight: 400,
-    fontFamily: "dm-sans, sans-serif",
-    color: "#1a1a2e",
-    outline: "none",
-    borderRadius: 0,
-    transition: "border-color 0.3s",
-  };
-
-  const labelStyle: React.CSSProperties = {
-    display: "block",
-    fontSize: 12,
-    fontWeight: 700,
-    letterSpacing: "0.06em",
-    textTransform: "uppercase",
-    color: "#9ca3af",
-    marginBottom: 8,
-    marginTop: 28,
-  };
-
-  return (
-    <section style={{ padding: "clamp(80px, 12vw, 180px) 0", background: "#fff" }}>
-      <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
-        <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: "clamp(56px, 8vw, 140px)" }}>
-
-          {/* Left — info */}
-          <RevealOnScroll direction="left">
-            <div>
-              <p style={{ fontSize: "clamp(11px, 0.9vw, 13px)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase" as const, color: "#FF6B35", marginBottom: 20 }}>
-                Get in Touch
-              </p>
-              <AnimatedText
-                as="h2"
-                className="font-heading"
-                style={{ fontSize: "clamp(36px, 5vw, 68px)", lineHeight: 1.03, letterSpacing: "-0.04em", color: "#1a1a2e", marginBottom: "clamp(28px, 3vw, 40px)" }}
-                stagger={90}
-              >
-                <AnimLine>We&apos;re here</AnimLine>
-                <AnimLine>to make your</AnimLine>
-                <AnimLine>event <em style={{ fontStyle: "italic" }}>perfect.</em></AnimLine>
-              </AnimatedText>
-              <p style={{ fontSize: "clamp(15px, 1.1vw, 18px)", color: "#6b7280", lineHeight: 1.8, marginBottom: 48, maxWidth: 440 }}>
-                Fill out the form and someone from our team will reach out within 24 hours to discuss your event, confirm availability, and help you find the right package.
-              </p>
-
-              <div className="flex flex-col" style={{ gap: 28 }}>
-                {[
-                  {
-                    icon: "M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z",
-                    label: "Phone", value: "(403) 555-0123",
-                  },
-                  {
-                    icon: "M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75",
-                    label: "Email", value: "info@photoboothexperience.ca",
-                  },
-                  {
-                    icon: "M15 10.5a3 3 0 11-6 0 3 3 0 016 0zM19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z",
-                    label: "Service Area", value: "Calgary & Southern Alberta",
-                  },
-                ].map((c) => (
-                  <div key={c.label} className="flex items-start" style={{ gap: 16 }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1a2e" strokeWidth="1.5" style={{ marginTop: 2, flexShrink: 0 }}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d={c.icon} />
-                    </svg>
-                    <div>
-                      <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: "#9ca3af", marginBottom: 4 }}>{c.label}</p>
-                      <p style={{ fontSize: 17, fontWeight: 500, color: "#1a1a2e" }}>{c.value}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </RevealOnScroll>
-
-          {/* Right — form */}
-          <RevealOnScroll direction="right" delay={150}>
-            {submitted ? (
-              <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "100%", paddingTop: "clamp(32px, 4vw, 64px)" }}>
-                <StickerReveal delay={100}>
-                  <img src="/icons/unforgettable.svg" alt="" style={{ width: "clamp(64px, 6vw, 88px)", height: "auto", marginBottom: 24 }} />
-                </StickerReveal>
-                <h3 className="font-heading" style={{ fontSize: "clamp(28px, 3vw, 44px)", letterSpacing: "-0.03em", color: "#1a1a2e", marginBottom: 16, lineHeight: 1.1 }}>
-                  Message sent!
-                </h3>
-                <p style={{ fontSize: "clamp(15px, 1.1vw, 18px)", color: "#6b7280", lineHeight: 1.7, maxWidth: 360 }}>
-                  Thanks for reaching out. We&apos;ll be in touch within 24 hours to chat about your event.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit}>
-                <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: "0 clamp(24px, 3vw, 40px)" }}>
-                  <div>
-                    <label style={labelStyle}>Name *</label>
-                    <input type="text" name="name" required value={formData.name} onChange={handleChange} style={inputStyle} placeholder="Full name" />
-                  </div>
-                  <div>
-                    <label style={labelStyle}>Email *</label>
-                    <input type="email" name="email" required value={formData.email} onChange={handleChange} style={inputStyle} placeholder="your@email.com" />
-                  </div>
-                  <div>
-                    <label style={labelStyle}>Phone</label>
-                    <input type="tel" name="phone" value={formData.phone} onChange={handleChange} style={inputStyle} placeholder="(403) 555-0000" />
-                  </div>
-                  <div>
-                    <label style={labelStyle}>Subject</label>
-                    <select name="subject" value={formData.subject} onChange={handleChange} style={{ ...inputStyle, appearance: "none" as const, cursor: "pointer" }}>
-                      <option value="">Select a topic</option>
-                      <option value="booking">Booking Inquiry</option>
-                      <option value="pricing">Pricing</option>
-                      <option value="custom">Custom Package</option>
-                      <option value="availability">Check Availability</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                </div>
-                <div>
-                  <label style={labelStyle}>Message *</label>
-                  <textarea name="message" rows={4} required value={formData.message} onChange={handleChange} style={{ ...inputStyle, resize: "none" as const }} placeholder="Tell us about your event..." />
-                </div>
-                <button
-                  type="submit"
-                  className="transition-all duration-300 hover:opacity-80 cursor-pointer"
-                  style={{ fontSize: 15, fontWeight: 700, fontFamily: "dm-sans, sans-serif", padding: "16px 48px", background: "#FF6B35", color: "#fff", border: "none", borderRadius: 60, marginTop: 40 }}
-                >
-                  Send Message
-                </button>
-                <p style={{ fontSize: 14, color: "#9ca3af", marginTop: 16 }}>We typically respond within 24 hours.</p>
-              </form>
-            )}
-          </RevealOnScroll>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // ─── WHAT'S INCLUDED ──────────────────────────────────────────────────────────
 const includedCards = [
@@ -594,7 +438,12 @@ export default function ContactPage() {
       <Navbar />
       <main>
         <ContactHero />
-        <ContactForm />
+        <BookingCTA
+          defaultTab="contact"
+          headingLine1="Get in Touch"
+          headingLine2={<em style={{ fontStyle: "italic" }}>We&apos;re here for you.</em>}
+          subtext="Contact us directly or get an instant quote — someone from our team will reach out within 24 hours to discuss your event, confirm availability, and help you find the right package."
+        />
         <WhatsIncluded />
         <ContactFAQ />
       </main>
