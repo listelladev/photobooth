@@ -742,9 +742,10 @@ interface BookingCTAProps {
   headingLine2?: React.ReactNode;
   subtext?: string;
   defaultTab?: "quote" | "contact";
+  sectionBackground?: string;
 }
 
-export default function BookingCTA({ headingLine1, headingLine2, subtext, defaultTab = "quote" }: BookingCTAProps = {}) {
+export default function BookingCTA({ headingLine1, headingLine2, subtext, defaultTab = "quote", sectionBackground = "#f9f9f9" }: BookingCTAProps = {}) {
   const [tab, setTab] = useState<"quote" | "contact">(defaultTab);
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<FormState>(defaultForm);
@@ -775,7 +776,7 @@ export default function BookingCTA({ headingLine1, headingLine2, subtext, defaul
   };
 
   return (
-    <section id="book" data-no-cursor-tag style={{ background: "#f9f9f9", padding: "clamp(40px, 12vw, 180px) 0" }}>
+    <section id="book" data-no-cursor-tag style={{ background: sectionBackground, padding: "clamp(40px, 12vw, 180px) 0" }}>
       <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
 
         {/* Heading */}

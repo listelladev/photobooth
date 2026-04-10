@@ -440,6 +440,7 @@ export default function ContactPage() {
         <ContactHero />
         <BookingCTA
           defaultTab="contact"
+          sectionBackground="#fff"
           headingLine1="Get in Touch"
           headingLine2={<em style={{ fontStyle: "italic" }}>We&apos;re here for you.</em>}
           subtext="Contact us directly or get an instant quote — someone from our team will reach out within 24 hours to discuss your event, confirm availability, and help you find the right package."
