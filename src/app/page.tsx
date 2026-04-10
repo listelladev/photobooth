@@ -11,6 +11,7 @@ import WhatToExpect from "@/components/WhatToExpect";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import BookingCTA from "@/components/BookingCTA";
+import ServiceAreas from "@/components/ServiceAreas";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -30,6 +31,7 @@ export default function Home() {
         <Testimonials />
         <FAQ />
         <BookingCTA />
+        <ServiceAreas />
       </main>
       <Footer />
     </>

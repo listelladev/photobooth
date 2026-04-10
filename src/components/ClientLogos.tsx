@@ -77,7 +77,7 @@ export default function ClientLogos() {
             color: "#1a1a2e",
           }}
         >
-          We have worked for
+          Featured Calgary Photo Booth Clients
         </h2>
       </div>
 

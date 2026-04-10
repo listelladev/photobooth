@@ -309,6 +309,26 @@ export default function Benefits() {
           ))}
         </div>
 
+        {/* Book Now CTA */}
+        <div className="flex justify-center" style={{ marginTop: "clamp(48px, 6vw, 72px)" }}>
+          <a
+            href="/contact"
+            className="transition-all duration-300 hover:opacity-80"
+            style={{
+              fontSize: 16,
+              fontWeight: 700,
+              padding: "16px 48px",
+              background: "#FF6B35",
+              color: "#fff",
+              borderRadius: 60,
+              textDecoration: "none",
+              display: "inline-block",
+            }}
+          >
+            Book Now
+          </a>
+        </div>
+
       </div>
     </section>
   );

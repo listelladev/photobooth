@@ -3,12 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 
 const activityItems = [
-  { label: "Weddings",       href: "/activities/wedding",       emoji: "💍", accent: "#E84393" },
-  { label: "Baby Showers",   href: "/activities/baby-shower",   emoji: "🍼", accent: "#6C5CE7" },
-  { label: "Birthdays",      href: "/activities/birthday",      emoji: "🎂", accent: "#F7C948" },
-  { label: "Gender Reveals", href: "/activities/gender-reveal", emoji: "🎉", accent: "#0984E3" },
-  { label: "Festivals",      href: "/activities/festival",      emoji: "🎪", accent: "#FF6B35" },
-  { label: "Corporate",      href: "/activities/corporate",     emoji: "🏢", accent: "#00B894" },
+  { label: "Weddings",       href: "/events/calgary-wedding-photo-booth",       emoji: "💍", accent: "#E84393" },
+  { label: "Baby Showers",   href: "/events/calgary-baby-shower-photo-booth",   emoji: "🍼", accent: "#6C5CE7" },
+  { label: "Birthdays",      href: "/events/calgary-birthday-photo-booth",      emoji: "🎂", accent: "#F7C948" },
+  { label: "Gender Reveals", href: "/events/calgary-gender-reveal-photo-booth", emoji: "🎉", accent: "#0984E3" },
+  { label: "Festivals",      href: "/events/calgary-festival-photo-booth",      emoji: "🎪", accent: "#FF6B35" },
+  { label: "Corporate",      href: "/events/calgary-corporate-photo-booth",     emoji: "🏢", accent: "#00B894" },
 ];
 
 // ─── DESKTOP DROPDOWN ─────────────────────────────────────────────────────────
@@ -42,7 +42,7 @@ function ActivitiesDropdown({ visible }: { visible: boolean }) {
       </div>
       <div style={{ marginTop: 8, borderTop: "1px solid #f3f4f6", paddingTop: 8 }}>
         <a
-          href="/activities"
+          href="/events"
           className="flex items-center justify-between"
           style={{ padding: "10px 14px", borderRadius: 12, textDecoration: "none", transition: "background 0.2s" }}
           onMouseEnter={e => (e.currentTarget.style.background = "#f9f9f9")}
@@ -225,11 +225,11 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
               ))}
               <div ref={activitiesRef} style={{ position: "relative" }} onMouseEnter={openDropdown} onMouseLeave={closeDropdown}>
                 <a
-                  href="/activities"
+                  href="/events"
                   style={{ fontSize: 15, fontWeight: 500, color: textColorMuted, transition: "color 0.4s ease, opacity 0.3s", display: "flex", alignItems: "center", gap: 5, textDecoration: "none" }}
                   className="transition-all duration-300 hover:opacity-50"
                 >
-                  Activities
+                  Events
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1)", transform: activitiesOpen ? "rotate(180deg)" : "rotate(0deg)", opacity: 0.6 }}>
                     <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -317,7 +317,7 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
                   transitionDelay: menuOpen ? `${navLinks.length * 35}ms` : "0ms",
                 }}
               >
-                Activities
+                Events
                 <svg width="14" height="14" viewBox="0 0 12 12" fill="none"
                   style={{ transition: "transform 0.35s cubic-bezier(0.34,1.56,0.64,1)", transform: activitiesMobileOpen ? "rotate(180deg)" : "rotate(0deg)", color: "#9ca3af", flexShrink: 0 }}>
                   <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -332,7 +332,7 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
                 </div>
                 <div style={{ borderTop: "1px solid #f3f4f6", margin: "4px 0 0" }}>
                   <a
-                    href="/activities"
+                    href="/events"
                     onClick={() => setMenuOpen(false)}
                     style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 14px", borderRadius: 12, textDecoration: "none", transition: "background 0.2s" }}
                     onMouseEnter={e => (e.currentTarget.style.background = "#f9f9f9")}

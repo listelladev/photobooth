@@ -115,13 +115,14 @@ function ProductsHero() {
           className="relative z-10 text-center"
           style={{ padding: "clamp(48px, 6vw, 100px)" }}
         >
-          <div
+          <h3
             className="font-heading"
             style={{
               fontSize: "clamp(44px, 7.5vw, 110px)",
               lineHeight: 1.0,
               letterSpacing: "-0.04em",
               color: "#fff",
+              margin: 0,
             }}
           >
             {/* Line 1 */}
@@ -159,10 +160,10 @@ function ProductsHero() {
                 />
               </span>
             </span>
-          </div>
+          </h3>
 
-          {/* Subtext */}
-          <div
+          {/* H1 subtext */}
+          <h1
             style={{
               overflow: "hidden",
               display: "block",
@@ -181,15 +182,14 @@ function ProductsHero() {
                 fontSize: "clamp(16px, 1.4vw, 22px)",
                 fontWeight: 400,
                 color: "rgba(255,255,255,0.65)",
-                maxWidth: 520,
+                maxWidth: 560,
                 margin: "0 auto",
                 lineHeight: 1.7,
               }}
             >
-              Eight unique products. A stunning backdrop library. Setup &amp; takedown
-              completely on us.
+              Calgary photo booth rental with eight unique products, a stunning backdrop library, and setup &amp; takedown completely on us.
             </span>
-          </div>
+          </h1>
 
         </div>
       </div>
@@ -1336,23 +1336,23 @@ function WhatsIncluded() {
 // ─── FAQ ──────────────────────────────────────────────────────────────────────
 const productFaqs = [
   {
-    q: "Is installation and dismantling included in the rental?",
-    a: "Absolutely! Our professional team handles complete installation and dismantling at no additional cost. Everything is set up flawlessly so you can enjoy your event stress-free.",
+    q: "Is installation and dismantling included in my Calgary photo booth rental?",
+    a: "Absolutely! Our professional team handles complete installation and dismantling at no additional cost. Everything is set up flawlessly so you can enjoy your Calgary event stress-free.",
   },
   {
-    q: "Do you offer unlimited printing?",
-    a: "Yes! All photo booths include unlimited printing — up to 400 standard-sized photos (10×15 cm) or 800 photo strips during your event.",
+    q: "Do Calgary photo booth rentals include unlimited printing?",
+    a: "Yes! All our Calgary photo booth rentals include unlimited printing — up to 400 standard-sized photos (10×15 cm) or 800 photo strips during your event.",
   },
   {
     q: "What kind of props do you provide?",
     a: "We bring a wide selection: hats, glasses, mustaches, lip-on-sticks, and themed accessories designed to create fun and unforgettable moments.",
   },
   {
-    q: "Can I customize the photo frames?",
-    a: "Absolutely. Every rental includes a custom-designed photo frame. Pick your logo, text, and design style — our graphic designers bring it to life.",
+    q: "Can I customize the photo frames for my Calgary photo booth rental?",
+    a: "Absolutely. Every Calgary photo booth rental includes a custom-designed photo frame. Pick your logo, text, and design style — our graphic designers bring it to life.",
   },
   {
-    q: "Will I get digital copies of the photos after the event?",
+    q: "Will I get digital copies of the photos after my event?",
     a: "Yes! After your event, you'll receive high-quality digital copies of all photos via a secure download link, ready to share with family and friends.",
   },
   {
@@ -1581,8 +1581,7 @@ function ProductsCTA() {
               lineHeight: 1.75,
             }}
           >
-            From intimate birthdays to grand weddings, we&apos;re here to make every moment
-            unforgettable.
+            From intimate birthdays to grand weddings, we&apos;re here to make every moment in Calgary unforgettable.
           </p>
         </RevealOnScroll>
 
@@ -1623,7 +1622,7 @@ export default function ProductsPage() {
         <PackagesComparison />
         <WhatsIncluded />
         <ProductsFAQ />
-        <BookingCTA />
+        <BookingCTA headingLine1="Get an Instant Calgary" headingLine2={<em style={{ fontStyle: "italic" }}>Photo Booth Rental Quote</em>} />
         <ProductsCTA />
       </main>
       <Footer />

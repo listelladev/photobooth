@@ -115,8 +115,7 @@ export default function Pricing() {
               Simple, <TransparentWord />
             </AnimLine>
             <AnimLine>
-              pricing.{" "}
-              {/* $-icon sticker — inline after "pricing." slightly overlapping */}
+              pricing for all{" "}
               <StickerReveal
                 delay={500}
                 style={{ display: "inline-block", verticalAlign: "middle", marginLeft: "0.15em" }}
@@ -128,6 +127,7 @@ export default function Pricing() {
                 />
               </StickerReveal>
             </AnimLine>
+            <AnimLine>Calgary Events</AnimLine>
           </AnimatedText>
         </div>
 

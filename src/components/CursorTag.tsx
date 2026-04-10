@@ -34,6 +34,7 @@ export default function CursorTag() {
 
     const onMouseOver = (e: MouseEvent) => {
       const target = e.target as Element;
+      if (target.closest("[data-no-cursor-tag]")) return;
       if (target.closest(INTERACTIVES)) {
         hovered.current = true;
         tag.style.transform = "translate(-50%, -110%) scale(1)";

@@ -774,7 +774,7 @@ export default function BookingCTA({ headingLine1, headingLine2, subtext }: Book
   };
 
   return (
-    <section id="book" style={{ background: "#f9f9f9", padding: "clamp(40px, 12vw, 180px) 0" }}>
+    <section id="book" data-no-cursor-tag style={{ background: "#f9f9f9", padding: "clamp(40px, 12vw, 180px) 0" }}>
       <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
 
         {/* Heading */}

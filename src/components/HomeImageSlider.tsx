@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const slides = [
   { src: "/pool/Create_an_image_using_the_atta (1).jpg", alt: "Photo booth experience" },
@@ -26,43 +26,60 @@ const slides = [
 ];
 
 const VISIBLE = 3;
-const GAP = 12; // px, matches the gap between images
+const GAP = 12;
+const n = slides.length;
+// Render three copies so we always have slides on both sides for seamless looping
+const allSlides = [...slides, ...slides, ...slides];
 
 export default function HomeImageSlider() {
-  const [start, setStart] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const n = slides.length;
-
-  // Build an extended array: [last] + all slides + [first] so we can
-  // infinitely loop by always having neighbours on both sides.
-  // For simplicity, we duplicate the full array once on each side.
-  const extended = [...slides, ...slides, ...slides];
-  // The "real" slides start at index n in the extended array.
-  const offset = n; // where the real slides begin in extended
-
-  const trackRef = useRef<HTMLDivElement>(null);
+  // Start in the middle copy so both directions have room to scroll
+  const [index, setIndex] = useState(n);
+  const [transitioning, setTransitioning] = useState(false);
 
   const slide = (dir: "prev" | "next") => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setStart((s) => {
-      const next = dir === "next" ? (s + 1) % n : (s - 1 + n) % n;
-      return next;
-    });
-    setTimeout(() => setIsAnimating(false), 480);
+    if (transitioning) return;
+    setTransitioning(true);
+    setIndex((i) => (dir === "next" ? i + 1 : i - 1));
   };
 
-  const jumpTo = (idx: number) => {
-    if (isAnimating || idx === start) return;
-    setIsAnimating(true);
-    setStart(idx);
-    setTimeout(() => setIsAnimating(false), 480);
+  // After the transition completes, silently jump back to the middle copy
+  useEffect(() => {
+    if (!transitioning) return;
+    const timer = setTimeout(() => {
+      setTransitioning(false);
+      setIndex((i) => {
+        if (i >= 2 * n) return i - n;
+        if (i < n) return i + n;
+        return i;
+      });
+    }, 480);
+    return () => clearTimeout(timer);
+  }, [transitioning]);
+
+  const translateX = `calc((100% / ${VISIBLE} + ${GAP}px) * -${index})`;
+
+  // Mobile uses a single-image view; same tripled array, starts at n
+  const [mIndex, setMIndex] = useState(n);
+  const [mTransitioning, setMTransitioning] = useState(false);
+
+  const mSlide = (dir: "prev" | "next") => {
+    if (mTransitioning) return;
+    setMTransitioning(true);
+    setMIndex((i) => (dir === "next" ? i + 1 : i - 1));
   };
 
-  // translateX: each image takes 1/VISIBLE of the container width + gap
-  // We use calc so it works without JS measurements.
-  // The track has all images side by side. We shift by `start` image widths.
-  const translateX = `calc((100% / ${VISIBLE} + ${GAP}px) * -${start})`;
+  useEffect(() => {
+    if (!mTransitioning) return;
+    const timer = setTimeout(() => {
+      setMTransitioning(false);
+      setMIndex((i) => {
+        if (i >= 2 * n) return i - n;
+        if (i < n) return i + n;
+        return i;
+      });
+    }, 480);
+    return () => clearTimeout(timer);
+  }, [mTransitioning]);
 
   return (
     <div style={{ maxWidth: 1400, margin: "0 auto", padding: "clamp(24px, 5vw, 80px) clamp(24px, 5vw, 80px) 0" }}>
@@ -73,31 +90,29 @@ export default function HomeImageSlider() {
         style={{ borderRadius: "clamp(8px, 1vw, 16px)", overflow: "hidden" }}
       >
         <div
-          ref={trackRef}
           style={{
             display: "flex",
             gap: GAP,
             transform: `translateX(${translateX})`,
-            transition: isAnimating
+            transition: transitioning
               ? "transform 0.48s cubic-bezier(0.22, 1, 0.36, 1)"
               : "none",
             willChange: "transform",
           }}
         >
-          {slides.map((slide, i) => (
+          {allSlides.map((s, i) => (
             <div
               key={i}
               style={{
                 flexShrink: 0,
-                // Each panel is exactly 1/VISIBLE of the outer container minus gaps
                 width: `calc((100% - ${GAP * (VISIBLE - 1)}px) / ${VISIBLE})`,
                 borderRadius: "clamp(6px, 0.8vw, 12px)",
                 overflow: "hidden",
               }}
             >
               <img
-                src={slide.src}
-                alt={slide.alt}
+                src={s.src}
+                alt={s.alt}
                 style={{
                   width: "100%",
                   height: "clamp(220px, 28vw, 480px)",
@@ -110,7 +125,7 @@ export default function HomeImageSlider() {
         </div>
       </div>
 
-      {/* ── Mobile: single image with slide ── */}
+      {/* ── Mobile: single image ── */}
       <div
         className="md:hidden"
         style={{ borderRadius: "clamp(12px, 1.5vw, 20px)", overflow: "hidden" }}
@@ -118,14 +133,14 @@ export default function HomeImageSlider() {
         <div
           style={{
             display: "flex",
-            transform: `translateX(calc(-100% * ${start}))`,
-            transition: isAnimating
+            transform: `translateX(calc(-100% * ${mIndex}))`,
+            transition: mTransitioning
               ? "transform 0.48s cubic-bezier(0.22, 1, 0.36, 1)"
               : "none",
             willChange: "transform",
           }}
         >
-          {slides.map((s, i) => (
+          {allSlides.map((s, i) => (
             <div key={i} style={{ flexShrink: 0, width: "100%" }}>
               <img
                 src={s.src}
@@ -145,7 +160,7 @@ export default function HomeImageSlider() {
       {/* ── Navigation ── */}
       <div className="flex items-center justify-center" style={{ gap: 16, marginTop: 24 }}>
         <button
-          onClick={() => slide("prev")}
+          onClick={() => { slide("prev"); mSlide("prev"); }}
           aria-label="Previous images"
           className="cursor-pointer transition-all duration-300 hover:scale-110"
           style={{
@@ -162,7 +177,7 @@ export default function HomeImageSlider() {
         </button>
 
         <button
-          onClick={() => slide("next")}
+          onClick={() => { slide("next"); mSlide("next"); }}
           aria-label="Next images"
           className="cursor-pointer transition-all duration-300 hover:scale-110"
           style={{

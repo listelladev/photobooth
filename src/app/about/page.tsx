@@ -108,12 +108,12 @@ function AboutHero() {
           </h1>
 
           <div style={{ overflow: "hidden", paddingBottom: "0.18em", marginBottom: "-0.18em" }}>
-            <p
+            <h2
               ref={subRef}
-              style={{ fontSize: "clamp(15px, 1.3vw, 20px)", fontWeight: 400, color: "rgba(255,255,255,0.6)", maxWidth: 600, lineHeight: 1.7, transform: "translateY(20px)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.5s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.5s" }}
+              style={{ fontSize: "clamp(15px, 1.3vw, 20px)", fontWeight: 400, color: "rgba(255,255,255,0.6)", maxWidth: 600, lineHeight: 1.7, transform: "translateY(20px)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.5s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.5s", margin: 0 }}
             >
-              Premium photo booth rentals built on one belief — every moment deserves to be remembered.
-            </p>
+              Premium Calgary photo booth rentals built on one belief — every moment deserves to be remembered.
+            </h2>
           </div>
         </div>
       </div>

@@ -5,15 +5,15 @@ import RevealOnScroll from "./RevealOnScroll";
 import CircleHighlight from "./CircleHighlight";
 
 export interface ActivityHeroProps {
-  /** Plain text for line 1, e.g. "Gender Reveal Photo" */
+  /** Plain text prefix before the circle word, e.g. "Calgary" */
   line1: string;
-  /** The word wrapped in the hand-drawn circle on line 2, e.g. "Booth" */
+  /** The word wrapped in the hand-drawn circle */
   circleWord: string;
   /** SVG stroke color for the circle */
   circleStroke: string;
   /** SVG path `d` attribute for the circle shape */
   circlePathD: string;
-  /** Text that follows the circle word on line 2, e.g. " Rental Calgary." */
+  /** Text that follows the circle word, e.g. " Photo Booth Rental." */
   line2Suffix: string;
   subtext: string;
   ctaText: string;
@@ -51,29 +51,23 @@ export default function ActivityHero({
   sticker2Rotation = "8deg",
   sticker2Size = "clamp(44px, 5vw, 76px)",
 }: ActivityHeroProps) {
-  const line1Ref = useRef<HTMLSpanElement>(null);
-  const line2Ref = useRef<HTMLSpanElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const circleRef = useRef<SVGPathElement>(null);
+  const [headingVisible, setHeadingVisible] = useState(false);
   const [sticker1, setSticker1] = useState(false);
   const [sticker2, setSticker2] = useState(false);
 
   useEffect(() => {
-    const reveal = (ref: React.RefObject<HTMLSpanElement | null>, ms: number) => {
-      setTimeout(() => {
-        if (!ref.current) return;
-        ref.current.style.transform = "translateY(0)";
-        ref.current.style.opacity = "1";
-      }, ms);
-    };
-    reveal(line1Ref, 100);
-    reveal(line2Ref, 240);
+    // Heading fades in as a single unit — no block spans means no forced line breaks
+    setTimeout(() => setHeadingVisible(true), 100);
+
     setTimeout(() => {
       if (subRef.current) {
         subRef.current.style.transform = "translateY(0)";
         subRef.current.style.opacity = "1";
       }
     }, 540);
+
     setTimeout(() => {
       const c = circleRef.current;
       if (!c) return;
@@ -87,6 +81,7 @@ export default function ActivityHero({
         }),
       );
     }, 700);
+
     setTimeout(() => setSticker1(true), 500);
     setTimeout(() => setSticker2(true), 950);
   }, []);
@@ -132,73 +127,33 @@ export default function ActivityHero({
 
         {/* Content */}
         <div style={{ position: "relative", zIndex: 2, padding: "clamp(72px, 9vw, 116px) clamp(28px, 6vw, 100px) clamp(8px, 1vw, 12px)" }}>
+          {/*
+            All text flows as a single inline stream inside the h1 — no block-level
+            wrapper spans, no forced line breaks, no overflow:hidden masks. The heading
+            fills its container and only wraps when it runs out of horizontal space.
+            The CircleHighlight SVG is free to render without any clipping context.
+          */}
           <h1
             className="font-heading"
             style={{
               fontSize: "clamp(48px, 7.5vw, 110px)",
-              // lineHeight > 1 so descenders (y, g, p) are never clipped by overflow:hidden masks
               lineHeight: 1.05,
               letterSpacing: "-0.04em",
               color: "#fff",
-              // No maxWidth — the content div's padding defines the usable width.
-              // A maxWidth here was the root cause of "Photo" stranding on its own line.
               margin: "0 0 clamp(24px, 2.5vw, 36px)",
+              textWrap: "initial",
+              opacity: headingVisible ? 1 : 0,
+              transition: "opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s",
             }}
           >
-            {/* Line 1 — plain text slide-up */}
-            <span style={{
-              display: "block",
-              overflow: "hidden",
-              paddingTop: "0.1em",
-              marginTop: "-0.1em",
-              paddingBottom: "0.14em",
-              marginBottom: "-0.14em",
-              paddingLeft: "0.08em",
-              marginLeft: "-0.08em",
-            }}>
-              <span
-                ref={line1Ref}
-                style={{
-                  display: "block",
-                  transform: "translateY(110%)",
-                  opacity: 0,
-                  transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1), opacity 0.9s cubic-bezier(0.22,1,0.36,1)",
-                }}
-              >
-                {line1}
-              </span>
-            </span>
-
-            {/* Line 2 — circle word + suffix, slide-up */}
-            <span style={{
-              display: "block",
-              overflow: "hidden",
-              paddingTop: "0.08em",
-              marginTop: "-0.08em",
-              // Generous bottom so descenders in "y" (Calgary) never hit the overflow:hidden edge
-              paddingBottom: "0.36em",
-              marginBottom: "-0.36em",
-              paddingLeft: "0.08em",
-              marginLeft: "-0.08em",
-            }}>
-              <span
-                ref={line2Ref}
-                style={{
-                  display: "block",
-                  transform: "translateY(110%)",
-                  opacity: 0,
-                  transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.14s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.14s",
-                }}
-              >
-                <CircleHighlight
-                  text={circleWord}
-                  circleRef={circleRef}
-                  stroke={circleStroke}
-                  pathD={circlePathD}
-                />
-                {line2Suffix}
-              </span>
-            </span>
+            {line1}{" "}
+            <CircleHighlight
+              text={circleWord}
+              circleRef={circleRef}
+              stroke={circleStroke}
+              pathD={circlePathD}
+            />
+            {line2Suffix}
           </h1>
 
           <div style={{ overflow: "hidden", paddingBottom: "0.18em", marginBottom: "-0.18em" }}>

@@ -193,7 +193,8 @@ function ProductsHeading() {
             </span>
           </span>
         </span>
-        <span style={{ overflow: "hidden", display: "block", paddingTop: "0.28em", marginTop: "-0.28em", paddingBottom: "0.9em", marginBottom: "-0.9em", paddingLeft: "0.08em", marginLeft: "-0.08em", paddingRight: "0.12em", marginRight: "-0.12em" }}>
+        {/* No overflow:hidden — CircleHighlight SVG must not be clipped */}
+        <span style={{ display: "block", paddingLeft: "0.08em", marginLeft: "-0.08em", paddingRight: "0.12em", marginRight: "-0.12em" }}>
           <span className="anim-line" style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s" }}>
             make it{" "}
             <CircleHighlight

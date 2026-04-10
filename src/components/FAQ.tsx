@@ -6,12 +6,12 @@ import AnimatedText, { AnimLine } from "./AnimatedText";
 import StickerReveal from "./StickerReveal";
 
 const faqs = [
-  { q: "How far in advance should I book?", a: "We recommend booking at least 2–4 weeks in advance, especially during peak season (May through October). Popular dates fill up quickly." },
-  { q: "What's included in every rental?", a: "Every rental includes your choice of photo booth, a professional on-site attendant, full setup and takedown, unlimited prints, curated props collection, and a custom-designed photo frame." },
+  { q: "How far in advance should I book my Calgary photo booth rental?", a: "We recommend booking your Calgary photo booth rental at least 2–4 weeks in advance, especially during peak season (May through October). Popular dates fill up quickly." },
+  { q: "What's included in my Calgary photo booth rental?", a: "Every Calgary photo booth rental includes your choice of photo booth, a professional on-site attendant, full setup and takedown, unlimited prints, curated props collection, and a custom-designed photo frame." },
   { q: "How much space does a photo booth require?", a: "Standard and mirror booths need a minimum 8' × 8' area. The 360° video booth needs about 10' × 10'. We also need a standard power outlet within 50 feet." },
-  { q: "Can I customize the photo frames?", a: "Absolutely. Our designers create fully customized frames — your wedding monogram, corporate logo, or event theme. Included at no extra cost." },
-  { q: "Do you travel outside of Calgary?", a: "Yes. We regularly serve Banff, Canmore, Airdrie, Cochrane, Okotoks, and the greater Calgary region. Travel fees may apply beyond a certain distance." },
-  { q: "Which photo booth should I choose?", a: "Classic is perfect for timeless prints. Mirror adds interactive elegance — ideal for weddings. 360° is the social media show-stopper for corporate events and celebrations." },
+  { q: "Can I customize the photo frames for my photo booth rental in Calgary?", a: "Absolutely. Our designers create fully customized frames for every Calgary photo booth rental — your wedding monogram, corporate logo, or event theme. Included at no extra cost." },
+  { q: "Do you offer photo booth rentals outside of Calgary?", a: "Yes. We regularly provide photo booth rentals in Banff, Canmore, Airdrie, Cochrane, Okotoks, and the greater Calgary region. Travel fees may apply beyond a certain distance." },
+  { q: "Which Calgary photo booth is right for my event?", a: "The Classic photo booth is perfect for timeless prints. The Mirror photo booth adds interactive elegance — ideal for Calgary weddings. The 360° booth is the social media show-stopper for corporate events and celebrations." },
   { q: "What's your cancellation policy?", a: "We understand plans change. Reach out to our team directly and we'll do our best to accommodate rescheduling or cancellation requests." },
 ];
 
@@ -54,6 +54,9 @@ export default function FAQ() {
           }}
           stagger={90}
         >
+          <AnimLine>
+            <span style={{ fontSize: "0.5em", letterSpacing: "-0.02em" }}>Calgary Photobooth</span>
+          </AnimLine>
           <AnimLine>
             Questions &amp;
           </AnimLine>

@@ -42,6 +42,7 @@ const locations = [
 function LocationsHero() {
   const line1Ref = useRef<HTMLSpanElement>(null);
   const line2Ref = useRef<HTMLSpanElement>(null);
+  const line3Ref = useRef<HTMLSpanElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const circleRef = useRef<SVGPathElement>(null);
   const [sticker1, setSticker1] = useState(false);
@@ -57,6 +58,7 @@ function LocationsHero() {
     };
     reveal(line1Ref, 100);
     reveal(line2Ref, 230);
+    reveal(line3Ref, 360);
 
     setTimeout(() => {
       if (subRef.current) {
@@ -123,19 +125,26 @@ function LocationsHero() {
             {/* Line 1 */}
             <span style={{ display: "block", overflow: "hidden", paddingTop: "0.1em", marginTop: "-0.1em", paddingBottom: "0.18em", marginBottom: "-0.18em", paddingLeft: "0.08em", marginLeft: "-0.08em", paddingRight: "0.12em", marginRight: "-0.12em" }}>
               <span ref={line1Ref} style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1), opacity 0.9s cubic-bezier(0.22,1,0.36,1)" }}>
-                We Cover
+                Photo Booth Rentals
               </span>
             </span>
-            {/* Line 2 */}
-            <span style={{ display: "block", overflow: "hidden", paddingTop: "0.1em", marginTop: "-0.1em", paddingBottom: "0.28em", marginBottom: "-0.28em", paddingLeft: "0.08em", marginLeft: "-0.08em", paddingRight: "0.12em", marginRight: "-0.12em" }}>
+            {/* Line 2 — no overflow:hidden, CircleHighlight SVG must not be clipped */}
+            <span style={{ display: "block", paddingLeft: "0.08em", marginLeft: "-0.08em", paddingRight: "0.12em", marginRight: "-0.12em" }}>
               <span ref={line2Ref} style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.13s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.13s" }}>
+                in{" "}
                 <CircleHighlight
-                  text="Southern"
+                  text="Calgary"
                   circleRef={circleRef}
                   stroke="rgba(255,107,53,0.85)"
-                  pathD="M96 8 C122 3, 162 9, 185 24 C196 36, 196 62, 186 78 C174 92, 146 97, 108 96 C70 95, 36 88, 16 74 C2 60, 2 36, 12 22 C22 8, 56 4, 80 5 C90 4, 94 7, 108 7"
+                  pathD="M88 8 C112 3, 148 9, 168 24 C178 36, 178 62, 168 78 C156 92, 130 97, 96 96 C62 95, 32 88, 14 74 C2 60, 2 36, 10 22 C20 8, 50 4, 72 5 C80 4, 86 7, 96 7"
                 />
-                {" "}Alberta.
+                {" "}and
+              </span>
+            </span>
+            {/* Line 3 */}
+            <span style={{ display: "block", overflow: "hidden", paddingTop: "0.1em", marginTop: "-0.1em", paddingBottom: "0.28em", marginBottom: "-0.28em", paddingLeft: "0.08em", marginLeft: "-0.08em", paddingRight: "0.12em", marginRight: "-0.12em" }}>
+              <span ref={line3Ref} style={{ display: "block", transform: "translateY(110%)", opacity: 0, transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.26s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.26s" }}>
+                Southern Alberta.
               </span>
             </span>
           </h1>
