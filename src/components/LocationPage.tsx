@@ -217,26 +217,6 @@ function LocationHero({ city, subtitle, image }: { city: string; subtitle: strin
           </div>
 
           <div style={{ overflow: "hidden", marginTop: "clamp(28px, 3.5vw, 48px)" }}>
-            <RevealOnScroll direction="up">
-              <div className="flex flex-wrap" style={{ gap: 14 }}>
-                <a
-                  href="#book"
-                  style={{ display: "inline-block", padding: "clamp(13px, 1.4vw, 16px) clamp(28px, 2.5vw, 36px)", background: "#FF6B35", color: "#fff", borderRadius: 60, fontSize: 15, fontWeight: 700, fontFamily: "dm-sans, sans-serif", textDecoration: "none", transition: "opacity 0.3s" }}
-                  onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
-                  onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-                >
-                  Book in {city}
-                </a>
-                <a
-                  href="/locations"
-                  style={{ display: "inline-block", padding: "clamp(13px, 1.4vw, 16px) clamp(28px, 2.5vw, 36px)", background: "rgba(255,255,255,0.1)", color: "#fff", borderRadius: 60, fontSize: 15, fontWeight: 700, fontFamily: "dm-sans, sans-serif", textDecoration: "none", border: "1px solid rgba(255,255,255,0.18)", transition: "background 0.3s" }}
-                  onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.18)")}
-                  onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,255,255,0.1)")}
-                >
-                  All Locations
-                </a>
-              </div>
-            </RevealOnScroll>
           </div>
         </div>
       </div>
