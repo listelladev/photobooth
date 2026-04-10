@@ -19,12 +19,12 @@ export default function RevealOnScroll({
     const el = ref.current;
     if (!el) return;
 
+    const reveal = () => el.classList.add("visible");
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            el.classList.add("visible");
-          }, delay);
+          setTimeout(reveal, delay);
           observer.unobserve(el);
         }
       },
@@ -32,7 +32,29 @@ export default function RevealOnScroll({
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+
+    // On back navigation the browser restores scroll position after mount,
+    // leaving elements hidden because the observer never fires for already-visible
+    // or already-scrolled-past elements. After two rAF cycles (enough time for
+    // scroll restoration), reveal anything that's already in or above the viewport.
+    let raf1: number, raf2: number;
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => {
+        if (window.scrollY > 50) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight) {
+            reveal();
+            observer.unobserve(el);
+          }
+        }
+      });
+    });
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
   }, [delay]);
 
   const directionClass =

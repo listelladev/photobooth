@@ -201,6 +201,7 @@ function ProductsHero() {
 const booths = [
   {
     name: "Compact Pole PhotoBooth",
+    href: "/products/compact-pole-photobooth",
     icon: "/icons/pool-of-icons/hero-camera.svg",
     image: "/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%201.jpg",
     startingAt: "199",
@@ -218,6 +219,7 @@ const booths = [
   },
   {
     name: "Premium Pole PhotoBooth",
+    href: "/products/premium-pole-photobooth",
     icon: "/icons/pool-of-icons/Asset%203photo-stand.svg",
     image: "/products/premium-backdrops/Premium%20Pole%20PhotoBooth1.jpg",
     startingAt: "249",
@@ -235,6 +237,7 @@ const booths = [
   },
   {
     name: "AI PhotoBooth",
+    href: "/products/ai-photobooth",
     icon: "/icons/pool-of-icons/unforgettable-2.svg",
     image: "/products/ai-photobooth/ai%20photobooth%201.jpg",
     startingAt: "299",
@@ -252,6 +255,7 @@ const booths = [
   },
   {
     name: "360 VideoBooth",
+    href: "/products/360-videobooth",
     icon: "/icons/360-photobooth.svg",
     image: "/products/360-videobooth/360%20video%20booth%201.jpg",
     startingAt: "399",
@@ -269,6 +273,7 @@ const booths = [
   },
   {
     name: "Mirror PhotoBooth",
+    href: "/products/mirror-photobooth",
     icon: "/icons/mirror.svg",
     image: "/products/mirror-photobooth/mirror%20photobooth%201.jpg",
     startingAt: "499",
@@ -286,6 +291,7 @@ const booths = [
   },
   {
     name: "Audio GuestBook",
+    href: "/products/audio-guestbook",
     icon: "/icons/pool-of-icons/Asset%202music-note.svg",
     image: "/products/audio-guestbook/audio%20guestbook%201.jpg",
     startingAt: "149",
@@ -302,6 +308,7 @@ const booths = [
   },
   {
     name: "Premium Backdrops",
+    href: "/products/premium-backdrops",
     icon: "/icons/backdrops.svg",
     image: "/products/premium-backdrops/premium%20backdrops%201.jpg",
     startingAt: "80",
@@ -318,6 +325,7 @@ const booths = [
   },
   {
     name: "Instant High Quality Printing",
+    href: "/products/instant-high-quality-printing",
     icon: "/icons/unlimited-prints.svg",
     image: "/products/instant-high-quality-printing/instant%20high%20quality%20prints%201.jpg",
     startingAt: "50",
@@ -400,7 +408,7 @@ function BoothCard({ booth, index }: { booth: (typeof booths)[0]; index: number 
           }}
         >
           {/* Thumbnail image */}
-          <div style={{ position: "relative", overflow: "hidden", flexShrink: 0 }}>
+          <a href={booth.href} style={{ display: "block", position: "relative", overflow: "hidden", flexShrink: 0, textDecoration: "none" }}>
             <img
               src={booth.image}
               alt={booth.name}
@@ -423,7 +431,7 @@ function BoothCard({ booth, index }: { booth: (typeof booths)[0]; index: number 
                 transition: "opacity 0.4s ease",
               }}
             />
-          </div>
+          </a>
 
           <div style={{ padding: "clamp(18px, 2vw, 28px)", flex: 1, display: "flex", flexDirection: "column" }}>
             {/* Header */}
@@ -525,7 +533,7 @@ function BoothCard({ booth, index }: { booth: (typeof booths)[0]; index: number 
 
             {/* CTA */}
             <a
-              href="#book"
+              href={booth.href}
               className="block text-center transition-all duration-300 hover:opacity-80"
               style={{
                 fontSize: 15,
@@ -537,7 +545,7 @@ function BoothCard({ booth, index }: { booth: (typeof booths)[0]; index: number 
                 textDecoration: "none",
               }}
             >
-              Book Now
+              Learn More
             </a>
           </div>
         </div>

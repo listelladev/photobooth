@@ -107,11 +107,12 @@ export default function Footer() {
               {[
                 { label: "Products", href: "/products" },
                 { label: "Locations", href: "/locations" },
+                { label: "Events", href: "/events" },
                 { label: "About", href: "/about" },
                 { label: "Contact", href: "/contact" },
                 { label: "Book Now", href: "/contact" },
               ].map((l) => (
-                <a key={l.label} href={l.href} className="transition-opacity duration-300 hover:opacity-60" style={{ fontSize: 15, fontWeight: 400, color: "rgba(255,255,255,0.5)" }}>
+                <a key={l.label} href={l.href} className="transition-opacity duration-300 hover:opacity-60" style={{ fontSize: 15, fontWeight: 400, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>
                   {l.label}
                 </a>
               ))}
@@ -126,9 +127,19 @@ export default function Footer() {
               SERVICE AREAS
             </h4>
             <div className="flex flex-col" style={{ gap: 14 }}>
-              {["Calgary", "Banff", "Canmore", "Airdrie", "Cochrane", "Okotoks"].map((a) => (
-                <a key={a} href={`/locations/${a.toLowerCase()}`} className="transition-opacity duration-300 hover:opacity-60" style={{ fontSize: 15, fontWeight: 400, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>{a}</a>
+              {[
+                { label: "Calgary", href: "/locations/calgary-photo-booth-rental" },
+                { label: "Banff", href: "/locations/banff-photo-booth-rental" },
+                { label: "Canmore", href: "/locations/canmore-photo-booth-rental" },
+                { label: "Airdrie", href: "/locations/airdrie-photo-booth-rental" },
+                { label: "Cochrane", href: "/locations/cochrane-photo-booth-rental" },
+                { label: "Okotoks", href: "/locations/okotoks-photo-booth-rental" },
+              ].map((a) => (
+                <a key={a.label} href={a.href} className="transition-opacity duration-300 hover:opacity-60" style={{ fontSize: 15, fontWeight: 400, color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>{a.label}</a>
               ))}
+              <a href="/locations" className="transition-opacity duration-300 hover:opacity-60" style={{ fontSize: 15, fontWeight: 400, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>
+                View All Areas →
+              </a>
             </div>
           </div>
         </div>

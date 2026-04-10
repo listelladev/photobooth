@@ -10,57 +10,48 @@ import AnimatedText, { AnimLine } from "@/components/AnimatedText";
 
 // ─── DATA ──────────────────────────────────────────────────────────────────────
 
-const includedItems = [
-  { icon: "/icons/product-pages/still-photos.svg", label: "Still Photos" },
-  { icon: "/icons/product-pages/animated-gif.svg", label: "Animated GIF" },
-  { icon: "/icons/product-pages/boomerang-gif.svg", label: "Boomerang GIF" },
-  { icon: "/icons/product-pages/pro-quality-on-site-printing.svg", label: "Pro-Quality On Site Printing" },
-  { icon: "/icons/product-pages/social-sharing-airdrops-and-qr-codes.svg", label: "Social Sharing, Airdrops & QR Codes" },
-  { icon: "/icons/product-pages/custom-branding-and-frames.svg", label: "Custom Branding & Frames" },
-  { icon: "/icons/product-pages/data-capture.svg", label: "Data Capture" },
-  { icon: "/icons/product-pages/set-up-and-take-down.svg", label: "Set up and Take Down" },
-  { icon: "/icons/product-pages/props.svg", label: "Props" },
+const backdropImages = [
+  { src: "/backdrop-images/Abstract.jpeg", alt: "Abstract backdrop" },
+  { src: "/backdrop-images/Balloons%202.jpg", alt: "Balloons backdrop" },
+  { src: "/backdrop-images/Balloons.jpg", alt: "Balloons alternate backdrop" },
+  { src: "/backdrop-images/black%20and%20gold%20glitter.jpg", alt: "Black and gold glitter backdrop" },
+  { src: "/backdrop-images/flowers%201.jpg", alt: "Flowers backdrop" },
+  { src: "/backdrop-images/flowers%202.jpg", alt: "Flowers 2 backdrop" },
+  { src: "/backdrop-images/flowers%203.jpg", alt: "Flowers 3 backdrop" },
+  { src: "/backdrop-images/flowers%204.png", alt: "Flowers 4 backdrop" },
+  { src: "/backdrop-images/glitter.jpg", alt: "Glitter backdrop" },
+  { src: "/backdrop-images/party.jpg", alt: "Party backdrop" },
 ];
 
 const pricingTiers = [
-  { label: "2 Hours", price: "$299" },
-  { label: "3 Hours", price: "$399" },
-  { label: "4 Hours", price: "$499" },
-  { label: "Additional Hour", price: "$99 / hr", muted: true },
+  { label: "Standard Rental", price: "$80" },
+  { label: "With Setup", price: "$120" },
 ];
 
 const faqs = [
   {
-    q: "What is the Compact Pole PhotoBooth?",
-    a: "It's an iPad-based photo booth powered by the Salsa 1 system — a slim, modern pole-mounted unit that captures high-quality photos and GIFs. It's designed for spaces where a traditional enclosed booth would be too bulky.",
+    q: "What backdrop styles are available?",
+    a: "Our collection includes florals, sequins, glitter panels, abstract prints, balloon walls, and more — with new styles added regularly. Contact us for our current full catalogue so you can find the perfect match for your event aesthetic.",
   },
   {
-    q: "How much space does it need?",
-    a: "Very little! The Compact Booth needs approximately 4×4 ft of floor space — making it ideal for small venues, tight corners, or events with limited room to spare.",
+    q: "Can I use a backdrop with any of your booths?",
+    a: "Yes — backdrops are available as an add-on to any booth rental, or as a standalone rental if you have your own photographer or just want a styled backdrop station.",
   },
   {
-    q: "Can we customize the photo templates?",
-    a: "Absolutely. We'll work with you before your event to design a template that matches your theme, colours, and branding. Just let us know your vision!",
+    q: "What is the difference between Standard Rental and With Setup?",
+    a: "Standard Rental includes the backdrop and stand for you to set up yourself. With Setup includes our team coming to assemble and position everything professionally — saving you time and ensuring a polished look.",
   },
   {
-    q: "Can guests share their photos digitally?",
-    a: "Yes — every guest can instantly receive their photos via QR code and share directly to social media, text, or email from their own phone.",
+    q: "What size are the backdrops?",
+    a: "Each backdrop measures 2.60m × 2.60m — large enough to comfortably frame 2–4 guests in a photo and create a full, professional-looking background.",
   },
   {
-    q: "Is printing available with this booth?",
-    a: "Printing isn't included by default, but you can easily add our Instant High Quality Printing add-on to get beautiful lab-grade prints on the spot.",
+    q: "Can I use the backdrop outdoors?",
+    a: "Yes, in suitable conditions. We'll discuss wind and weather considerations with you at booking to make sure the setup is safe and looks great.",
   },
   {
-    q: "How long does setup and teardown take?",
-    a: "Typically around 30–45 minutes for setup. We arrive early so everything is ready before your guests arrive. Teardown is equally quick and unobtrusive.",
-  },
-  {
-    q: "Is an attendant included?",
-    a: "Yes — every booth rental includes a professional, friendly attendant who manages the booth, assists guests, and ensures everything runs smoothly all night.",
-  },
-  {
-    q: "What types of events is this booth best for?",
-    a: "It shines at intimate weddings, birthday parties, baby showers, bridal showers, office holiday parties, and any event in a smaller or cozy venue.",
+    q: "Do you have seasonal or holiday-themed backdrops?",
+    a: "Yes — our collection includes seasonal and holiday-themed options. Contact us to check current availability for your event date.",
   },
 ];
 
@@ -144,8 +135,8 @@ function Hero() {
       >
         <div className="absolute inset-0">
           <img
-            src="/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%201.jpg"
-            alt="Compact Pole PhotoBooth setup"
+            src="/products/premium-backdrops/premium%20backdrops%201.jpg"
+            alt="Premium backdrop at an event"
             className="w-full h-full object-cover"
             style={{ objectPosition: "center 30%" }}
           />
@@ -179,18 +170,17 @@ function Hero() {
               transition: "opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s",
             }}
           >
-            {/* "Compact Pole" with animated underline */}
             <span style={{ position: "relative", display: "inline-block" }}>
-              Compact Pole
+              Premium
               <svg
                 aria-hidden="true"
-                viewBox="0 0 320 14"
+                viewBox="0 0 240 14"
                 preserveAspectRatio="none"
                 style={{ position: "absolute", bottom: "-10px", left: "-1%", width: "102%", height: "14px", overflow: "visible" }}
               >
                 <path
                   ref={underlineRef}
-                  d="M4 10 C40 3, 100 13, 160 7 C220 1, 280 11, 316 6"
+                  d="M3 10 C32 3, 80 13, 120 7 C160 1, 208 11, 237 6"
                   fill="none"
                   stroke="#FF6B35"
                   strokeWidth="3.5"
@@ -199,7 +189,7 @@ function Hero() {
               </svg>
             </span>
             <br />
-            <em style={{ fontStyle: "italic" }}>PhotoBooth.</em>
+            <em style={{ fontStyle: "italic" }}>Backdrops.</em>
           </h1>
           <div style={{ overflow: "hidden", paddingBottom: "0.18em", marginBottom: "-0.18em" }}>
             <p
@@ -215,7 +205,7 @@ function Hero() {
                 transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.5s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.5s",
               }}
             >
-              Big Fun. Small Footprint. Perfect for Any Intimate Occasion.
+              Set the Scene. Elevate Every Photo. The Perfect Frame for Every Event.
             </p>
           </div>
           <div style={{ overflow: "hidden", marginTop: "clamp(28px, 3.5vw, 48px)" }}>
@@ -260,8 +250,8 @@ function Intro() {
           <RevealOnScroll direction="left" className="order-2 lg:order-1">
             <div style={{ borderRadius: "clamp(16px, 2vw, 24px)", overflow: "hidden", aspectRatio: "4/3", position: "relative" }}>
               <img
-                src="/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%202.jpg"
-                alt="Compact Pole PhotoBooth in use at an event"
+                src="/products/premium-backdrops/premium%20backdrops%202.jpg"
+                alt="Premium backdrop styling at an event"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -275,19 +265,20 @@ function Intro() {
                 style={{ fontSize: "clamp(32px, 4vw, 60px)", lineHeight: 1.05, letterSpacing: "-0.04em", color: "#1a1a2e", marginBottom: "clamp(20px, 2.5vw, 32px)" }}
                 stagger={90}
               >
-                <AnimLine>Big on{" "}
+                <AnimLine>Every photo</AnimLine>
+                <AnimLine>
+                  deserves a{" "}
                   <span style={{ position: "relative", display: "inline-block" }}>
-                    fun.
-                    {/* Circle around "fun." */}
+                    stunning
                     <svg
                       aria-hidden="true"
-                      viewBox="0 0 96 56"
+                      viewBox="0 0 180 56"
                       preserveAspectRatio="none"
                       style={{ position: "absolute", top: "-0.06em", bottom: "-0.08em", left: "-0.1em", right: "-0.1em", width: "calc(100% + 0.2em)", height: "calc(100% + 0.14em)", overflow: "visible", pointerEvents: "none" }}
                     >
                       <path
                         ref={circleRef}
-                        d="M48 3 C70 1, 88 12, 93 28 C97 42, 88 52, 72 55 C56 58, 34 56, 18 50 C4 44, 1 30, 5 18 C10 7, 28 1, 48 3"
+                        d="M90 3 C124 1, 164 12, 169 28 C173 42, 160 52, 136 55 C112 58, 64 56, 36 50 C10 44, 5 30, 11 18 C18 7, 54 1, 90 3"
                         fill="none"
                         stroke="#FF6B35"
                         strokeWidth="2.5"
@@ -296,13 +287,16 @@ function Intro() {
                     </svg>
                   </span>
                 </AnimLine>
-                <AnimLine>Small on <em style={{ fontStyle: "italic" }}>footprint.</em></AnimLine>
+                <AnimLine><em style={{ fontStyle: "italic" }}>backdrop.</em></AnimLine>
               </AnimatedText>
               <p style={{ fontSize: "clamp(15px, 1.1vw, 18px)", color: "#6b7280", lineHeight: 1.8, marginBottom: 20 }}>
-                Our Compact Pole PhotoBooth is a sleek, iPad-powered photo experience that brings the party without taking over the room. Powered by the industry-trusted Salsa 1 photobooth system, it delivers crisp digital photos, instant sharing options, and a smooth, seamless guest experience — no matter how snug the venue.
+                The right backdrop transforms a good photo into a great one. Our Premium Backdrop collection features professional-grade 2.60m × 2.60m panels in a stunning variety of styles — lush florals, shimmering sequins, glittering glamour panels, vibrant balloon prints, bold abstracts, and more.
               </p>
               <p style={{ fontSize: "clamp(15px, 1.1vw, 18px)", color: "#6b7280", lineHeight: 1.8 }}>
-                Whether you&apos;re hosting an intimate birthday dinner, a cozy office celebration, a bridal shower, or a backyard gathering, the Compact Booth fits right in. It&apos;s the smart choice for hosts who want maximum entertainment in minimum space.
+                Available as a seamless add-on to any booth package, or as a standalone rental for events that just need a beautiful backdrop for their own photographer or selfie station. Browse our full collection in the gallery below — we&apos;re constantly adding new styles.
+              </p>
+              <p style={{ fontSize: "clamp(14px,1vw,17px)", color: "#9ca3af", lineHeight: 1.75, marginTop: 20 }}>
+                <em>Gallery — View our full backdrop catalogue in the grid gallery on this page. Contact us to check availability and reserve your favourite style.</em>
               </p>
             </div>
           </RevealOnScroll>
@@ -313,9 +307,9 @@ function Intro() {
   );
 }
 
-// ─── WHAT'S INCLUDED ───────────────────────────────────────────────────────────
+// ─── BACKDROP GALLERY ──────────────────────────────────────────────────────────
 
-function WhatsIncluded() {
+function BackdropGallery() {
   const underlineRef = useAnimatedPath();
 
   return (
@@ -335,19 +329,19 @@ function WhatsIncluded() {
           }}
           stagger={90}
         >
-          <AnimLine>What&apos;s</AnimLine>
+          <AnimLine>Our Backdrop</AnimLine>
           <AnimLine>
             <span style={{ position: "relative", display: "inline-block" }}>
-              Included.
+              Gallery.
               <svg
                 aria-hidden="true"
-                viewBox="0 0 260 14"
+                viewBox="0 0 200 14"
                 preserveAspectRatio="none"
                 style={{ position: "absolute", bottom: "-10px", left: "-2%", width: "104%", height: "14px", overflow: "visible" }}
               >
                 <path
                   ref={underlineRef}
-                  d="M3 9 C36 3, 90 13, 130 7 C170 1, 224 11, 257 6"
+                  d="M3 9 C28 3, 68 13, 100 7 C132 1, 172 11, 197 6"
                   fill="none"
                   stroke="#FF6B35"
                   strokeWidth="3"
@@ -358,33 +352,21 @@ function WhatsIncluded() {
           </AnimLine>
         </AnimatedText>
 
-        {/* 3-col mobile, 5-col tablet+, with fixed-height icon wells for consistent alignment */}
         <div
-          className="grid grid-cols-3 sm:grid-cols-5"
-          style={{ gap: "clamp(40px, 5vw, 72px) clamp(16px, 2vw, 32px)" }}
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5"
+          style={{ gap: "clamp(10px, 1.5vw, 16px)" }}
         >
-          {includedItems.map((item, i) => (
-            <RevealOnScroll key={i} delay={i * 55} className="h-full">
-              <div style={{
-                background: "#fff",
-                borderRadius: 16,
-                padding: "clamp(20px, 2vw, 28px) clamp(12px, 1.5vw, 20px)",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
-                height: "100%",
-              }}>
-                <div style={{ width: 72, height: 72, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14, flexShrink: 0 }}>
-                  <img
-                    src={item.icon}
-                    alt={item.label}
-                    style={{ width: 64, height: 64, objectFit: "contain", display: "block" }}
-                  />
-                </div>
-                <p style={{ fontSize: 12, fontWeight: 600, color: "#6b7280", lineHeight: 1.45, letterSpacing: "0.01em" }}>
-                  {item.label}
-                </p>
+          {backdropImages.map((img, i) => (
+            <RevealOnScroll key={i} delay={i * 45}>
+              <div style={{ borderRadius: "clamp(10px, 1.2vw, 16px)", overflow: "hidden", aspectRatio: "1/1" }}>
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="w-full h-full object-cover"
+                  style={{ display: "block", transition: "transform 0.5s cubic-bezier(0.22,1,0.36,1)" }}
+                  onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1.04)")}
+                  onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1)")}
+                />
               </div>
             </RevealOnScroll>
           ))}
@@ -415,14 +397,13 @@ function Pricing() {
                 <AnimLine>Pricing.</AnimLine>
               </AnimatedText>
               <p style={{ fontSize: "clamp(14px, 1vw, 16px)", color: "#9ca3af", marginTop: "clamp(16px, 2vw, 24px)", lineHeight: 1.7 }}>
-                Minimum booking: 2 hours. Starting at $199+ taxes.
+                2.60m × 2.60m professional backdrops. Add-on or standalone. Contact us for the full catalogue.
               </p>
             </div>
           </RevealOnScroll>
 
           <RevealOnScroll direction="right" delay={150}>
             <div style={{ borderRadius: "clamp(16px, 1.5vw, 20px)", overflow: "hidden", border: "1px solid #e5e7eb" }}>
-              {/* Table header */}
               <div
                 className="grid grid-cols-2"
                 style={{ background: "#141414", padding: "clamp(16px, 1.5vw, 20px) clamp(24px, 2.5vw, 36px)" }}
@@ -442,12 +423,12 @@ function Pricing() {
                     alignItems: "center",
                   }}
                 >
-                  <span style={{ fontSize: "clamp(14px, 1.1vw, 17px)", fontWeight: tier.muted ? 400 : 500, color: tier.muted ? "#9ca3af" : "#1a1a2e" }}>
+                  <span style={{ fontSize: "clamp(14px, 1.1vw, 17px)", fontWeight: 500, color: "#1a1a2e" }}>
                     {tier.label}
                   </span>
                   <span
                     className="font-heading"
-                    style={{ fontSize: "clamp(20px, 2vw, 30px)", letterSpacing: "-0.03em", color: tier.muted ? "#9ca3af" : "#FF6B35", textAlign: "right" }}
+                    style={{ fontSize: "clamp(20px, 2vw, 30px)", letterSpacing: "-0.03em", color: "#FF6B35", textAlign: "right" }}
                   >
                     {tier.price}
                   </span>
@@ -531,25 +512,16 @@ function FAQSection() {
             </div>
           </div>
 
-          {/* Sticky images column */}
+          {/* Sticky image column — single image (reuse hero) */}
           <div
             className="lg:col-span-5 hidden lg:block"
             style={{ alignSelf: "start", position: "sticky", top: "clamp(80px, 8vw, 120px)" }}
           >
             <RevealOnScroll direction="right">
-              <div style={{ borderRadius: "clamp(14px, 1.5vw, 20px)", overflow: "hidden", aspectRatio: "4/3", marginBottom: "clamp(16px, 1.5vw, 20px)" }}>
-                <img
-                  src="/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%203.jpg"
-                  alt="Compact Pole PhotoBooth photo example"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </RevealOnScroll>
-            <RevealOnScroll direction="right" delay={150}>
               <div style={{ borderRadius: "clamp(14px, 1.5vw, 20px)", overflow: "hidden", aspectRatio: "4/3" }}>
                 <img
-                  src="/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%204.jpg"
-                  alt="Compact Pole PhotoBooth at an event"
+                  src="/products/premium-backdrops/premium%20backdrops%201.jpg"
+                  alt="Premium backdrop at an event"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -558,22 +530,13 @@ function FAQSection() {
 
         </div>
 
-        {/* Mobile-only: images below FAQ */}
+        {/* Mobile-only: image below FAQ */}
         <div className="flex flex-col lg:hidden" style={{ gap: "clamp(14px, 3vw, 20px)", marginTop: "clamp(40px, 6vw, 64px)" }}>
           <RevealOnScroll>
             <div style={{ borderRadius: "clamp(14px, 1.5vw, 20px)", overflow: "hidden", aspectRatio: "4/3" }}>
               <img
-                src="/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%203.jpg"
-                alt="Compact Pole PhotoBooth photo example"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </RevealOnScroll>
-          <RevealOnScroll delay={100}>
-            <div style={{ borderRadius: "clamp(14px, 1.5vw, 20px)", overflow: "hidden", aspectRatio: "4/3" }}>
-              <img
-                src="/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%204.jpg"
-                alt="Compact Pole PhotoBooth at an event"
+                src="/products/premium-backdrops/premium%20backdrops%201.jpg"
+                alt="Premium backdrop at an event"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -591,15 +554,15 @@ function ReadyToBook() {
   return (
     <section style={{ padding: "clamp(80px, 12vw, 180px) 0", background: "#fff" }}>
       <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)", textAlign: "center" }}>
-          <AnimatedText
-            as="h2"
-            className="font-heading"
-            style={{ fontSize: "clamp(40px, 6vw, 90px)", lineHeight: 1.0, letterSpacing: "-0.04em", color: "#1a1a2e", marginBottom: "clamp(12px, 1.5vw, 20px)" }}
-            stagger={90}
-          >
-            <AnimLine>Ready to Book?</AnimLine>
-          </AnimatedText>
-          <RevealOnScroll delay={150}>
+        <AnimatedText
+          as="h2"
+          className="font-heading"
+          style={{ fontSize: "clamp(40px, 6vw, 90px)", lineHeight: 1.0, letterSpacing: "-0.04em", color: "#1a1a2e", marginBottom: "clamp(12px, 1.5vw, 20px)" }}
+          stagger={90}
+        >
+          <AnimLine>Ready to Book?</AnimLine>
+        </AnimatedText>
+        <RevealOnScroll delay={150}>
           <p style={{ fontSize: "clamp(16px, 1.3vw, 20px)", color: "#6b7280", lineHeight: 1.7, marginBottom: "clamp(32px, 4vw, 52px)" }}>
             Reach out and secure your date today!
           </p>
@@ -630,7 +593,7 @@ function ReadyToBook() {
 
 // ─── PAGE ──────────────────────────────────────────────────────────────────────
 
-export default function CompactPolePhotoBoothPage() {
+export default function PremiumBackdropsPage() {
   return (
     <>
       <SmoothScroll />
@@ -639,7 +602,7 @@ export default function CompactPolePhotoBoothPage() {
       <main>
         <Hero />
         <Intro />
-        <WhatsIncluded />
+        <BackdropGallery />
         <Pricing />
         <FAQSection />
         <ReadyToBook />

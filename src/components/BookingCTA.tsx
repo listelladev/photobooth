@@ -157,8 +157,8 @@ function SelectCard({
         transition: "all 0.2s",
         fontFamily: "dm-sans, sans-serif",
         display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
+        flexDirection: "row",
+        alignItems: "center",
       }}
     >
       {children}

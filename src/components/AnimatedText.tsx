@@ -29,15 +29,19 @@ export default function AnimatedText({
 
     const lines = el.querySelectorAll<HTMLElement>(".anim-line");
 
+    const revealAll = () => {
+      lines.forEach((line, i) => {
+        setTimeout(() => {
+          line.style.transform = "translateY(0)";
+          line.style.opacity = "1";
+        }, delay + i * stagger);
+      });
+    };
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          lines.forEach((line, i) => {
-            setTimeout(() => {
-              line.style.transform = "translateY(0)";
-              line.style.opacity = "1";
-            }, delay + i * stagger);
-          });
+          revealAll();
           observer.unobserve(el);
         }
       },
@@ -45,7 +49,27 @@ export default function AnimatedText({
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+
+    // Back navigation fix: browser restores scroll after mount, so the observer
+    // never fires for elements already in/above the viewport. Reveal them immediately.
+    let raf1: number, raf2: number;
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => {
+        if (window.scrollY > 50) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight) {
+            revealAll();
+            observer.unobserve(el);
+          }
+        }
+      });
+    });
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
   }, [delay, stagger]);
 
   return (

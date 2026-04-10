@@ -43,75 +43,75 @@ export interface LocationData {
 const sliderProducts = [
   {
     name: "Compact Pole PhotoBooth",
+    href: "/products/compact-pole-photobooth",
     tagline: "Space-saving & fun",
     desc: "A sleek, space-saving pole booth that delivers big on fun. Perfect for intimate gatherings and venues where space is at a premium — prints, props, and smiles included.",
-    image: "/salsa.jpeg",
+    image: "/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%201.jpg",
     accent: "#FFD6E8",
     accentText: "#be185d",
-    icon: "/icons/salsa-photobooth.svg",
   },
   {
     name: "Premium Pole PhotoBooth",
+    href: "/products/premium-pole-photobooth",
     tagline: "Polished & premium",
     desc: "Upgrade the classic booth experience with premium hardware and a polished finish. Crisp, high-quality prints paired with a sleek stand that looks as great as the photos it produces.",
-    image: "/salsa-photobooth.jpg",
+    image: "/products/premium-backdrops/Premium%20Pole%20PhotoBooth1.jpg",
     accent: "#FDE8C8",
     accentText: "#c2410c",
-    icon: "/icons/salsa-photobooth.svg",
   },
   {
     name: "AI PhotoBooth",
+    href: "/products/ai-photobooth",
     tagline: "Next-generation",
     desc: "Next-generation booth powered by AI. Generate stunning, personalized digital portraits with unique artistic styles and instant sharing — the most talked-about booth at any event.",
-    image: "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=1200&auto=format&fit=crop",
+    image: "/products/ai-photobooth/ai%20photobooth%201.jpg",
     accent: "#C8E6FF",
     accentText: "#1e40af",
-    icon: "/icons/360-photobooth.svg",
   },
   {
     name: "360 VideoBooth",
+    href: "/products/360-videobooth",
     tagline: "The show-stopper",
     desc: "Immerse your guests in an unforgettable experience by renting a 360-degree video booth for your event or celebration! Capture every angle, create stunning videos, and make lasting memories.",
-    image: "/360.jpeg",
+    image: "/products/360-videobooth/360%20video%20booth%201.jpg",
     accent: "#D4F4A0",
     accentText: "#3d6b00",
-    icon: "/icons/360-photobooth.svg",
   },
   {
     name: "Mirror PhotoBooth",
+    href: "/products/mirror-photobooth",
     tagline: "Elegant & interactive",
     desc: "A full-length mirror that doubles as a photo booth. Guests interact with a touch-screen interface, add digital props, sign their name, and walk away with a premium instant print.",
-    image: "/mirror.jpeg",
+    image: "/products/mirror-photobooth/mirror%20photobooth%201.jpg",
     accent: "#E8D6FF",
     accentText: "#5b21b6",
-    icon: "/icons/mirror.svg",
   },
   {
     name: "Audio GuestBook",
+    href: "/products/audio-guestbook",
     tagline: "Capture every voice",
     desc: "Give your guests a voice. Record heartfelt audio messages, well-wishes, and memories that you can listen back to for years to come — a truly timeless keepsake for any celebration.",
-    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1200&auto=format&fit=crop",
+    image: "/products/audio-guestbook/audio%20guestbook%201.jpg",
     accent: "#C8F5E8",
     accentText: "#065f46",
-    icon: "/icons/backdrops.svg",
   },
   {
     name: "Premium Backdrops",
+    href: "/products/premium-backdrops",
     tagline: "Set the scene",
     desc: "Add a touch of celebration to your event with our vibrant collection of high quality photo booth backdrops. Create a fun and festive atmosphere while capturing unforgettable memories.",
-    image: "/SalsaPromoHighRes148-scaled-1.png",
+    image: "/products/premium-backdrops/premium%20backdrops%201.jpg",
     accent: "#FFD6D6",
     accentText: "#be3535",
-    icon: "/icons/backdrops.svg",
   },
   {
     name: "Instant High Quality Printing",
+    href: "/products/instant-high-quality-printing",
     tagline: "Take it home",
     desc: "Walk away with a tangible memory in seconds. Our professional-grade printers deliver vibrant, lab-quality prints that guests can take home from your event — no waiting, no compromise.",
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop",
+    image: "/products/instant-high-quality-printing/instant%20high%20quality%20prints%201.jpg",
     accent: "#FFF3C8",
     accentText: "#92400e",
-    icon: "/icons/unlimited-prints.svg",
   },
 ];
 
@@ -459,7 +459,7 @@ function ProductsSlider() {
           {sliderProducts.map((product) => (
             <div key={product.name} style={{ flexShrink: 0, width: "clamp(280px, 40vw, 440px)", scrollSnapAlign: "start" }}>
               <div style={{ background: "#fff", borderRadius: "clamp(16px, 2vw, 24px)", overflow: "hidden", border: "1px solid #ebebeb", height: "100%" }}>
-                <div style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden" }}>
+                <a href={product.href} style={{ display: "block", position: "relative", aspectRatio: "4/3", overflow: "hidden" }}>
                   <img src={product.image} alt={product.name} className="w-full h-full object-cover"
                     style={{ transition: "transform 0.6s cubic-bezier(0.22,1,0.36,1)" }}
                     onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1.04)")}
@@ -470,19 +470,19 @@ function ProductsSlider() {
                   <span style={{ position: "absolute", top: 16, left: 16, background: product.accent, color: product.accentText, fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" as const, padding: "5px 14px", borderRadius: 60 }}>
                     {product.tagline}
                   </span>
-                </div>
+                </a>
                 <div style={{ padding: "clamp(20px, 2.5vw, 28px)" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
                     <span style={{ width: 10, height: 10, borderRadius: "50%", background: product.accent, border: "1.5px solid rgba(0,0,0,0.1)", flexShrink: 0 }} />
                     <h3 className="font-heading" style={{ fontSize: "clamp(20px, 1.8vw, 26px)", letterSpacing: "-0.025em", color: "#1a1a2e", lineHeight: 1.1 }}>{product.name}</h3>
                   </div>
                   <p style={{ fontSize: "clamp(14px, 1vw, 16px)", fontWeight: 400, lineHeight: 1.7, color: "#6b7280", marginBottom: 20 }}>{product.desc}</p>
-                  <a href="#book" className="inline-flex items-center"
+                  <a href={product.href} className="inline-flex items-center"
                     style={{ fontSize: 14, fontWeight: 700, color: "#1a1a2e", gap: 6, textDecoration: "none", transition: "opacity 0.3s" }}
                     onMouseEnter={e => (e.currentTarget.style.opacity = "0.6")}
                     onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
                   >
-                    Book Now
+                    Learn More
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>

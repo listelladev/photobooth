@@ -11,7 +11,18 @@ const activityItems = [
   { label: "Corporate",      href: "/events/calgary-corporate-photo-booth",     emoji: "🏢", accent: "#00B894" },
 ];
 
-// ─── DESKTOP DROPDOWN ─────────────────────────────────────────────────────────
+const productItems = [
+  { label: "Compact Pole PhotoBooth",      href: "/products/compact-pole-photobooth",       thumb: "/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%201.jpg" },
+  { label: "Premium Pole PhotoBooth",      href: "/products/premium-pole-photobooth",        thumb: "/products/premium-backdrops/Premium%20Pole%20PhotoBooth1.jpg" },
+  { label: "AI PhotoBooth",               href: "/products/ai-photobooth",                  thumb: "/products/ai-photobooth/ai%20photobooth%201.jpg" },
+  { label: "360 VideoBooth",              href: "/products/360-videobooth",                  thumb: "/products/360-videobooth/360%20video%20booth%201.jpg" },
+  { label: "Mirror PhotoBooth",           href: "/products/mirror-photobooth",              thumb: "/products/mirror-photobooth/mirror%20photobooth%201.jpg" },
+  { label: "Audio GuestBook",             href: "/products/audio-guestbook",                thumb: "/products/audio-guestbook/audio%20guestbook%201.jpg" },
+  { label: "Premium Backdrops",           href: "/products/premium-backdrops",              thumb: "/products/premium-backdrops/premium%20backdrops%201.jpg" },
+  { label: "Instant High Quality Printing", href: "/products/instant-high-quality-printing", thumb: "/products/instant-high-quality-printing/instant%20high%20quality%20prints%201.jpg" },
+];
+
+// ─── EVENTS DESKTOP DROPDOWN ──────────────────────────────────────────────────
 function ActivitiesDropdown({ visible }: { visible: boolean }) {
   return (
     <div
@@ -90,6 +101,84 @@ function ActivityDropdownItem({ item, delay, visible }: { item: (typeof activity
   );
 }
 
+// ─── PRODUCTS DESKTOP DROPDOWN ────────────────────────────────────────────────
+function ProductsDropdown({ visible }: { visible: boolean }) {
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: "calc(100% + 14px)",
+        left: "50%",
+        transform: visible
+          ? "translateX(-50%) translateY(0) scale(1)"
+          : "translateX(-50%) translateY(-10px) scale(0.96)",
+        opacity: visible ? 1 : 0,
+        pointerEvents: visible ? "auto" : "none",
+        transition: "opacity 0.28s cubic-bezier(0.22,1,0.36,1), transform 0.32s cubic-bezier(0.34,1.56,0.64,1)",
+        transformOrigin: "top center",
+        width: 480,
+        background: "#fff",
+        borderRadius: 20,
+        boxShadow: "0 8px 48px rgba(0,0,0,0.14), 0 1px 4px rgba(0,0,0,0.06)",
+        padding: "10px 10px 8px",
+        zIndex: 100,
+      }}
+    >
+      <div style={{ position: "absolute", top: -6, left: "50%", transform: "translateX(-50%)", width: 12, height: 12, background: "#fff", borderRadius: 2, rotate: "45deg", boxShadow: "-2px -2px 6px rgba(0,0,0,0.04)" }} />
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4 }}>
+        {productItems.map((item, i) => (
+          <ProductDropdownItem key={item.href} item={item} delay={i * 22} visible={visible} />
+        ))}
+      </div>
+      <div style={{ marginTop: 8, borderTop: "1px solid #f3f4f6", paddingTop: 8 }}>
+        <a
+          href="/products"
+          className="flex items-center justify-between"
+          style={{ padding: "10px 14px", borderRadius: 12, textDecoration: "none", transition: "background 0.2s" }}
+          onMouseEnter={e => (e.currentTarget.style.background = "#f9f9f9")}
+          onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
+        >
+          <span style={{ fontSize: 13, fontWeight: 700, color: "#1a1a2e", fontFamily: "dm-sans, sans-serif", letterSpacing: "0.01em" }}>View All Products</span>
+          <span style={{ fontSize: 13, color: "#FF6B35", fontWeight: 700 }}>→</span>
+        </a>
+      </div>
+    </div>
+  );
+}
+
+function ProductDropdownItem({ item, delay, visible }: { item: (typeof productItems)[0]; delay: number; visible: boolean }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <a
+      href={item.href}
+      style={{
+        display: "flex", alignItems: "center", gap: 12, padding: "10px 12px", borderRadius: 14,
+        textDecoration: "none",
+        background: hovered ? "rgba(0,0,0,0.04)" : "transparent",
+        transition: "background 0.2s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1)",
+        transform: hovered ? "scale(1.02)" : "scale(1)",
+        opacity: visible ? 1 : 0,
+        transitionDelay: `${delay}ms`,
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <span style={{
+        width: 38, height: 38, borderRadius: 10,
+        overflow: "hidden",
+        flexShrink: 0,
+        transition: "transform 0.25s cubic-bezier(0.34,1.56,0.64,1)",
+        transform: hovered ? "scale(1.08)" : "scale(1)",
+      }}>
+        <img src={item.thumb} alt={item.label} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+      </span>
+      <span style={{ fontSize: 13, fontWeight: 700, color: "#1a1a2e", fontFamily: "epilogue, sans-serif", letterSpacing: "-0.01em", transition: "color 0.2s", lineHeight: 1.3 }}>
+        {item.label}
+      </span>
+    </a>
+  );
+}
+
 // ─── MOBILE ACTIVITY CARD ─────────────────────────────────────────────────────
 function MobileActivityItem({ item, index, visible, onClick }: { item: (typeof activityItems)[0]; index: number; visible: boolean; onClick: () => void }) {
   const [hovered, setHovered] = useState(false);
@@ -126,14 +215,47 @@ function MobileActivityItem({ item, index, visible, onClick }: { item: (typeof a
   );
 }
 
+// ─── MOBILE PRODUCT ITEM ──────────────────────────────────────────────────────
+function MobileProductItem({ item, index, visible, onClick }: { item: (typeof productItems)[0]; index: number; visible: boolean; onClick: () => void }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <a
+      href={item.href}
+      onClick={onClick}
+      style={{
+        display: "flex", alignItems: "center", gap: 10, padding: "10px 12px", borderRadius: 14,
+        textDecoration: "none",
+        background: hovered ? "rgba(0,0,0,0.05)" : "rgba(0,0,0,0.02)",
+        transition: "background 0.2s, opacity 0.3s ease, transform 0.35s cubic-bezier(0.34,1.56,0.64,1)",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0) scale(1)" : "translateY(8px) scale(0.96)",
+        transitionDelay: visible ? `${index * 30}ms` : "0ms",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <span style={{ width: 34, height: 34, borderRadius: 9, overflow: "hidden", flexShrink: 0 }}>
+        <img src={item.thumb} alt={item.label} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+      </span>
+      <span style={{ fontSize: 13, fontWeight: 700, color: "#1a1a2e", fontFamily: "epilogue, sans-serif", letterSpacing: "-0.01em", lineHeight: 1.3 }}>
+        {item.label}
+      </span>
+    </a>
+  );
+}
+
 // ─── NAVBAR ───────────────────────────────────────────────────────────────────
 export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [overLight, setOverLight] = useState(false);
   const [activitiesOpen, setActivitiesOpen] = useState(false);
   const [activitiesMobileOpen, setActivitiesMobileOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
+  const [productsMobileOpen, setProductsMobileOpen] = useState(false);
   const activitiesRef = useRef<HTMLDivElement>(null);
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const productsRef = useRef<HTMLDivElement>(null);
+  const activitiesCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const productsCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const onScroll = () => setOverLight(window.scrollY > window.innerHeight * 0.85);
@@ -142,21 +264,27 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const openDropdown = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
+  const openActivities = () => {
+    if (activitiesCloseTimer.current) clearTimeout(activitiesCloseTimer.current);
     setActivitiesOpen(true);
   };
-  const closeDropdown = () => {
-    closeTimer.current = setTimeout(() => setActivitiesOpen(false), 120);
+  const closeActivities = () => {
+    activitiesCloseTimer.current = setTimeout(() => setActivitiesOpen(false), 120);
+  };
+
+  const openProducts = () => {
+    if (productsCloseTimer.current) clearTimeout(productsCloseTimer.current);
+    setProductsOpen(true);
+  };
+  const closeProducts = () => {
+    productsCloseTimer.current = setTimeout(() => setProductsOpen(false), 120);
   };
 
   const isDark = forceDark || overLight;
-  // On mobile when menu is open, always use dark text (nav bar turns white)
   const textColor = (isDark || menuOpen) ? "#1a1a2e" : "#fff";
   const textColorMuted = isDark ? "rgba(26,26,46,0.7)" : "rgba(255,255,255,0.85)";
 
   const navLinks = [
-    { label: "Products",  href: "/products" },
     { label: "Locations", href: "/locations" },
     { label: "About",     href: "/about" },
     { label: "Contact",   href: "/contact" },
@@ -164,7 +292,7 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
 
   return (
     <>
-      {/* Backdrop overlay — mobile only, behind the menu card */}
+      {/* Backdrop overlay — mobile only */}
       <div
         className="md:hidden fixed inset-0"
         style={{
@@ -174,19 +302,19 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
           transition: "opacity 0.3s ease",
           zIndex: 49,
         }}
-        onClick={() => { setMenuOpen(false); setActivitiesMobileOpen(false); }}
+        onClick={() => { setMenuOpen(false); setActivitiesMobileOpen(false); setProductsMobileOpen(false); }}
       />
 
-      <header className="fixed left-0 right-0 z-50 transition-all duration-500" style={{ top: "clamp(8px, 1vw, 16px)" }}>
+      <header className="fixed left-0 right-0 z-50 transition-all duration-500 md:pt-4" style={{ top: "clamp(8px, 1vw, 16px)" }}>
 
-        {/* Mobile nav bar white background — connects header to dropdown card */}
+        {/* Mobile nav bar white background */}
         <div
           className="md:hidden absolute"
           style={{
             top: 0,
             left: "clamp(8px, 1vw, 16px)",
             right: "clamp(8px, 1vw, 16px)",
-            height: 78, // nav height (72) + gap to card (6)
+            height: 78,
             background: menuOpen ? "#fff" : "transparent",
             borderRadius: "20px 20px 0 0",
             transition: "background 0.25s ease",
@@ -198,7 +326,6 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1400, margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)" }}>
           <nav className="flex items-center justify-between" style={{ height: 72 }}>
             <a href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
-              {/* White logo on dark bg, black logo on light bg */}
               <img
                 src={isDark || menuOpen ? "/main-logo-black.png" : "/main-logo-white.png"}
                 alt="Photobooth Experience"
@@ -213,6 +340,22 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
 
             {/* Desktop nav */}
             <div className="hidden md:flex items-center" style={{ gap: "clamp(24px, 3vw, 44px)" }}>
+
+              {/* Products dropdown */}
+              <div ref={productsRef} style={{ position: "relative" }} onMouseEnter={openProducts} onMouseLeave={closeProducts}>
+                <a
+                  href="/products"
+                  style={{ fontSize: 15, fontWeight: 500, color: textColorMuted, transition: "color 0.4s ease, opacity 0.3s", display: "flex", alignItems: "center", gap: 5, textDecoration: "none" }}
+                  className="transition-all duration-300 hover:opacity-50"
+                >
+                  Products
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1)", transform: productsOpen ? "rotate(180deg)" : "rotate(0deg)", opacity: 0.6 }}>
+                    <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+                <ProductsDropdown visible={productsOpen} />
+              </div>
+
               {navLinks.map((item) => (
                 <a
                   key={item.label}
@@ -223,7 +366,9 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
                   {item.label}
                 </a>
               ))}
-              <div ref={activitiesRef} style={{ position: "relative" }} onMouseEnter={openDropdown} onMouseLeave={closeDropdown}>
+
+              {/* Events dropdown */}
+              <div ref={activitiesRef} style={{ position: "relative" }} onMouseEnter={openActivities} onMouseLeave={closeActivities}>
                 <a
                   href="/events"
                   style={{ fontSize: 15, fontWeight: 500, color: textColorMuted, transition: "color 0.4s ease, opacity 0.3s", display: "flex", alignItems: "center", gap: 5, textDecoration: "none" }}
@@ -236,6 +381,7 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
                 </a>
                 <ActivitiesDropdown visible={activitiesOpen} />
               </div>
+
               <a
                 href="/contact"
                 className="transition-all duration-300 hover:opacity-80"
@@ -247,7 +393,7 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
 
             {/* Mobile toggle */}
             <button
-              onClick={() => { setMenuOpen(!menuOpen); if (menuOpen) setActivitiesMobileOpen(false); }}
+              onClick={() => { setMenuOpen(!menuOpen); if (menuOpen) { setActivitiesMobileOpen(false); setProductsMobileOpen(false); } }}
               className="md:hidden cursor-pointer"
               style={{ fontSize: 15, fontWeight: 600, color: textColor, background: "none", border: "none", padding: 0, transition: "color 0.4s ease" }}
               aria-label="Menu"
@@ -301,6 +447,52 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
 
             <div style={{ height: 1, background: "#f3f4f6", margin: "4px 4px" }} />
 
+            {/* Products accordion */}
+            <div>
+              <button
+                onClick={() => setProductsMobileOpen(!productsMobileOpen)}
+                style={{
+                  width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
+                  padding: "11px 14px", borderRadius: 14,
+                  background: productsMobileOpen ? "#f9f9f9" : "transparent",
+                  border: "none", cursor: "pointer", fontSize: 15, fontWeight: 700, color: "#1a1a2e",
+                  fontFamily: "epilogue, sans-serif", letterSpacing: "-0.01em",
+                  transition: "background 0.2s, opacity 0.3s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1)",
+                  opacity: menuOpen ? 1 : 0,
+                  transform: menuOpen ? "translateY(0)" : "translateY(6px)",
+                  transitionDelay: menuOpen ? `${navLinks.length * 35}ms` : "0ms",
+                }}
+              >
+                Products
+                <svg width="14" height="14" viewBox="0 0 12 12" fill="none"
+                  style={{ transition: "transform 0.35s cubic-bezier(0.34,1.56,0.64,1)", transform: productsMobileOpen ? "rotate(180deg)" : "rotate(0deg)", color: "#9ca3af", flexShrink: 0 }}>
+                  <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+
+              <div style={{ maxHeight: productsMobileOpen ? 600 : 0, overflow: "hidden", transition: "max-height 0.5s cubic-bezier(0.22,1,0.36,1)" }}>
+                <div style={{ padding: "6px 0 4px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4 }}>
+                  {productItems.map((item, i) => (
+                    <MobileProductItem key={item.href} item={item} index={i} visible={productsMobileOpen} onClick={() => setMenuOpen(false)} />
+                  ))}
+                </div>
+                <div style={{ borderTop: "1px solid #f3f4f6", margin: "4px 0 0" }}>
+                  <a
+                    href="/products"
+                    onClick={() => setMenuOpen(false)}
+                    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 14px", borderRadius: 12, textDecoration: "none", transition: "background 0.2s" }}
+                    onMouseEnter={e => (e.currentTarget.style.background = "#f9f9f9")}
+                    onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
+                  >
+                    <span style={{ fontSize: 13, fontWeight: 700, color: "#1a1a2e", fontFamily: "dm-sans, sans-serif" }}>View All Products</span>
+                    <span style={{ fontSize: 13, color: "#FF6B35", fontWeight: 700 }}>→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ height: 1, background: "#f3f4f6", margin: "4px 4px" }} />
+
             {/* Activities accordion */}
             <div>
               <button
@@ -314,7 +506,7 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
                   transition: "background 0.2s, opacity 0.3s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1)",
                   opacity: menuOpen ? 1 : 0,
                   transform: menuOpen ? "translateY(0)" : "translateY(6px)",
-                  transitionDelay: menuOpen ? `${navLinks.length * 35}ms` : "0ms",
+                  transitionDelay: menuOpen ? `${(navLinks.length + 1) * 35}ms` : "0ms",
                 }}
               >
                 Events
@@ -358,7 +550,7 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
                 opacity: menuOpen ? 1 : 0,
                 transform: menuOpen ? "translateY(0)" : "translateY(6px)",
                 transition: "opacity 0.3s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1)",
-                transitionDelay: menuOpen ? `${(navLinks.length + 1) * 35}ms` : "0ms",
+                transitionDelay: menuOpen ? `${(navLinks.length + 2) * 35}ms` : "0ms",
               }}
             >
               Book Now

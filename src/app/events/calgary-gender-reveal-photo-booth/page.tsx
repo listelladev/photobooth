@@ -96,7 +96,7 @@ const genderRevealSections: SectionData[] = [
   {
     bg: "#f9f9f9",
     imageLeft: true,
-    image: "/salsa.jpeg",
+    image: "/gender-reveals-page/Gender Reveal - Celebrate in style.jpg",
     imageAlt: "Guests celebrating at a gender reveal photo booth in Calgary",
     label: "The Experience",
     heading: (
@@ -111,7 +111,7 @@ const genderRevealSections: SectionData[] = [
   {
     bg: "#fff",
     imageLeft: false,
-    image: "/mirror.jpeg",
+    image: "/gender-reveals-page/Gender Reveal Team Boy or Team Girl.jpg",
     imageAlt: "Mirror photo booth at a Calgary gender reveal party",
     label: "Themed Props",
     heading: (
@@ -133,7 +133,7 @@ const genderRevealSections: SectionData[] = [
   {
     bg: "#f9f9f9",
     imageLeft: true,
-    image: "/SalsaPromoHighRes148-scaled-1.png",
+    image: "/gender-reveals-page/Gender Reveal - Backdrops & Frams Built for the Reveal.jpg",
     imageAlt: "Custom gender reveal themed photo frame with pink and blue colors in Calgary",
     label: "The Details",
     heading: (
@@ -148,7 +148,7 @@ const genderRevealSections: SectionData[] = [
   {
     bg: "#fff",
     imageLeft: false,
-    image: "/360.jpeg",
+    image: "/gender-reveals-page/Gender Reveal - Instant Sharing Digital Delivery.png",
     imageAlt: "360 photo booth capturing a Calgary gender reveal celebration",
     label: "Share the Joy",
     heading: (

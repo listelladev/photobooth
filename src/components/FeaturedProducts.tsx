@@ -36,6 +36,7 @@ const products = [
   },
   {
     name: "Premium Pole PhotoBooth",
+    href: "/products/premium-pole-photobooth",
     description:
       "Upgrade the classic booth experience with premium hardware and a polished finish. Crisp, high-quality prints paired with a sleek stand that looks as great as the photos it produces.",
     images: [
@@ -49,6 +50,7 @@ const products = [
   },
   {
     name: "AI PhotoBooth",
+    href: "/products/ai-photobooth",
     description:
       "Next-generation booth powered by AI. Generate stunning, personalized digital portraits with unique artistic styles and instant sharing — the most talked-about booth at any event.",
     images: [
@@ -62,6 +64,7 @@ const products = [
   },
   {
     name: "360 VideoBooth",
+    href: "/products/360-videobooth",
     description:
       "Immerse your guests in an unforgettable experience by renting a 360-degree video booth for your event or celebration! Capture every angle, create stunning videos, and make lasting memories.",
     images: [
@@ -75,6 +78,7 @@ const products = [
   },
   {
     name: "Mirror PhotoBooth",
+    href: "/products/mirror-photobooth",
     description:
       "Immerse yourself in the captivating experience of a photo mirror at your special event. This interactive and innovative feature brings a touch of elegance and fun, allowing guests to capture unique moments with a simple touch.",
     images: [
@@ -88,6 +92,7 @@ const products = [
   },
   {
     name: "Audio GuestBook",
+    href: "/products/audio-guestbook",
     description:
       "Give your guests a voice. Record heartfelt audio messages, well-wishes, and memories that you can listen back to for years to come — a truly timeless keepsake for any celebration.",
     images: [
@@ -101,6 +106,7 @@ const products = [
   },
   {
     name: "Premium Backdrops",
+    href: "/products/premium-backdrops",
     description:
       "Add a touch of celebration to your event with our vibrant collection of high quality photo booth backdrops! Create a fun and festive atmosphere while capturing unforgettable memories. Contact us for backdrop catalogue.",
     images: [
@@ -114,6 +120,7 @@ const products = [
   },
   {
     name: "Instant High Quality Printing",
+    href: "/products/instant-high-quality-printing",
     description:
       "Walk away with a tangible memory in seconds. Our professional-grade printers deliver vibrant, lab-quality prints that guests can take home from your event — no waiting, no compromise.",
     images: [
@@ -288,14 +295,16 @@ function ProductCard({ product }: { product: (typeof products)[0] }) {
          */}
         <div style={{ position: "relative" }}>
           <div className="relative overflow-hidden" style={{ aspectRatio: "4 / 3" }}>
-            <img
-              key={mainImg}
-              src={mainImg}
-              alt={product.name}
-              className="w-full h-full object-cover"
-              style={{ animation: "fadeIn 0.4s ease-out" }}
-            />
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: "rgba(0,0,0,0.06)" }} />
+            <a href={product.href} style={{ display: "block", width: "100%", height: "100%" }}>
+              <img
+                key={mainImg}
+                src={mainImg}
+                alt={product.name}
+                className="w-full h-full object-cover"
+                style={{ animation: "fadeIn 0.4s ease-out" }}
+              />
+            </a>
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ background: "rgba(0,0,0,0.06)" }} />
 
             {/* inside-image: sits inside overflow:hidden, clipped to image bounds */}
             {product.iconPlacement === "inside-image" && (

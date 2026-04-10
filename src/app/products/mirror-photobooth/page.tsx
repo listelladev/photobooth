@@ -12,55 +12,52 @@ import AnimatedText, { AnimLine } from "@/components/AnimatedText";
 
 const includedItems = [
   { icon: "/icons/product-pages/still-photos.svg", label: "Still Photos" },
-  { icon: "/icons/product-pages/animated-gif.svg", label: "Animated GIF" },
-  { icon: "/icons/product-pages/boomerang-gif.svg", label: "Boomerang GIF" },
   { icon: "/icons/product-pages/pro-quality-on-site-printing.svg", label: "Pro-Quality On Site Printing" },
   { icon: "/icons/product-pages/social-sharing-airdrops-and-qr-codes.svg", label: "Social Sharing, Airdrops & QR Codes" },
   { icon: "/icons/product-pages/custom-branding-and-frames.svg", label: "Custom Branding & Frames" },
-  { icon: "/icons/product-pages/data-capture.svg", label: "Data Capture" },
   { icon: "/icons/product-pages/set-up-and-take-down.svg", label: "Set up and Take Down" },
   { icon: "/icons/product-pages/props.svg", label: "Props" },
 ];
 
 const pricingTiers = [
-  { label: "2 Hours", price: "$299" },
-  { label: "3 Hours", price: "$399" },
-  { label: "4 Hours", price: "$499" },
-  { label: "Additional Hour", price: "$99 / hr", muted: true },
+  { label: "2 Hours", price: "$499" },
+  { label: "3 Hours", price: "$699" },
+  { label: "4 Hours", price: "$899" },
+  { label: "Additional Hour", price: "$199 / hr", muted: true },
 ];
 
 const faqs = [
   {
-    q: "What is the Compact Pole PhotoBooth?",
-    a: "It's an iPad-based photo booth powered by the Salsa 1 system — a slim, modern pole-mounted unit that captures high-quality photos and GIFs. It's designed for spaces where a traditional enclosed booth would be too bulky.",
+    q: "What is a Mirror PhotoBooth?",
+    a: "A Mirror PhotoBooth is a full-length interactive mirror with a built-in camera and touchscreen interface. It looks like a sleek floor mirror until guests approach it — then it activates with animations, instructions, and a fun guided photo experience.",
+  },
+  {
+    q: "How does the interaction work?",
+    a: "Guests tap the mirror to start their session. Animated prompts guide them through posing, applying fun digital props, adding a signature or message, and choosing their sharing options — all by touching the mirror surface.",
+  },
+  {
+    q: "Can guests sign their photos?",
+    a: "Yes! One of the most popular features is digital signature capture. Guests can write a personal message directly on the mirror, and it appears on their printed photo — making each print truly unique.",
+  },
+  {
+    q: "Does the Mirror Booth include printing?",
+    a: "Yes — printing is included with the Mirror Booth. Guests receive a professional 4×6\" photo or 2×6\" strip moments after their session.",
+  },
+  {
+    q: "Is the Mirror Booth suitable for weddings?",
+    a: "It's one of our most popular choices for weddings. The elegant aesthetic complements wedding décor beautifully, and the signature capture feature makes it a wonderful interactive guestbook alternative.",
   },
   {
     q: "How much space does it need?",
-    a: "Very little! The Compact Booth needs approximately 4×4 ft of floor space — making it ideal for small venues, tight corners, or events with limited room to spare.",
+    a: "We recommend a minimum 6×6 ft space to allow guests to stand comfortably in front of the full-length mirror and pose freely.",
   },
   {
-    q: "Can we customize the photo templates?",
-    a: "Absolutely. We'll work with you before your event to design a template that matches your theme, colours, and branding. Just let us know your vision!",
+    q: "Can the mirror display be customized for our event?",
+    a: "Absolutely. We customize the on-screen interface, branding, colour themes, and print templates to perfectly match your event aesthetic.",
   },
   {
-    q: "Can guests share their photos digitally?",
-    a: "Yes — every guest can instantly receive their photos via QR code and share directly to social media, text, or email from their own phone.",
-  },
-  {
-    q: "Is printing available with this booth?",
-    a: "Printing isn't included by default, but you can easily add our Instant High Quality Printing add-on to get beautiful lab-grade prints on the spot.",
-  },
-  {
-    q: "How long does setup and teardown take?",
-    a: "Typically around 30–45 minutes for setup. We arrive early so everything is ready before your guests arrive. Teardown is equally quick and unobtrusive.",
-  },
-  {
-    q: "Is an attendant included?",
-    a: "Yes — every booth rental includes a professional, friendly attendant who manages the booth, assists guests, and ensures everything runs smoothly all night.",
-  },
-  {
-    q: "What types of events is this booth best for?",
-    a: "It shines at intimate weddings, birthday parties, baby showers, bridal showers, office holiday parties, and any event in a smaller or cozy venue.",
+    q: "Is it easy for older guests to use?",
+    a: "The Mirror Booth is designed to be intuitive for all ages. The on-screen prompts walk every guest through the process step by step — no tech experience needed.",
   },
 ];
 
@@ -144,8 +141,8 @@ function Hero() {
       >
         <div className="absolute inset-0">
           <img
-            src="/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%201.jpg"
-            alt="Compact Pole PhotoBooth setup"
+            src="/products/mirror-photobooth/mirror%20photobooth%201.jpg"
+            alt="Mirror PhotoBooth setup at an elegant event"
             className="w-full h-full object-cover"
             style={{ objectPosition: "center 30%" }}
           />
@@ -179,18 +176,17 @@ function Hero() {
               transition: "opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s",
             }}
           >
-            {/* "Compact Pole" with animated underline */}
             <span style={{ position: "relative", display: "inline-block" }}>
-              Compact Pole
+              Mirror
               <svg
                 aria-hidden="true"
-                viewBox="0 0 320 14"
+                viewBox="0 0 200 14"
                 preserveAspectRatio="none"
                 style={{ position: "absolute", bottom: "-10px", left: "-1%", width: "102%", height: "14px", overflow: "visible" }}
               >
                 <path
                   ref={underlineRef}
-                  d="M4 10 C40 3, 100 13, 160 7 C220 1, 280 11, 316 6"
+                  d="M3 10 C28 3, 68 13, 100 7 C132 1, 172 11, 197 6"
                   fill="none"
                   stroke="#FF6B35"
                   strokeWidth="3.5"
@@ -215,7 +211,7 @@ function Hero() {
                 transition: "transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.5s, opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.5s",
               }}
             >
-              Big Fun. Small Footprint. Perfect for Any Intimate Occasion.
+              Elegant. Interactive. Endlessly Entertaining. The Booth That Steals the Show.
             </p>
           </div>
           <div style={{ overflow: "hidden", marginTop: "clamp(28px, 3.5vw, 48px)" }}>
@@ -260,8 +256,8 @@ function Intro() {
           <RevealOnScroll direction="left" className="order-2 lg:order-1">
             <div style={{ borderRadius: "clamp(16px, 2vw, 24px)", overflow: "hidden", aspectRatio: "4/3", position: "relative" }}>
               <img
-                src="/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%202.jpg"
-                alt="Compact Pole PhotoBooth in use at an event"
+                src="/products/mirror-photobooth/mirror%20photobooth%202.jpg"
+                alt="Mirror PhotoBooth guest interaction"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -275,19 +271,19 @@ function Intro() {
                 style={{ fontSize: "clamp(32px, 4vw, 60px)", lineHeight: 1.05, letterSpacing: "-0.04em", color: "#1a1a2e", marginBottom: "clamp(20px, 2.5vw, 32px)" }}
                 stagger={90}
               >
-                <AnimLine>Big on{" "}
+                <AnimLine>The booth that</AnimLine>
+                <AnimLine>
                   <span style={{ position: "relative", display: "inline-block" }}>
-                    fun.
-                    {/* Circle around "fun." */}
+                    steals
                     <svg
                       aria-hidden="true"
-                      viewBox="0 0 96 56"
+                      viewBox="0 0 128 56"
                       preserveAspectRatio="none"
                       style={{ position: "absolute", top: "-0.06em", bottom: "-0.08em", left: "-0.1em", right: "-0.1em", width: "calc(100% + 0.2em)", height: "calc(100% + 0.14em)", overflow: "visible", pointerEvents: "none" }}
                     >
                       <path
                         ref={circleRef}
-                        d="M48 3 C70 1, 88 12, 93 28 C97 42, 88 52, 72 55 C56 58, 34 56, 18 50 C4 44, 1 30, 5 18 C10 7, 28 1, 48 3"
+                        d="M64 3 C88 1, 116 12, 121 28 C125 42, 114 52, 96 55 C78 58, 44 56, 24 50 C6 44, 3 30, 7 18 C13 7, 38 1, 64 3"
                         fill="none"
                         stroke="#FF6B35"
                         strokeWidth="2.5"
@@ -295,14 +291,14 @@ function Intro() {
                       />
                     </svg>
                   </span>
+                  {" "}the <em style={{ fontStyle: "italic" }}>show.</em>
                 </AnimLine>
-                <AnimLine>Small on <em style={{ fontStyle: "italic" }}>footprint.</em></AnimLine>
               </AnimatedText>
               <p style={{ fontSize: "clamp(15px, 1.1vw, 18px)", color: "#6b7280", lineHeight: 1.8, marginBottom: 20 }}>
-                Our Compact Pole PhotoBooth is a sleek, iPad-powered photo experience that brings the party without taking over the room. Powered by the industry-trusted Salsa 1 photobooth system, it delivers crisp digital photos, instant sharing options, and a smooth, seamless guest experience — no matter how snug the venue.
+                At first glance, it&apos;s a stunning full-length mirror. Then it comes to life. The Mirror PhotoBooth combines timeless elegance with cutting-edge interactive technology — a 6-foot-tall touchscreen experience that guides guests through a personalised photo session with animated prompts, fun digital props, and signature capture.
               </p>
               <p style={{ fontSize: "clamp(15px, 1.1vw, 18px)", color: "#6b7280", lineHeight: 1.8 }}>
-                Whether you&apos;re hosting an intimate birthday dinner, a cozy office celebration, a bridal shower, or a backyard gathering, the Compact Booth fits right in. It&apos;s the smart choice for hosts who want maximum entertainment in minimum space.
+                The Mirror Booth isn&apos;t just a photo booth — it&apos;s a statement piece. Perfect for weddings, milestone birthdays, galas, and corporate events where you want something truly unforgettable. Every guest leaves with a beautiful print and a memory that lasts long after the night is over.
               </p>
             </div>
           </RevealOnScroll>
@@ -358,9 +354,8 @@ function WhatsIncluded() {
           </AnimLine>
         </AnimatedText>
 
-        {/* 3-col mobile, 5-col tablet+, with fixed-height icon wells for consistent alignment */}
         <div
-          className="grid grid-cols-3 sm:grid-cols-5"
+          className="grid grid-cols-3 sm:grid-cols-6"
           style={{ gap: "clamp(40px, 5vw, 72px) clamp(16px, 2vw, 32px)" }}
         >
           {includedItems.map((item, i) => (
@@ -415,14 +410,13 @@ function Pricing() {
                 <AnimLine>Pricing.</AnimLine>
               </AnimatedText>
               <p style={{ fontSize: "clamp(14px, 1vw, 16px)", color: "#9ca3af", marginTop: "clamp(16px, 2vw, 24px)", lineHeight: 1.7 }}>
-                Minimum booking: 2 hours. Starting at $199+ taxes.
+                Minimum booking: 2 hours. Starting at $499+ taxes.
               </p>
             </div>
           </RevealOnScroll>
 
           <RevealOnScroll direction="right" delay={150}>
             <div style={{ borderRadius: "clamp(16px, 1.5vw, 20px)", overflow: "hidden", border: "1px solid #e5e7eb" }}>
-              {/* Table header */}
               <div
                 className="grid grid-cols-2"
                 style={{ background: "#141414", padding: "clamp(16px, 1.5vw, 20px) clamp(24px, 2.5vw, 36px)" }}
@@ -531,25 +525,16 @@ function FAQSection() {
             </div>
           </div>
 
-          {/* Sticky images column */}
+          {/* Sticky image column — single image (only 2 total images, reuse hero) */}
           <div
             className="lg:col-span-5 hidden lg:block"
             style={{ alignSelf: "start", position: "sticky", top: "clamp(80px, 8vw, 120px)" }}
           >
             <RevealOnScroll direction="right">
-              <div style={{ borderRadius: "clamp(14px, 1.5vw, 20px)", overflow: "hidden", aspectRatio: "4/3", marginBottom: "clamp(16px, 1.5vw, 20px)" }}>
-                <img
-                  src="/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%203.jpg"
-                  alt="Compact Pole PhotoBooth photo example"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </RevealOnScroll>
-            <RevealOnScroll direction="right" delay={150}>
               <div style={{ borderRadius: "clamp(14px, 1.5vw, 20px)", overflow: "hidden", aspectRatio: "4/3" }}>
                 <img
-                  src="/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%204.jpg"
-                  alt="Compact Pole PhotoBooth at an event"
+                  src="/products/mirror-photobooth/mirror%20photobooth%201.jpg"
+                  alt="Mirror PhotoBooth at an event"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -558,22 +543,13 @@ function FAQSection() {
 
         </div>
 
-        {/* Mobile-only: images below FAQ */}
+        {/* Mobile-only: image below FAQ */}
         <div className="flex flex-col lg:hidden" style={{ gap: "clamp(14px, 3vw, 20px)", marginTop: "clamp(40px, 6vw, 64px)" }}>
           <RevealOnScroll>
             <div style={{ borderRadius: "clamp(14px, 1.5vw, 20px)", overflow: "hidden", aspectRatio: "4/3" }}>
               <img
-                src="/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%203.jpg"
-                alt="Compact Pole PhotoBooth photo example"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </RevealOnScroll>
-          <RevealOnScroll delay={100}>
-            <div style={{ borderRadius: "clamp(14px, 1.5vw, 20px)", overflow: "hidden", aspectRatio: "4/3" }}>
-              <img
-                src="/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%204.jpg"
-                alt="Compact Pole PhotoBooth at an event"
+                src="/products/mirror-photobooth/mirror%20photobooth%201.jpg"
+                alt="Mirror PhotoBooth at an event"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -591,15 +567,15 @@ function ReadyToBook() {
   return (
     <section style={{ padding: "clamp(80px, 12vw, 180px) 0", background: "#fff" }}>
       <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)", textAlign: "center" }}>
-          <AnimatedText
-            as="h2"
-            className="font-heading"
-            style={{ fontSize: "clamp(40px, 6vw, 90px)", lineHeight: 1.0, letterSpacing: "-0.04em", color: "#1a1a2e", marginBottom: "clamp(12px, 1.5vw, 20px)" }}
-            stagger={90}
-          >
-            <AnimLine>Ready to Book?</AnimLine>
-          </AnimatedText>
-          <RevealOnScroll delay={150}>
+        <AnimatedText
+          as="h2"
+          className="font-heading"
+          style={{ fontSize: "clamp(40px, 6vw, 90px)", lineHeight: 1.0, letterSpacing: "-0.04em", color: "#1a1a2e", marginBottom: "clamp(12px, 1.5vw, 20px)" }}
+          stagger={90}
+        >
+          <AnimLine>Ready to Book?</AnimLine>
+        </AnimatedText>
+        <RevealOnScroll delay={150}>
           <p style={{ fontSize: "clamp(16px, 1.3vw, 20px)", color: "#6b7280", lineHeight: 1.7, marginBottom: "clamp(32px, 4vw, 52px)" }}>
             Reach out and secure your date today!
           </p>
@@ -630,7 +606,7 @@ function ReadyToBook() {
 
 // ─── PAGE ──────────────────────────────────────────────────────────────────────
 
-export default function CompactPolePhotoBoothPage() {
+export default function MirrorPhotoBoothPage() {
   return (
     <>
       <SmoothScroll />

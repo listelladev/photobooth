@@ -96,7 +96,7 @@ const babyShowerSections: SectionData[] = [
   {
     bg: "#f9f9f9",
     imageLeft: true,
-    image: "/salsa.jpeg",
+    image: "/baby-showers-page/baby shower - playful props.jpg",
     imageAlt: "Guests enjoying the photo booth at a Calgary baby shower",
     label: "The Experience",
     heading: (
@@ -111,7 +111,7 @@ const babyShowerSections: SectionData[] = [
   {
     bg: "#fff",
     imageLeft: false,
-    image: "/mirror.jpeg",
+    image: "/baby-showers-page/baby shower- every guest takes.jpg",
     imageAlt: "Mirror photo booth at a baby shower in Calgary",
     label: "For Your Guests",
     heading: (
@@ -133,7 +133,7 @@ const babyShowerSections: SectionData[] = [
   {
     bg: "#f9f9f9",
     imageLeft: true,
-    image: "/SalsaPromoHighRes148-scaled-1.png",
+    image: "/baby-showers-page/baby shower- themed to match your shower.jpg",
     imageAlt: "Custom baby shower themed photo frame in Calgary",
     label: "The Details",
     heading: (
@@ -148,7 +148,7 @@ const babyShowerSections: SectionData[] = [
   {
     bg: "#fff",
     imageLeft: false,
-    image: "/360.jpeg",
+    image: "/baby-showers-page/baby shower- we handle setup.jpg",
     imageAlt: "Photo booth setup at a Calgary baby shower venue",
     label: "Hassle-Free",
     heading: (
