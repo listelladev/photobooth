@@ -30,8 +30,8 @@ function LogoItem({ logo }: { logo: (typeof logos)[0] }) {
     <div
       style={{
         flexShrink: 0,
-        width: "clamp(90px, 10vw, 145px)",
-        height: "clamp(32px, 3.5vw, 48px)",
+        width: "clamp(108px, 12vw, 174px)",
+        height: "clamp(38px, 4.2vw, 58px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

@@ -249,7 +249,7 @@ function Step1({ form, setForm }: { form: FormState; setForm: (f: FormState) => 
         Select all that apply — you can choose more than one.
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 7 }}>
-        {BOOTHS.map((b) => (
+        {BOOTHS.filter(b => b.label !== "Mirror PhotoBooth").map((b) => (
           <SelectCard
             key={b.id}
             selected={form.booths.includes(b.id)}

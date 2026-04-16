@@ -365,7 +365,7 @@ export default function FeaturedProducts() {
       <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 clamp(24px, 5vw, 80px)", position: "relative", zIndex: 1 }}>
         <ProductsHeading />
         <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "clamp(16px, 2vw, 24px)" }}>
-          {products.map((product, i) => (
+          {products.filter(p => p.name !== "Mirror PhotoBooth").map((product, i) => (
             <RevealOnScroll key={product.name} delay={i * 100}>
               <ProductCard product={product} />
             </RevealOnScroll>

@@ -10,7 +10,7 @@ import Benefits from "@/components/Benefits";
 import WhatToExpect from "@/components/WhatToExpect";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
-import BookingCTA from "@/components/BookingCTA";
+import HomepageBookingCTA from "@/components/HomepageBookingCTA";
 import ServiceAreas from "@/components/ServiceAreas";
 import Footer from "@/components/Footer";
 
@@ -30,7 +30,7 @@ export default function Home() {
         <HomeImageSlider />
         <Testimonials blobFilter="hue-rotate(90deg) saturate(0.85)" />
         <FAQ />
-        <BookingCTA />
+        <HomepageBookingCTA />
         <ServiceAreas />
       </main>
       <Footer />

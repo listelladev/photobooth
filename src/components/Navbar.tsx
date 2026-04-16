@@ -126,7 +126,7 @@ function ProductsDropdown({ visible }: { visible: boolean }) {
     >
       <div style={{ position: "absolute", top: -6, left: "50%", transform: "translateX(-50%)", width: 12, height: 12, background: "#fff", borderRadius: 2, rotate: "45deg", boxShadow: "-2px -2px 6px rgba(0,0,0,0.04)" }} />
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4 }}>
-        {productItems.map((item, i) => (
+        {productItems.filter(item => item.label !== "Mirror PhotoBooth").map((item, i) => (
           <ProductDropdownItem key={item.href} item={item} delay={i * 22} visible={visible} />
         ))}
       </div>
@@ -248,6 +248,7 @@ function MobileProductItem({ item, index, visible, onClick }: { item: (typeof pr
 export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [overLight, setOverLight] = useState(false);
+  const [scrollHidden, setScrollHidden] = useState(false);
   const [activitiesOpen, setActivitiesOpen] = useState(false);
   const [activitiesMobileOpen, setActivitiesMobileOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
@@ -256,9 +257,19 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
   const productsRef = useRef<HTMLDivElement>(null);
   const activitiesCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const productsCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => setOverLight(window.scrollY > window.innerHeight * 0.85);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setOverLight(y > window.innerHeight * 0.85);
+      if (y > 120) {
+        setScrollHidden(y > lastScrollY.current);
+      } else {
+        setScrollHidden(false);
+      }
+      lastScrollY.current = y;
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
@@ -305,7 +316,7 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
         onClick={() => { setMenuOpen(false); setActivitiesMobileOpen(false); setProductsMobileOpen(false); }}
       />
 
-      <header className="fixed left-0 right-0 z-50 transition-all duration-500 md:pt-4" style={{ top: "clamp(8px, 1vw, 16px)" }}>
+      <header className="fixed left-0 right-0 z-50 md:pt-4" style={{ top: "clamp(8px, 1vw, 16px)", transform: (scrollHidden && !menuOpen) ? "translateY(-150%)" : "translateY(0)", transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1)" }}>
 
         {/* Mobile nav bar white background */}
         <div
@@ -472,7 +483,7 @@ export default function Navbar({ forceDark = false }: { forceDark?: boolean }) {
 
               <div style={{ maxHeight: productsMobileOpen ? 600 : 0, overflow: "hidden", transition: "max-height 0.5s cubic-bezier(0.22,1,0.36,1)" }}>
                 <div style={{ padding: "6px 0 4px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4 }}>
-                  {productItems.map((item, i) => (
+                  {productItems.filter(item => item.label !== "Mirror PhotoBooth").map((item, i) => (
                     <MobileProductItem key={item.href} item={item} index={i} visible={productsMobileOpen} onClick={() => setMenuOpen(false)} />
                   ))}
                 </div>

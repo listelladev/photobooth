@@ -182,11 +182,11 @@ const featuredProducts = [
     iconSrc: "/icons/360-photobooth.svg",
   },
   {
-    name: "Mirror PhotoBooth",
-    description: "A touch of elegance and fun — guests interact with a sleek full-length mirror that captures unique moments and prints stunning keepsakes on the spot.",
-    image: "/products/mirror-photobooth/mirror%20photobooth%201.jpg",
-    accent: "#E8D6FF",
-    iconSrc: "/icons/mirror.svg",
+    name: "AI PhotoBooth",
+    description: "Next-generation AI-powered booth with stunning artistic portrait generation and instant digital sharing — the most talked-about booth at any event.",
+    image: "/products/ai-photobooth/ai%20photobooth%201.jpg",
+    accent: "#C8E6FF",
+    iconSrc: "/icons/pool-of-icons/unforgettable-2.svg",
   },
   {
     name: "Premium Pole PhotoBooth",

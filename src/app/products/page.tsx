@@ -435,7 +435,7 @@ function BoothCard({ booth, index }: { booth: (typeof booths)[0]; index: number 
 
           <div style={{ padding: "clamp(18px, 2vw, 28px)", flex: 1, display: "flex", flexDirection: "column" }}>
             {/* Header */}
-            <div style={{ marginBottom: "clamp(10px, 1.2vw, 16px)" }}>
+            <div style={{ marginBottom: "clamp(10px, 1.2vw, 16px)", flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
               <h3
                 className="font-heading"
                 style={{
@@ -490,7 +490,7 @@ function BoothCard({ booth, index }: { booth: (typeof booths)[0]; index: number 
             </div>
 
             {/* Tier list */}
-            <div style={{ flex: 1, marginBottom: "clamp(14px, 1.8vw, 20px)" }}>
+            <div style={{ marginBottom: "clamp(14px, 1.8vw, 20px)" }}>
               {booth.tiers.map((tier) => (
                 <div
                   key={tier.label}
@@ -633,7 +633,7 @@ function BoothPricing() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: "clamp(20px, 2.5vw, 32px)", alignItems: "stretch" }}>
-          {booths.map((booth, i) => (
+          {booths.filter(b => b.name !== "Mirror PhotoBooth").map((booth, i) => (
             <BoothCard key={booth.name} booth={booth} index={i} />
           ))}
         </div>

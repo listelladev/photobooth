@@ -300,6 +300,8 @@ const sliderProducts = [
   },
 ];
 
+const visibleSliderProducts = sliderProducts.filter(p => p.name !== "Mirror PhotoBooth");
+
 function ProductsSlider() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
@@ -318,7 +320,7 @@ function ProductsSlider() {
       ? (track.firstElementChild as HTMLElement).offsetWidth + 24
       : 0;
     const idx = Math.round(track.scrollLeft / cardWidth);
-    setActive(Math.max(0, Math.min(sliderProducts.length - 1, idx)));
+    setActive(Math.max(0, Math.min(visibleSliderProducts.length - 1, idx)));
   }, []);
 
   const scrollToIndex = (i: number) => {
@@ -331,7 +333,7 @@ function ProductsSlider() {
   };
 
   const prev = () => scrollToIndex(Math.max(0, active - 1));
-  const next = () => scrollToIndex(Math.min(sliderProducts.length - 1, active + 1));
+  const next = () => scrollToIndex(Math.min(visibleSliderProducts.length - 1, active + 1));
 
   // Mouse drag
   const onMouseDown = (e: React.MouseEvent) => {
@@ -417,7 +419,7 @@ function ProductsSlider() {
           <div className="hidden md:flex" style={{ gap: 10, paddingBottom: 8 }}>
             {[
               { dir: "prev", onClick: prev, disabled: active === 0, path: "M15 8H1M7 2L1 8l6 6" },
-              { dir: "next", onClick: next, disabled: active === sliderProducts.length - 1, path: "M1 8h14M9 2l6 6-6 6" },
+              { dir: "next", onClick: next, disabled: active === visibleSliderProducts.length - 1, path: "M1 8h14M9 2l6 6-6 6" },
             ].map(({ dir, onClick, disabled, path }) => (
               <button
                 key={dir}
@@ -469,7 +471,7 @@ function ProductsSlider() {
             msOverflowStyle: "none",
           } as React.CSSProperties}
         >
-          {sliderProducts.map((product) => (
+          {visibleSliderProducts.map((product) => (
             <div
               key={product.name}
               style={{
@@ -551,7 +553,7 @@ function ProductsSlider() {
 
         {/* Dot indicators */}
         <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 8, padding: "0 clamp(24px, 5vw, 80px)" }}>
-          {sliderProducts.map((_, i) => (
+          {visibleSliderProducts.map((_, i) => (
             <button
               key={i}
               onClick={() => scrollToIndex(i)}

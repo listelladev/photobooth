@@ -115,6 +115,8 @@ const sliderProducts = [
   },
 ];
 
+const visibleSliderProducts = sliderProducts.filter(p => p.name !== "Mirror PhotoBooth");
+
 // ── Hero ───────────────────────────────────────────────────────────────────────
 function LocationHero({ city, subtitle, image }: { city: string; subtitle: string; image: string }) {
   const line1Ref = useRef<HTMLSpanElement>(null);
@@ -333,7 +335,7 @@ function ProductsSlider() {
       ? (track.firstElementChild as HTMLElement).offsetWidth + 24
       : 0;
     const idx = Math.round(track.scrollLeft / cardWidth);
-    setActive(Math.max(0, Math.min(sliderProducts.length - 1, idx)));
+    setActive(Math.max(0, Math.min(visibleSliderProducts.length - 1, idx)));
   }, []);
 
   const scrollToIndex = (i: number) => {
@@ -346,7 +348,7 @@ function ProductsSlider() {
   };
 
   const prev = () => scrollToIndex(Math.max(0, active - 1));
-  const next = () => scrollToIndex(Math.min(sliderProducts.length - 1, active + 1));
+  const next = () => scrollToIndex(Math.min(visibleSliderProducts.length - 1, active + 1));
 
   const onMouseDown = (e: React.MouseEvent) => {
     const track = trackRef.current;
@@ -412,7 +414,7 @@ function ProductsSlider() {
           <div className="hidden md:flex" style={{ gap: 10, paddingBottom: 8 }}>
             {[
               { dir: "prev", onClick: prev, disabled: active === 0, path: "M15 8H1M7 2L1 8l6 6" },
-              { dir: "next", onClick: next, disabled: active === sliderProducts.length - 1, path: "M1 8h14M9 2l6 6-6 6" },
+              { dir: "next", onClick: next, disabled: active === visibleSliderProducts.length - 1, path: "M1 8h14M9 2l6 6-6 6" },
             ].map(({ dir, onClick, disabled, path }) => (
               <button key={dir} onClick={onClick} disabled={disabled}
                 style={{ width: 48, height: 48, borderRadius: "50%", border: "1.5px solid #e5e7eb", background: disabled ? "#f9f9f9" : "#fff", cursor: disabled ? "default" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", opacity: disabled ? 0.35 : 1, transition: "background 0.2s, opacity 0.2s, border-color 0.2s" }}
@@ -436,7 +438,7 @@ function ProductsSlider() {
           onMouseLeave={onMouseUp}
           style={{ display: "flex", gap: 24, overflowX: "auto", scrollSnapType: "x mandatory", paddingLeft: "clamp(24px, 5vw, 80px)", paddingRight: "clamp(24px, 5vw, 80px)", paddingBottom: 24, cursor: "grab", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
         >
-          {sliderProducts.map((product) => (
+          {visibleSliderProducts.map((product) => (
             <div key={product.name} style={{ flexShrink: 0, width: "clamp(280px, 40vw, 440px)", scrollSnapAlign: "start" }}>
               <div style={{ background: "#fff", borderRadius: "clamp(16px, 2vw, 24px)", overflow: "hidden", border: "1px solid #ebebeb", height: "100%" }}>
                 <a href={product.href} style={{ display: "block", position: "relative", aspectRatio: "4/3", overflow: "hidden" }}>
@@ -474,7 +476,7 @@ function ProductsSlider() {
         </div>
 
         <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 8, padding: "0 clamp(24px, 5vw, 80px)" }}>
-          {sliderProducts.map((_, i) => (
+          {visibleSliderProducts.map((_, i) => (
             <button key={i} onClick={() => scrollToIndex(i)}
               style={{ width: i === active ? 28 : 8, height: 8, borderRadius: 4, background: i === active ? "#1a1a2e" : "#d1d5db", border: "none", padding: 0, cursor: "pointer", transition: "width 0.4s cubic-bezier(0.22,1,0.36,1), background 0.3s" }}
               aria-label={`Go to slide ${i + 1}`}
