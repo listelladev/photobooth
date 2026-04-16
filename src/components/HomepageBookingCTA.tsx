@@ -399,7 +399,7 @@ function StepPackage({ form, setForm }: { form: QuoteForm; setForm: (f: QuoteFor
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 2 }}>
                     <span style={{ fontSize: 13, fontWeight: 700, color: "#1a1a2e" }}>{pkg.label}</span>
                     {pkg.badge && (
-                      <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", background: "#FF6B35", color: "#fff", borderRadius: 99, padding: "2px 7px" }}>
+                      <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", background: "#FF6B35", color: "#fff", borderRadius: 99, padding: "2px 7px", whiteSpace: "nowrap" }}>
                         {pkg.badge}
                       </span>
                     )}
@@ -1006,7 +1006,7 @@ function InstantQuoteForm() {
                   display: "flex", alignItems: "center", gap: 8, transition: "all 0.2s",
                 }}
               >
-                {currentStepId === "summary" ? "Looks Good — Continue" : "Continue"}
+                {currentStepId === "summary" ? "Looks Good, Continue" : "Continue"}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -1189,7 +1189,7 @@ function QuotePanel() {
       {currentStepId === "summary"   && <StepSummary   form={form} />}
       {currentStepId === "contact"   && <StepContact   form={form} setForm={setForm} onSubmit={() => setSubmitted(true)} submitted={submitted} />}
 
-      {step > 0 && (
+      {step > 0 && !submitted && (
         <div className="flex items-center justify-between" style={{ marginTop: 28 }}>
           <button type="button" onClick={() => setStep(step - 1)}
             style={{ fontSize: 14, fontWeight: 700, fontFamily: "dm-sans, sans-serif", color: "#6b7280", background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 6, padding: 0 }}
@@ -1210,7 +1210,7 @@ function QuotePanel() {
                 display: "flex", alignItems: "center", gap: 8, transition: "all 0.2s",
               }}
             >
-              {currentStepId === "summary" ? "Looks Good — Continue" : "Continue"}
+              {currentStepId === "summary" ? "Looks Good, Continue" : "Continue"}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
