@@ -1192,7 +1192,7 @@ function QuotePanel() {
       {step > 0 && !submitted && (
         <div className="flex items-center justify-between" style={{ marginTop: 28 }}>
           <button type="button" onClick={() => setStep(step - 1)}
-            style={{ fontSize: 14, fontWeight: 700, fontFamily: "dm-sans, sans-serif", color: "#6b7280", background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 6, padding: 0 }}
+            style={{ fontSize: 12, fontWeight: 700, fontFamily: "dm-sans, sans-serif", color: "#6b7280", background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 6, padding: 0 }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M19 12H5M12 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
@@ -1223,7 +1223,7 @@ function QuotePanel() {
           <button type="button" onClick={() => { if (canAdvance()) setStep(step + 1); }}
             disabled={!canAdvance()}
             style={{
-              fontSize: 15, fontWeight: 700, fontFamily: "dm-sans, sans-serif",
+              fontSize: 13, fontWeight: 700, fontFamily: "dm-sans, sans-serif",
               padding: "14px 32px", borderRadius: 60, border: "none", color: "#fff",
               background: canAdvance() ? "#FF6B35" : "#d1d5db",
               cursor: canAdvance() ? "pointer" : "not-allowed",
