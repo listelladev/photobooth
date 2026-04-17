@@ -132,7 +132,7 @@ export default function Hero() {
             textAlign: "center",
           }}
         >
-          <div
+          <h1
             className="font-heading"
             style={{
               fontSize: "clamp(40px, 6vw, 82px)",
@@ -251,7 +251,7 @@ export default function Hero() {
                 </span>
               </span>
             </span>
-          </div>
+          </h1>
         </div>
       </div>
     </section>

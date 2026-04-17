@@ -115,7 +115,7 @@ function ProductsHero() {
           className="relative z-10 text-center"
           style={{ padding: "clamp(48px, 6vw, 100px)" }}
         >
-          <h3
+          <h2
             className="font-heading"
             style={{
               fontSize: "clamp(44px, 7.5vw, 110px)",
@@ -160,7 +160,7 @@ function ProductsHero() {
                 />
               </span>
             </span>
-          </h3>
+          </h2>
 
           {/* H1 subtext */}
           <h1
@@ -187,7 +187,7 @@ function ProductsHero() {
                 lineHeight: 1.7,
               }}
             >
-              Calgary photo booth rental with eight unique products, a stunning backdrop library, and setup &amp; takedown completely on us.
+              Choose from Calgary&apos;s Best Selection of Photo Booths and Add-Ons
             </span>
           </h1>
 

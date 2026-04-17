@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import SmoothScroll from "@/components/SmoothScroll";
 import CursorTag from "@/components/CursorTag";
 import Navbar from "@/components/Navbar";
@@ -13,6 +14,12 @@ import FAQ from "@/components/FAQ";
 import HomepageBookingCTA from "@/components/HomepageBookingCTA";
 import ServiceAreas from "@/components/ServiceAreas";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Premium Photo Booth Rentals in Calgary",
+  description:
+    "Premium photo booth rentals in Calgary & Southern Alberta. AI booths, 360 video booths, mirror booths, and more — perfect for weddings, corporate events, and celebrations.",
+};
 
 export default function Home() {
   return (
