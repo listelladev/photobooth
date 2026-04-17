@@ -204,16 +204,16 @@ const booths = [
     href: "/products/compact-pole-photobooth",
     icon: "/icons/pool-of-icons/hero-camera.svg",
     image: "/products/compact-pole-photobooth/Compact%20Pole%20PhotoBooth%201.jpg",
-    startingAt: "199",
+    startingAt: "250",
     accent: "#FFD6E8",
     accentDark: "#E84393",
     note: "Minimum 2 hours",
     tiers: [
-      { label: "2 hours", price: "$299" },
-      { label: "3 hours", price: "$399" },
-      { label: "4 hours", price: "$499" },
+      { label: "2 hours", price: "$250" },
+      { label: "3 hours", price: "$350" },
+      { label: "4 hours", price: "$450" },
     ],
-    extra: "$99 / additional hour",
+    extra: "$100 / additional hour",
     description:
       "A sleek, space-saving pole booth that delivers big on fun. Perfect for intimate gatherings and venues where space is at a premium.",
   },
@@ -222,16 +222,16 @@ const booths = [
     href: "/products/premium-pole-photobooth",
     icon: "/icons/pool-of-icons/Asset%203photo-stand.svg",
     image: "/products/premium-backdrops/Premium%20Pole%20PhotoBooth1.jpg",
-    startingAt: "249",
+    startingAt: "350",
     accent: "#FDE8C8",
     accentDark: "#F59E0B",
     note: "Minimum 2 hours",
     tiers: [
-      { label: "2 hours", price: "$349" },
-      { label: "3 hours", price: "$449" },
-      { label: "4 hours", price: "$549" },
+      { label: "2 hours", price: "$350" },
+      { label: "3 hours", price: "$475" },
+      { label: "4 hours", price: "$600" },
     ],
-    extra: "$109 / additional hour",
+    extra: "$125 / additional hour",
     description:
       "Premium hardware, polished finish, and crisp high-quality prints. Elevate your event with the best classic booth experience.",
   },
@@ -240,16 +240,16 @@ const booths = [
     href: "/products/ai-photobooth",
     icon: "/icons/pool-of-icons/unforgettable-2.svg",
     image: "/products/ai-photobooth/ai%20photobooth%201.jpg",
-    startingAt: "299",
+    startingAt: "350",
     accent: "#C8E6FF",
     accentDark: "#1a73e8",
     note: "Minimum 2 hours",
     tiers: [
-      { label: "2 hours", price: "$399" },
-      { label: "3 hours", price: "$499" },
-      { label: "4 hours", price: "$599" },
+      { label: "2 hours", price: "$350" },
+      { label: "3 hours", price: "$475" },
+      { label: "4 hours", price: "$600" },
     ],
-    extra: "$129 / additional hour",
+    extra: "$125 / additional hour",
     description:
       "Next-generation AI-powered booth with stunning artistic portrait generation and instant digital sharing.",
   },
@@ -258,16 +258,16 @@ const booths = [
     href: "/products/360-videobooth",
     icon: "/icons/360-photobooth.svg",
     image: "/products/360-videobooth/360%20video%20booth%201.jpg",
-    startingAt: "399",
+    startingAt: "400",
     accent: "#D4F4A0",
     accentDark: "#00B894",
-    note: "Minimum 1 hour",
+    note: "Minimum 2 hours",
     tiers: [
-      { label: "2 hours", price: "$499" },
-      { label: "3 hours", price: "$599" },
-      { label: "4 hours", price: "$699" },
+      { label: "2 hours", price: "$400" },
+      { label: "3 hours", price: "$550" },
+      { label: "4 hours", price: "$700" },
     ],
-    extra: "$119 / additional hour",
+    extra: "$150 / additional hour",
     description:
       "The ultimate social media showstopper. Cinematic 360° slow-motion videos that guests will share for days.",
   },
@@ -294,13 +294,13 @@ const booths = [
     href: "/products/audio-guestbook",
     icon: "/icons/pool-of-icons/Asset%202music-note.svg",
     image: "/products/audio-guestbook/audio%20guestbook%201.jpg",
-    startingAt: "149",
+    startingAt: "80",
     accent: "#C8F5E8",
     accentDark: "#10B981",
-    note: "Per event",
+    note: "Add-on or with Platinum",
     tiers: [
-      { label: "Half day", price: "$149" },
-      { label: "Full day", price: "$199" },
+      { label: "With Platinum Package", price: "Free" },
+      { label: "Add-on (any booking)", price: "$80" },
     ],
     extra: "Includes unlimited messages",
     description:
@@ -311,13 +311,13 @@ const booths = [
     href: "/products/premium-backdrops",
     icon: "/icons/backdrops.svg",
     image: "/products/premium-backdrops/premium%20backdrops%201.jpg",
-    startingAt: "80",
+    startingAt: "50",
     accent: "#FFD6D6",
     accentDark: "#EF4444",
     note: "Add-on or standalone",
     tiers: [
-      { label: "Standard rental", price: "$80" },
-      { label: "With setup", price: "$120" },
+      { label: "With Gold or Platinum", price: "Free" },
+      { label: "Standalone add-on", price: "$50" },
     ],
     extra: "2.60m × 2.60m professional backdrops",
     description:
@@ -328,15 +328,16 @@ const booths = [
     href: "/products/instant-high-quality-printing",
     icon: "/icons/unlimited-prints.svg",
     image: "/products/instant-high-quality-printing/instant%20high%20quality%20prints%201.jpg",
-    startingAt: "50",
+    startingAt: "120",
     accent: "#FFF3C8",
     accentDark: "#D97706",
     note: "Add-on to any booth",
     tiers: [
-      { label: '2×6" strip', price: "$50" },
-      { label: '4×6" photo', price: "$70" },
+      { label: "With Gold or Platinum", price: "✓" },
+      { label: '2×6" unlimited prints', price: "$120" },
+      { label: '4×6" unlimited prints', price: "$150" },
     ],
-    extra: "Unlimited prints included",
+    extra: "Unlimited prints per session",
     description:
       "Walk away with lab-quality prints in seconds. Vibrant, professional-grade photos your guests take home instantly.",
   },
@@ -490,7 +491,7 @@ function BoothCard({ booth, index }: { booth: (typeof booths)[0]; index: number 
             </div>
 
             {/* Tier list */}
-            <div style={{ marginBottom: "clamp(14px, 1.8vw, 20px)" }}>
+            <div style={{ marginBottom: "clamp(14px, 1.8vw, 20px)", minHeight: 200 }}>
               {booth.tiers.map((tier) => (
                 <div
                   key={tier.label}
@@ -654,7 +655,11 @@ const backdropItems = [
   { name: "Flowers 4", src: "/backdrop-images/flowers%204.png" },
   { name: "Glitter", src: "/backdrop-images/glitter.jpg" },
   { name: "Party", src: "/backdrop-images/party.jpg" },
-  { name: "Other Backdrop", src: "/backdrop-images/other%20backdrop.jpg" },
+  { name: "Christmas 1", src: "/backdrop-images/Christmas%201.jpg" },
+  { name: "Christmas 2", src: "/backdrop-images/Christmas%202.jpg" },
+  { name: "Black", src: "/backdrop-images/Black.png" },
+  { name: "White", src: "/backdrop-images/White.png" },
+  { name: "Other", src: "/backdrop-images/other%20backdrop.jpg" },
 ];
 
 function BackdropsGallery() {
@@ -821,13 +826,13 @@ function BackdropsGallery() {
 
 // ─── PACKAGES COMPARISON ──────────────────────────────────────────────────────
 const packageFeatures = [
-  { label: "Choice of Photo Booth" },
   { label: "Delivery, Setup & Takedown" },
   { label: "Custom Photo Template" },
   { label: "Digital Media Sharing" },
   { label: "Unlimited Printing" },
   { label: "Premium Backdrop" },
   { label: "Wide Variety of Props" },
+  { label: "Audio Guest Book" },
   { label: "Red Carpet" },
   { label: "Velvet Rope Stanchions" },
   { label: "Theme Decorated Background" },
@@ -837,7 +842,7 @@ const packageTiers = [
   {
     name: "Basic",
     desc: "Everything you need to get started",
-    includes: [true, true, true, true, false, false, false, false, false, false],
+    includes: [true, true, true, false, false, false, false, false, false, false],
     bg: "#2e2e2e",
     highlight: false,
     light: false,
@@ -845,7 +850,7 @@ const packageTiers = [
   {
     name: "Gold",
     desc: "The most popular choice for any event",
-    includes: [true, true, true, true, true, true, true, false, false, false],
+    includes: [true, true, true, true, true, true, false, false, false, false],
     bg: "#141414",
     highlight: true,
     light: false,

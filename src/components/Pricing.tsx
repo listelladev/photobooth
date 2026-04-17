@@ -60,28 +60,25 @@ function TransparentWord() {
 
 const packages = [
   {
-    name: "Silver",
-    price: "449",
-    duration: "2 Hours",
+    name: "Basic",
     popular: false,
     cardBg: "#F7F3EA",
-    features: ["Choice of Photo Booth", "Unlimited Prints", "Custom Photo Frame", "Props Collection", "Setup & Takedown", "On-Site Attendant"],
+    features: ["Choice of Photo Booth", "Delivery, Setup & Takedown", "Custom Photo Template", "Digital Media Sharing"],
+    dimmed: [],
   },
   {
     name: "Gold",
-    price: "599",
-    duration: "3 Hours",
     popular: true,
     cardBg: "#141414",
-    features: ["Choice of Photo Booth", "Unlimited Prints", "Custom Photo Frame", "Premium Props", "Setup & Takedown", "On-Site Attendant", "Digital Gallery", "Social Sharing"],
+    features: ["Choice of Photo Booth", "Delivery, Setup & Takedown", "Custom Photo Template", "Digital Media Sharing", "Unlimited Printing", "Premium Backdrop", "Wide Variety of Props"],
+    dimmed: [],
   },
   {
     name: "Platinum",
-    price: "799",
-    duration: "4 Hours",
     popular: false,
     cardBg: "#ffffff",
-    features: ["Choice of Photo Booth", "Unlimited Prints", "Custom Photo Frame", "Premium Props", "Setup & Takedown", "On-Site Attendant", "Digital Gallery", "Social Sharing", "Guest Book", "Video Messages"],
+    features: ["Choice of Photo Booth", "Delivery, Setup & Takedown", "Custom Photo Template", "Digital Media Sharing", "Unlimited Printing", "Premium Backdrop", "Wide Variety of Props", "Audio Guest Book", "Red Carpet", "Velvet Rope Stanchions", "Theme Decorated Background"],
+    dimmed: [],
   },
 ];
 
@@ -154,7 +151,7 @@ export default function Pricing() {
                   boxShadow: "0 16px 48px rgba(0,0,0,0.10)",
                 }}
               >
-                <div className="flex items-center justify-between" style={{ marginBottom: 8 }}>
+                <div className="flex items-center justify-between" style={{ marginBottom: 28 }}>
                   <h3
                     className="font-heading"
                     style={{
@@ -174,31 +171,12 @@ export default function Pricing() {
                         background: "rgba(255,107,53,0.15)",
                         padding: "4px 12px",
                         borderRadius: 50,
+                        whiteSpace: "nowrap",
                       }}
                     >
                       Popular
                     </span>
                   )}
-                </div>
-                <p style={{ fontSize: 14, fontWeight: 500, color: pkg.popular ? "rgba(255,255,255,0.4)" : "#9ca3af", marginBottom: 28 }}>
-                  {pkg.duration}
-                </p>
-
-                <div style={{ marginBottom: 32 }}>
-                  <span style={{ fontSize: 13, fontWeight: 500, color: pkg.popular ? "rgba(255,255,255,0.35)" : "#9ca3af" }}>
-                    Starting at
-                  </span>
-                  <div
-                    className="font-heading"
-                    style={{
-                      fontSize: "clamp(48px, 4.5vw, 72px)",
-                      letterSpacing: "-0.03em",
-                      color: pkg.popular ? "#fff" : "#1a1a2e",
-                      lineHeight: 1.1,
-                    }}
-                  >
-                    ${pkg.price}
-                  </div>
                 </div>
 
                 <div style={{ height: 1, background: pkg.popular ? "rgba(255,255,255,0.08)" : "#e5e7eb", marginBottom: 28 }} />

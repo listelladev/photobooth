@@ -16,8 +16,8 @@ const includedItems = [
 ];
 
 const pricingTiers = [
-  { label: "Half Day", price: "$149" },
-  { label: "Full Day", price: "$199" },
+  { label: "With Platinum Package", price: "Free", muted: false },
+  { label: "Add-on (any booking)", price: "$80", muted: true },
 ];
 
 const faqs = [

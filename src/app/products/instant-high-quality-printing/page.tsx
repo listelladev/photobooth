@@ -11,8 +11,9 @@ import AnimatedText, { AnimLine } from "@/components/AnimatedText";
 // ─── DATA ──────────────────────────────────────────────────────────────────────
 
 const pricingTiers = [
-  { label: '2×6" Photo Strip', price: "$50" },
-  { label: '4×6" Photo Print', price: "$70" },
+  { label: "With Gold or Platinum Package", price: "Included", muted: false },
+  { label: '2×6" Unlimited Prints', price: "$120", muted: true },
+  { label: '4×6" Unlimited Prints', price: "$150", muted: true },
 ];
 
 const faqs = [

@@ -20,10 +20,10 @@ const includedItems = [
 ];
 
 const pricingTiers = [
-  { label: "2 Hours", price: "$349" },
-  { label: "3 Hours", price: "$449" },
-  { label: "4 Hours", price: "$549" },
-  { label: "Additional Hour", price: "$109 / hr", muted: true },
+  { label: "2 Hours", price: "$350" },
+  { label: "3 Hours", price: "$475" },
+  { label: "4 Hours", price: "$600" },
+  { label: "5+ Hours", price: "$600 + $125/hr", muted: true },
 ];
 
 const faqs = [

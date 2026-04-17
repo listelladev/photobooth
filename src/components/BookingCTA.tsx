@@ -84,7 +84,11 @@ const BACKDROPS = [
   { name: "Flowers 4",            src: "/backdrop-images/flowers%204.png" },
   { name: "Glitter",              src: "/backdrop-images/glitter.jpg" },
   { name: "Party",                src: "/backdrop-images/party.jpg" },
-  { name: "Other",                src: "/backdrop-images/other%20backdrop.jpg" },
+  { name: "Christmas 1",         src: "/backdrop-images/Christmas%201.jpg" },
+  { name: "Christmas 2",         src: "/backdrop-images/Christmas%202.jpg" },
+  { name: "Black",               src: "/backdrop-images/Black.png" },
+  { name: "White",               src: "/backdrop-images/White.png" },
+  { name: "Other",               src: "/backdrop-images/other%20backdrop.jpg" },
 ];
 
 // ─── Form state ───────────────────────────────────────────────────────────────

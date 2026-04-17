@@ -21,11 +21,15 @@ const backdropImages = [
   { src: "/backdrop-images/flowers%204.png", alt: "Flowers 4 backdrop" },
   { src: "/backdrop-images/glitter.jpg", alt: "Glitter backdrop" },
   { src: "/backdrop-images/party.jpg", alt: "Party backdrop" },
+  { src: "/backdrop-images/Christmas%201.jpg", alt: "Christmas 1 backdrop" },
+  { src: "/backdrop-images/Christmas%202.jpg", alt: "Christmas 2 backdrop" },
+  { src: "/backdrop-images/Black.png", alt: "Black backdrop" },
+  { src: "/backdrop-images/White.png", alt: "White backdrop" },
 ];
 
 const pricingTiers = [
-  { label: "Standard Rental", price: "$80" },
-  { label: "With Setup", price: "$120" },
+  { label: "With Gold or Platinum Package", price: "Free", muted: false },
+  { label: "Standalone Add-on", price: "$50", muted: true },
 ];
 
 const faqs = [
