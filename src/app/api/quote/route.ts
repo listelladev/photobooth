@@ -71,7 +71,7 @@ export async function POST(req: NextRequest) {
 </html>`;
 
   const { error } = await resend.emails.send({
-    from: "Photo Booth Experience <notifications@photoboothexperience.ca>",
+    from: "Photo Booth Experience <info@photoboothexperience.ca>",
     to: "info@photoboothexperience.ca",
     replyTo: email,
     subject: `New Quote Request — ${name} (${BOOTH_LABELS[booth] ?? booth})`,
