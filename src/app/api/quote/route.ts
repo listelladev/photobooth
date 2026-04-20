@@ -53,10 +53,9 @@ export async function POST(req: NextRequest) {
       </table>
 
       ${estimatedTotal ? `
-      <div style="background: #fff7f4; border: 1.5px solid #fed7c3; border-radius: 10px; padding: 16px 20px; margin-bottom: 28px; display: flex; justify-content: space-between; align-items: center;">
-        <span style="font-size: 14px; color: #6b7280;">Estimated Total</span>
-        <span style="font-size: 20px; font-weight: 800; color: #FF6B35;">$${estimatedTotal}</span>
-      </div>` : ""}
+      <table style="width: 100%; border-collapse: collapse; margin-bottom: 28px;">
+        <tr style="border-top: 1px solid #f3f4f6;"><td style="padding: 8px 0; font-size: 14px; color: #6b7280; width: 140px;">Estimated Total</td><td style="padding: 8px 0; font-size: 14px; font-weight: 700; color: #FF6B35;">$${estimatedTotal}</td></tr>
+      </table>` : ""}
 
       ${notes ? `
       <h2 style="margin: 0 0 12px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #9ca3af;">Notes</h2>
