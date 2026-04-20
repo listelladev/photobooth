@@ -867,7 +867,15 @@ function ContactFormPanel() {
   }
 
   return (
-    <form onSubmit={e => { e.preventDefault(); setSubmitted(true); }}>
+    <form onSubmit={async e => {
+      e.preventDefault();
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cf),
+      });
+      setSubmitted(true);
+    }}>
       <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: "0 clamp(16px, 2vw, 24px)" }}>
         <div style={{ marginBottom: 4 }}>
           <label style={labelStyle}>Name *</label>
@@ -959,7 +967,14 @@ function QuotePanel() {
       {currentStepId === "backdrop"  && <StepBackdrop  form={form} setForm={setForm} />}
       {currentStepId === "location"  && <StepLocation  form={form} setForm={setForm} />}
       {currentStepId === "summary"   && <StepSummary   form={form} />}
-      {currentStepId === "contact"   && <StepContact   form={form} setForm={setForm} onSubmit={() => setSubmitted(true)} submitted={submitted} />}
+      {currentStepId === "contact"   && <StepContact   form={form} setForm={setForm} onSubmit={async () => {
+        await fetch("/api/quote", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...form, estimatedTotal: getTotalPrice(form) }),
+        });
+        setSubmitted(true);
+      }} submitted={submitted} />}
 
       {step > 0 && !submitted && (
         <div className="flex items-center justify-between" style={{ marginTop: 28 }}>
