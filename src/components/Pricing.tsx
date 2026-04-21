@@ -63,21 +63,21 @@ const packages = [
     name: "Basic",
     popular: false,
     cardBg: "#F7F3EA",
-    features: ["Choice of Photo Booth", "Delivery, Setup & Takedown", "Custom Photo Template", "Digital Media Sharing"],
-    dimmed: [],
+    features: ["Delivery, Setup & Takedown", "Custom Photo Template", "Digital Media Sharing"],
+    dimmed: ["Unlimited Printing", "Premium Backdrop", "Wide Variety of Props", "Audio Guest Book", "Red Carpet", "Velvet Rope Stanchions", "Theme Decorated Background"],
   },
   {
     name: "Gold",
     popular: true,
     cardBg: "#141414",
-    features: ["Choice of Photo Booth", "Delivery, Setup & Takedown", "Custom Photo Template", "Digital Media Sharing", "Unlimited Printing", "Premium Backdrop", "Wide Variety of Props"],
-    dimmed: [],
+    features: ["Delivery, Setup & Takedown", "Custom Photo Template", "Digital Media Sharing", "Unlimited Printing", "Premium Backdrop", "Wide Variety of Props"],
+    dimmed: ["Audio Guest Book", "Red Carpet", "Velvet Rope Stanchions", "Theme Decorated Background"],
   },
   {
     name: "Platinum",
     popular: false,
     cardBg: "#ffffff",
-    features: ["Choice of Photo Booth", "Delivery, Setup & Takedown", "Custom Photo Template", "Digital Media Sharing", "Unlimited Printing", "Premium Backdrop", "Wide Variety of Props", "Audio Guest Book", "Red Carpet", "Velvet Rope Stanchions", "Theme Decorated Background"],
+    features: ["Delivery, Setup & Takedown", "Custom Photo Template", "Digital Media Sharing", "Unlimited Printing", "Premium Backdrop", "Wide Variety of Props", "Audio Guest Book", "Red Carpet", "Velvet Rope Stanchions", "Theme Decorated Background"],
     dimmed: [],
   },
 ];
@@ -184,8 +184,29 @@ export default function Pricing() {
                 <ul className="flex-1" style={{ marginBottom: 36 }}>
                   {pkg.features.map((f) => (
                     <li key={f} className="flex items-center" style={{ gap: 10, marginBottom: 12 }}>
-                      <span style={{ color: "#FF6B35", fontSize: 14 }}>&#10003;</span>
-                      <span style={{ fontSize: 14, fontWeight: 400, color: pkg.popular ? "rgba(255,255,255,0.6)" : "#6b7280" }}>
+                      <span
+                        style={{
+                          display: "inline-flex", alignItems: "center", justifyContent: "center",
+                          width: 20, height: 20, borderRadius: "50%", flexShrink: 0,
+                          background: "#FF6B35", color: "#fff", fontSize: 11, fontWeight: 700,
+                        }}
+                      >&#10003;</span>
+                      <span style={{ fontSize: 14, fontWeight: 600, color: pkg.popular ? "#fff" : "#1a1a2e" }}>
+                        {f}
+                      </span>
+                    </li>
+                  ))}
+                  {pkg.dimmed.map((f) => (
+                    <li key={f} className="flex items-center" style={{ gap: 10, marginBottom: 12 }}>
+                      <span
+                        style={{
+                          display: "inline-flex", alignItems: "center", justifyContent: "center",
+                          width: 20, height: 20, borderRadius: "50%", flexShrink: 0,
+                          background: pkg.popular ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)",
+                          color: pkg.popular ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.25)", fontSize: 11, fontWeight: 700,
+                        }}
+                      >&#10005;</span>
+                      <span style={{ fontSize: 14, fontWeight: 400, color: pkg.popular ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.25)" }}>
                         {f}
                       </span>
                     </li>
